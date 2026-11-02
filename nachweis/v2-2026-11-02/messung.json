@@ -1,0 +1,3585 @@
+{
+ "prompt": "extraktion-v2",
+ "startwert": 2027,
+ "umgebung": {
+  "python": "3.12.13",
+  "ollama": "0.20.6",
+  "gpu": "über Ollama-Container",
+  "modelle": {
+   "bge-m3:latest": {
+    "digest": "790764642607",
+    "groesse_gb": 1.16
+   },
+   "qwen2.5:7b-instruct": {
+    "digest": "845dbda0ea48",
+    "groesse_gb": 4.68
+   }
+  }
+ },
+ "normen": {
+  "absaetze": 519,
+  "paragrafen": 150,
+  "einbetten_sekunden": 0.2
+ },
+ "suche": {
+  "bm25": {
+   "n": 45,
+   "treffer@1": 0.511,
+   "treffer@3": 0.711,
+   "treffer@5": 0.756,
+   "mrr": 0.606,
+   "ms_median": 0.4,
+   "einzeln": [
+    {
+     "frage": "Wer bekommt überhaupt Leistungen nach dem SGB II?",
+     "erwartet": [
+      "SGB II § 7"
+     ],
+     "gefunden": [
+      "SGB II § 65",
+      "SGB II § 71",
+      "SGB II § 73",
+      "SGB II § 70",
+      "SGB II § 41"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Bis zu welchem Alter kann man Grundsicherung für Arbeitsuchende bekommen?",
+     "erwartet": [
+      "SGB II § 7a"
+     ],
+     "gefunden": [
+      "SGB II § 40a",
+      "SGB II § 1",
+      "SGB II § 6",
+      "SGB II § 51b",
+      "SGB II § 65"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Muss ich für das Jobcenter erreichbar sein, wenn ich verreisen will?",
+     "erwartet": [
+      "SGB II § 7b"
+     ],
+     "gefunden": [
+      "SGB II § 7b",
+      "SGB II § 6d",
+      "SGB II § 13",
+      "SGB II § 7",
+      "SGB II § 43"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wann gilt jemand als erwerbsfähig?",
+     "erwartet": [
+      "SGB II § 8"
+     ],
+     "gefunden": [
+      "SGB II § 60",
+      "SGB II § 58",
+      "SGB II § 3",
+      "SGB II § 56",
+      "SGB II § 16g"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Wann ist eine Person hilfebedürftig?",
+     "erwartet": [
+      "SGB II § 9"
+     ],
+     "gefunden": [
+      "SGB II § 44a",
+      "SGB II § 9",
+      "SGB II § 26",
+      "SGB II § 40",
+      "SGB II § 22"
+     ],
+     "platz": 2
+    },
+    {
+     "frage": "Welche Arbeit muss man annehmen und welche ist nicht zumutbar?",
+     "erwartet": [
+      "SGB II § 10"
+     ],
+     "gefunden": [
+      "SGB II § 31",
+      "SGB II § 15a",
+      "SGB II § 16i",
+      "SGB II § 31a",
+      "SGB II § 10"
+     ],
+     "platz": 5
+    },
+    {
+     "frage": "Was wird als Einkommen angerechnet?",
+     "erwartet": [
+      "SGB II § 11"
+     ],
+     "gefunden": [
+      "SGB II § 42a",
+      "SGB II § 11a",
+      "SGB II § 11",
+      "SGB II § 19",
+      "SGB II § 9"
+     ],
+     "platz": 3
+    },
+    {
+     "frage": "Welche Einnahmen bleiben anrechnungsfrei?",
+     "erwartet": [
+      "SGB II § 11a"
+     ],
+     "gefunden": [
+      "SGB II § 11",
+      "SGB II § 24",
+      "SGB II § 44h",
+      "SGB II § 11a",
+      "SGB II § 47"
+     ],
+     "platz": 4
+    },
+    {
+     "frage": "Welche Beträge darf man vom Lohn abziehen, wie hoch ist der Freibetrag für Erwerbstätige?",
+     "erwartet": [
+      "SGB II § 11b"
+     ],
+     "gefunden": [
+      "SGB II § 11b",
+      "SGB II § 69",
+      "SGB II § 13",
+      "SGB II § 8",
+      "SGB II § 29"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wie viel Erspartes darf man behalten?",
+     "erwartet": [
+      "SGB II § 12"
+     ],
+     "gefunden": [
+      "SGB II § 1",
+      "SGB II § 2",
+      "SGB II § 3",
+      "SGB II § 3a",
+      "SGB II § 4"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Muss man vorher Rente oder Wohngeld beantragen?",
+     "erwartet": [
+      "SGB II § 12a"
+     ],
+     "gefunden": [
+      "SGB II § 85",
+      "SGB II § 12a",
+      "SGB II § 52a",
+      "SGB II § 37",
+      "SGB II § 3"
+     ],
+     "platz": 2
+    },
+    {
+     "frage": "Was wird im Kooperationsplan zwischen Jobcenter und Leistungsberechtigten festgehalten?",
+     "erwartet": [
+      "SGB II § 15"
+     ],
+     "gefunden": [
+      "SGB II § 15",
+      "SGB II § 6d",
+      "SGB II § 43",
+      "SGB II § 15a",
+      "SGB II § 32"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Gibt es einen Zuschuss, wenn ich eine Arbeit aufnehme?",
+     "erwartet": [
+      "SGB II § 16b"
+     ],
+     "gefunden": [
+      "SGB II § 47",
+      "SGB II § 18b",
+      "SGB II § 16i",
+      "SGB II § 16c",
+      "SGB II § 31a"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Welche Hilfen gibt es für Selbständige, die Leistungen beziehen?",
+     "erwartet": [
+      "SGB II § 16c"
+     ],
+     "gefunden": [
+      "SGB II § 16c",
+      "SGB II § 18a",
+      "SGB II § 31b",
+      "SGB II § 9",
+      "SGB II § 26"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Was sind Arbeitsgelegenheiten, sogenannte Ein-Euro-Jobs?",
+     "erwartet": [
+      "SGB II § 16d"
+     ],
+     "gefunden": [
+      "SGB II § 16d",
+      "SGB II § 11b",
+      "SGB II § 63",
+      "SGB II § 68",
+      "SGB II § 40"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wie hoch ist der monatliche Regelbedarf für den Lebensunterhalt?",
+     "erwartet": [
+      "SGB II § 20"
+     ],
+     "gefunden": [
+      "SGB II § 20",
+      "SGB II § 42a",
+      "SGB II § 24",
+      "SGB II § 40",
+      "SGB II § 31a"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Gibt es zusätzliches Geld für Schwangere oder Alleinerziehende?",
+     "erwartet": [
+      "SGB II § 21"
+     ],
+     "gefunden": [
+      "SGB II § 41a",
+      "SGB II § 20",
+      "SGB II § 34a",
+      "SGB II § 48b",
+      "SGB II § 34"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Werden Miete und Heizkosten übernommen?",
+     "erwartet": [
+      "SGB II § 22"
+     ],
+     "gefunden": [
+      "SGB II § 22",
+      "SGB II § 28",
+      "SGB II § 24",
+      "SGB II § 1",
+      "SGB II § 2"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Muss das Jobcenter einem Umzug vorher zustimmen?",
+     "erwartet": [
+      "SGB II § 22"
+     ],
+     "gefunden": [
+      "SGB II § 6d",
+      "SGB II § 7b",
+      "SGB II § 22",
+      "SGB II § 43",
+      "SGB II § 15"
+     ],
+     "platz": 3
+    },
+    {
+     "frage": "Kann die Miete direkt an den Vermieter überwiesen werden?",
+     "erwartet": [
+      "SGB II § 22"
+     ],
+     "gefunden": [
+      "SGB II § 22",
+      "SGB II § 40",
+      "SGB II § 42a",
+      "SGB II § 31a",
+      "SGB II § 60"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Werden Mietschulden übernommen, damit jemand nicht wohnungslos wird?",
+     "erwartet": [
+      "SGB II § 22"
+     ],
+     "gefunden": [
+      "SGB II § 22",
+      "SGB II § 60",
+      "SGB II § 58",
+      "SGB II § 28",
+      "SGB II § 1"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Bekommt man Geld für die Erstausstattung einer Wohnung?",
+     "erwartet": [
+      "SGB II § 24"
+     ],
+     "gefunden": [
+      "SGB II § 24",
+      "SGB II § 41a",
+      "SGB II § 34a",
+      "SGB II § 34",
+      "SGB II § 62a"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Gibt es Zuschüsse zu den Beiträgen der Krankenversicherung?",
+     "erwartet": [
+      "SGB II § 26"
+     ],
+     "gefunden": [
+      "SGB II § 26",
+      "SGB II § 11b",
+      "SGB II § 16c",
+      "SGB II § 47",
+      "SGB II § 16i"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Haben Auszubildende Anspruch auf Leistungen?",
+     "erwartet": [
+      "SGB II § 27",
+      "SGB II § 7"
+     ],
+     "gefunden": [
+      "SGB II § 7",
+      "SGB II § 27",
+      "SGB II § 19",
+      "SGB II § 25",
+      "SGB II § 33"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Werden Klassenfahrten und Schulbedarf bezahlt?",
+     "erwartet": [
+      "SGB II § 28"
+     ],
+     "gefunden": [
+      "SGB II § 28",
+      "SGB II § 1",
+      "SGB II § 2",
+      "SGB II § 3",
+      "SGB II § 3a"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wie werden die Leistungen für Bildung und Teilhabe erbracht, etwa per Gutschein?",
+     "erwartet": [
+      "SGB II § 29"
+     ],
+     "gefunden": [
+      "SGB II § 29",
+      "SGB II § 19",
+      "SGB II § 28",
+      "SGB II § 7",
+      "SGB II § 27"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Was passiert, wenn jemand eine zumutbare Arbeit ablehnt?",
+     "erwartet": [
+      "SGB II § 31",
+      "SGB II § 31a"
+     ],
+     "gefunden": [
+      "SGB II § 31",
+      "SGB II § 60",
+      "SGB II § 58",
+      "SGB II § 15a",
+      "SGB II § 16i"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wie stark und wie lange wird die Leistung bei einer Pflichtverletzung gemindert?",
+     "erwartet": [
+      "SGB II § 31a",
+      "SGB II § 31b"
+     ],
+     "gefunden": [
+      "SGB II § 31a",
+      "SGB II § 31b",
+      "SGB II § 32",
+      "SGB II § 42",
+      "SGB II § 43"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Welche Folgen hat es, wenn man einen Termin beim Jobcenter verpasst?",
+     "erwartet": [
+      "SGB II § 32"
+     ],
+     "gefunden": [
+      "SGB I § 66",
+      "SGB II § 6d",
+      "SGB II § 43",
+      "SGB II § 15",
+      "SGB II § 23"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Muss jemand Leistungen ersetzen, der seine Hilfebedürftigkeit absichtlich herbeigeführt hat?",
+     "erwartet": [
+      "SGB II § 34"
+     ],
+     "gefunden": [
+      "SGB II § 34a",
+      "SGB II § 34",
+      "SGB I § 66",
+      "SGB II § 9",
+      "SGB II § 44a"
+     ],
+     "platz": 2
+    },
+    {
+     "frage": "Welches Jobcenter ist örtlich zuständig?",
+     "erwartet": [
+      "SGB II § 36"
+     ],
+     "gefunden": [
+      "SGB II § 6d",
+      "SGB II § 36",
+      "SGB II § 7b",
+      "SGB II § 16h",
+      "SGB II § 22"
+     ],
+     "platz": 2
+    },
+    {
+     "frage": "Müssen Leistungen beantragt werden und ab wann werden sie gezahlt?",
+     "erwartet": [
+      "SGB II § 37"
+     ],
+     "gefunden": [
+      "SGB II § 58",
+      "SGB II § 3",
+      "SGB II § 7",
+      "SGB I § 62",
+      "SGB I § 61"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Darf eine Person den Antrag für die ganze Bedarfsgemeinschaft stellen?",
+     "erwartet": [
+      "SGB II § 38"
+     ],
+     "gefunden": [
+      "SGB II § 5",
+      "SGB II § 38",
+      "SGB II § 18",
+      "SGB II § 71",
+      "SGB II § 22"
+     ],
+     "platz": 2
+    },
+    {
+     "frage": "Für wie lange werden die Leistungen bewilligt?",
+     "erwartet": [
+      "SGB II § 41"
+     ],
+     "gefunden": [
+      "SGB II § 41a",
+      "SGB II § 74",
+      "SGB II § 5",
+      "SGB II § 40a",
+      "SGB II § 16e"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Wann entscheidet das Jobcenter nur vorläufig, etwa bei schwankendem Einkommen?",
+     "erwartet": [
+      "SGB II § 41a"
+     ],
+     "gefunden": [
+      "SGB II § 41a",
+      "SGB II § 6d",
+      "SGB II § 44e",
+      "SGB II § 43",
+      "SGB II § 15"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wann wird das Geld ausgezahlt und darf es gepfändet werden?",
+     "erwartet": [
+      "SGB II § 42"
+     ],
+     "gefunden": [
+      "SGB II § 42",
+      "SGB II § 41a",
+      "SGB II § 34a",
+      "SGB II § 29",
+      "SGB II § 34"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Kann ein Darlehen gewährt werden und wie wird es zurückgezahlt?",
+     "erwartet": [
+      "SGB II § 42a",
+      "SGB II § 24"
+     ],
+     "gefunden": [
+      "SGB II § 24",
+      "SGB II § 42a",
+      "SGB II § 16i",
+      "SGB II § 16c",
+      "SGB II § 19"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Darf das Jobcenter Rückforderungen mit der laufenden Leistung verrechnen?",
+     "erwartet": [
+      "SGB II § 43"
+     ],
+     "gefunden": [
+      "SGB II § 6d",
+      "SGB II § 72",
+      "SGB II § 43",
+      "SGB II § 74",
+      "SGB II § 15"
+     ],
+     "platz": 3
+    },
+    {
+     "frage": "Muss der Arbeitgeber dem Jobcenter das Einkommen bescheinigen?",
+     "erwartet": [
+      "SGB II § 58",
+      "SGB II § 57"
+     ],
+     "gefunden": [
+      "SGB II § 58",
+      "SGB II § 6d",
+      "SGB II § 56",
+      "SGB II § 43",
+      "SGB II § 15"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Welche Angaben und Nachweise muss die antragstellende Person vorlegen?",
+     "erwartet": [
+      "SGB I § 60"
+     ],
+     "gefunden": [
+      "SGB I § 60",
+      "SGB II § 51b",
+      "SGB II § 31",
+      "SGB II § 56",
+      "SGB II § 41a"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Was passiert, wenn Unterlagen trotz Aufforderung nicht eingereicht werden?",
+     "erwartet": [
+      "SGB I § 66"
+     ],
+     "gefunden": [
+      "SGB II § 32",
+      "SGB II § 65d",
+      "SGB II § 5",
+      "SGB II § 7b",
+      "SGB II § 16e"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Wann muss man persönlich beim Amt erscheinen?",
+     "erwartet": [
+      "SGB I § 61",
+      "SGB II § 59"
+     ],
+     "gefunden": [
+      "SGB I § 61",
+      "SGB I § 65a",
+      "SGB II § 6c",
+      "SGB II § 44g",
+      "SGB II § 14"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Gleicht das Jobcenter Daten automatisch mit anderen Stellen ab?",
+     "erwartet": [
+      "SGB II § 52",
+      "SGB II § 52a"
+     ],
+     "gefunden": [
+      "SGB II § 53",
+      "SGB II § 6d",
+      "SGB II § 52",
+      "SGB II § 65",
+      "SGB II § 7b"
+     ],
+     "platz": 3
+    },
+    {
+     "frage": "Dürfen private Dienstleister Sozialdaten im Auftrag verarbeiten?",
+     "erwartet": [
+      "SGB II § 51"
+     ],
+     "gefunden": [
+      "SGB II § 51",
+      "SGB II § 50",
+      "SGB II § 50a",
+      "SGB II § 51b",
+      "SGB II § 4"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Muss man eine Krankmeldung beim Jobcenter einreichen?",
+     "erwartet": [
+      "SGB II § 56"
+     ],
+     "gefunden": [
+      "SGB II § 6d",
+      "SGB II § 43",
+      "SGB II § 15",
+      "SGB II § 23",
+      "SGB II § 66a"
+     ],
+     "platz": null
+    }
+   ]
+  },
+  "dicht": {
+   "n": 45,
+   "treffer@1": 0.778,
+   "treffer@3": 0.911,
+   "treffer@5": 0.933,
+   "mrr": 0.846,
+   "ms_median": 118.4,
+   "einzeln": [
+    {
+     "frage": "Wer bekommt überhaupt Leistungen nach dem SGB II?",
+     "erwartet": [
+      "SGB II § 7"
+     ],
+     "gefunden": [
+      "SGB II § 19",
+      "SGB II § 7",
+      "SGB II § 5",
+      "SGB II § 6",
+      "SGB II § 16f"
+     ],
+     "platz": 2
+    },
+    {
+     "frage": "Bis zu welchem Alter kann man Grundsicherung für Arbeitsuchende bekommen?",
+     "erwartet": [
+      "SGB II § 7a"
+     ],
+     "gefunden": [
+      "SGB II § 1",
+      "SGB II § 23",
+      "SGB II § 65",
+      "SGB II § 6",
+      "SGB II § 51b"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Muss ich für das Jobcenter erreichbar sein, wenn ich verreisen will?",
+     "erwartet": [
+      "SGB II § 7b"
+     ],
+     "gefunden": [
+      "SGB II § 7b",
+      "SGB II § 15",
+      "SGB II § 3",
+      "SGB II § 32",
+      "SGB II § 43"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wann gilt jemand als erwerbsfähig?",
+     "erwartet": [
+      "SGB II § 8"
+     ],
+     "gefunden": [
+      "SGB II § 8",
+      "SGB II § 16i",
+      "SGB II § 10",
+      "SGB II § 7b",
+      "SGB II § 16c"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wann ist eine Person hilfebedürftig?",
+     "erwartet": [
+      "SGB II § 9"
+     ],
+     "gefunden": [
+      "SGB II § 9",
+      "SGB II § 22",
+      "SGB II § 7b",
+      "SGB II § 44a",
+      "SGB I § 63"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Welche Arbeit muss man annehmen und welche ist nicht zumutbar?",
+     "erwartet": [
+      "SGB II § 10"
+     ],
+     "gefunden": [
+      "SGB II § 10",
+      "SGB II § 31a",
+      "SGB II § 7b",
+      "SGB II § 16d",
+      "SGB II § 16c"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Was wird als Einkommen angerechnet?",
+     "erwartet": [
+      "SGB II § 11"
+     ],
+     "gefunden": [
+      "SGB II § 11",
+      "SGB II § 11a",
+      "SGB II § 11b",
+      "SGB II § 13",
+      "SGB II § 12"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Welche Einnahmen bleiben anrechnungsfrei?",
+     "erwartet": [
+      "SGB II § 11a"
+     ],
+     "gefunden": [
+      "SGB II § 11a",
+      "SGB II § 11",
+      "SGB II § 11b",
+      "SGB II § 13",
+      "SGB II § 12"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Welche Beträge darf man vom Lohn abziehen, wie hoch ist der Freibetrag für Erwerbstätige?",
+     "erwartet": [
+      "SGB II § 11b"
+     ],
+     "gefunden": [
+      "SGB II § 11b",
+      "SGB II § 16i",
+      "SGB II § 12",
+      "SGB II § 16c",
+      "SGB II § 13"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wie viel Erspartes darf man behalten?",
+     "erwartet": [
+      "SGB II § 12"
+     ],
+     "gefunden": [
+      "SGB II § 11b",
+      "SGB II § 43",
+      "SGB II § 12",
+      "SGB II § 6b",
+      "SGB II § 40"
+     ],
+     "platz": 3
+    },
+    {
+     "frage": "Muss man vorher Rente oder Wohngeld beantragen?",
+     "erwartet": [
+      "SGB II § 12a"
+     ],
+     "gefunden": [
+      "SGB II § 12a",
+      "SGB II § 22",
+      "SGB II § 65",
+      "SGB II § 12",
+      "SGB II § 85"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Was wird im Kooperationsplan zwischen Jobcenter und Leistungsberechtigten festgehalten?",
+     "erwartet": [
+      "SGB II § 15"
+     ],
+     "gefunden": [
+      "SGB II § 15",
+      "SGB II § 18b",
+      "SGB II § 15a",
+      "SGB II § 44c",
+      "SGB II § 18"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Gibt es einen Zuschuss, wenn ich eine Arbeit aufnehme?",
+     "erwartet": [
+      "SGB II § 16b"
+     ],
+     "gefunden": [
+      "SGB II § 16e",
+      "SGB II § 16c",
+      "SGB II § 16i",
+      "SGB II § 16b",
+      "SGB II § 27"
+     ],
+     "platz": 4
+    },
+    {
+     "frage": "Welche Hilfen gibt es für Selbständige, die Leistungen beziehen?",
+     "erwartet": [
+      "SGB II § 16c"
+     ],
+     "gefunden": [
+      "SGB II § 16c",
+      "SGB II § 16a",
+      "SGB II § 30",
+      "SGB II § 18",
+      "SGB II § 4"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Was sind Arbeitsgelegenheiten, sogenannte Ein-Euro-Jobs?",
+     "erwartet": [
+      "SGB II § 16d"
+     ],
+     "gefunden": [
+      "SGB II § 16d",
+      "SGB II § 8",
+      "SGB II § 71",
+      "SGB II § 48b",
+      "SGB II § 11b"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wie hoch ist der monatliche Regelbedarf für den Lebensunterhalt?",
+     "erwartet": [
+      "SGB II § 20"
+     ],
+     "gefunden": [
+      "SGB II § 20",
+      "SGB II § 42a",
+      "SGB II § 68",
+      "SGB II § 41",
+      "SGB II § 23"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Gibt es zusätzliches Geld für Schwangere oder Alleinerziehende?",
+     "erwartet": [
+      "SGB II § 21"
+     ],
+     "gefunden": [
+      "SGB II § 71",
+      "SGB II § 72",
+      "SGB II § 70",
+      "SGB II § 73",
+      "SGB II § 11"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Werden Miete und Heizkosten übernommen?",
+     "erwartet": [
+      "SGB II § 22"
+     ],
+     "gefunden": [
+      "SGB II § 22",
+      "SGB II § 22c",
+      "SGB II § 46",
+      "SGB II § 68",
+      "SGB II § 24"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Muss das Jobcenter einem Umzug vorher zustimmen?",
+     "erwartet": [
+      "SGB II § 22"
+     ],
+     "gefunden": [
+      "SGB II § 22",
+      "SGB II § 7b",
+      "SGB II § 6c",
+      "SGB II § 66a",
+      "SGB II § 6d"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Kann die Miete direkt an den Vermieter überwiesen werden?",
+     "erwartet": [
+      "SGB II § 22"
+     ],
+     "gefunden": [
+      "SGB II § 22",
+      "SGB II § 29",
+      "SGB II § 60",
+      "SGB II § 42a",
+      "SGB II § 52a"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Werden Mietschulden übernommen, damit jemand nicht wohnungslos wird?",
+     "erwartet": [
+      "SGB II § 22"
+     ],
+     "gefunden": [
+      "SGB II § 22",
+      "SGB II § 12a",
+      "SGB II § 31a",
+      "SGB II § 33",
+      "SGB II § 85"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Bekommt man Geld für die Erstausstattung einer Wohnung?",
+     "erwartet": [
+      "SGB II § 24"
+     ],
+     "gefunden": [
+      "SGB II § 24",
+      "SGB II § 22",
+      "SGB II § 68",
+      "SGB II § 16c",
+      "SGB II § 22a"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Gibt es Zuschüsse zu den Beiträgen der Krankenversicherung?",
+     "erwartet": [
+      "SGB II § 26"
+     ],
+     "gefunden": [
+      "SGB II § 26",
+      "SGB II § 25",
+      "SGB II § 16i",
+      "SGB II § 11b",
+      "SGB II § 72"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Haben Auszubildende Anspruch auf Leistungen?",
+     "erwartet": [
+      "SGB II § 27",
+      "SGB II § 7"
+     ],
+     "gefunden": [
+      "SGB II § 27",
+      "SGB II § 7",
+      "SGB II § 16",
+      "SGB II § 19",
+      "SGB II § 29"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Werden Klassenfahrten und Schulbedarf bezahlt?",
+     "erwartet": [
+      "SGB II § 28"
+     ],
+     "gefunden": [
+      "SGB II § 28",
+      "SGB II § 29",
+      "SGB II § 46",
+      "SGB II § 21",
+      "SGB II § 27"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wie werden die Leistungen für Bildung und Teilhabe erbracht, etwa per Gutschein?",
+     "erwartet": [
+      "SGB II § 29"
+     ],
+     "gefunden": [
+      "SGB II § 29",
+      "SGB II § 28",
+      "SGB II § 4",
+      "SGB II § 16k",
+      "SGB II § 40"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Was passiert, wenn jemand eine zumutbare Arbeit ablehnt?",
+     "erwartet": [
+      "SGB II § 31",
+      "SGB II § 31a"
+     ],
+     "gefunden": [
+      "SGB II § 10",
+      "SGB II § 31a",
+      "SGB II § 44a",
+      "SGB II § 15a",
+      "SGB I § 66"
+     ],
+     "platz": 2
+    },
+    {
+     "frage": "Wie stark und wie lange wird die Leistung bei einer Pflichtverletzung gemindert?",
+     "erwartet": [
+      "SGB II § 31a",
+      "SGB II § 31b"
+     ],
+     "gefunden": [
+      "SGB II § 31a",
+      "SGB II § 31",
+      "SGB II § 31b",
+      "SGB II § 42",
+      "SGB II § 34"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Welche Folgen hat es, wenn man einen Termin beim Jobcenter verpasst?",
+     "erwartet": [
+      "SGB II § 32"
+     ],
+     "gefunden": [
+      "SGB II § 32",
+      "SGB II § 7b",
+      "SGB II § 43",
+      "SGB II § 15a",
+      "SGB II § 15"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Muss jemand Leistungen ersetzen, der seine Hilfebedürftigkeit absichtlich herbeigeführt hat?",
+     "erwartet": [
+      "SGB II § 34"
+     ],
+     "gefunden": [
+      "SGB II § 34",
+      "SGB II § 34a",
+      "SGB I § 66",
+      "SGB II § 24",
+      "SGB II § 62"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Welches Jobcenter ist örtlich zuständig?",
+     "erwartet": [
+      "SGB II § 36"
+     ],
+     "gefunden": [
+      "SGB II § 36",
+      "SGB II § 7b",
+      "SGB II § 18",
+      "SGB II § 6d",
+      "SGB II § 44a"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Müssen Leistungen beantragt werden und ab wann werden sie gezahlt?",
+     "erwartet": [
+      "SGB II § 37"
+     ],
+     "gefunden": [
+      "SGB II § 29",
+      "SGB II § 27",
+      "SGB II § 42",
+      "SGB II § 12a",
+      "SGB II § 41"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Darf eine Person den Antrag für die ganze Bedarfsgemeinschaft stellen?",
+     "erwartet": [
+      "SGB II § 38"
+     ],
+     "gefunden": [
+      "SGB II § 38",
+      "SGB II § 7",
+      "SGB II § 2",
+      "SGB II § 9",
+      "SGB II § 22"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Für wie lange werden die Leistungen bewilligt?",
+     "erwartet": [
+      "SGB II § 41"
+     ],
+     "gefunden": [
+      "SGB II § 41",
+      "SGB II § 16f",
+      "SGB II § 16g",
+      "SGB II § 74",
+      "SGB II § 7b"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wann entscheidet das Jobcenter nur vorläufig, etwa bei schwankendem Einkommen?",
+     "erwartet": [
+      "SGB II § 41a"
+     ],
+     "gefunden": [
+      "SGB II § 41a",
+      "SGB II § 67",
+      "SGB II § 44a",
+      "SGB II § 43",
+      "SGB II § 66a"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wann wird das Geld ausgezahlt und darf es gepfändet werden?",
+     "erwartet": [
+      "SGB II § 42"
+     ],
+     "gefunden": [
+      "SGB II § 42",
+      "SGB II § 42a",
+      "SGB II § 41",
+      "SGB II § 11",
+      "SGB II § 31b"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Kann ein Darlehen gewährt werden und wie wird es zurückgezahlt?",
+     "erwartet": [
+      "SGB II § 42a",
+      "SGB II § 24"
+     ],
+     "gefunden": [
+      "SGB II § 42a",
+      "SGB II § 24",
+      "SGB II § 40",
+      "SGB II § 16e",
+      "SGB II § 6b"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Darf das Jobcenter Rückforderungen mit der laufenden Leistung verrechnen?",
+     "erwartet": [
+      "SGB II § 43"
+     ],
+     "gefunden": [
+      "SGB II § 43",
+      "SGB II § 40",
+      "SGB II § 42a",
+      "SGB II § 39",
+      "SGB II § 42"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Muss der Arbeitgeber dem Jobcenter das Einkommen bescheinigen?",
+     "erwartet": [
+      "SGB II § 58",
+      "SGB II § 57"
+     ],
+     "gefunden": [
+      "SGB II § 58",
+      "SGB II § 56",
+      "SGB II § 60",
+      "SGB II § 57",
+      "SGB II § 43"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Welche Angaben und Nachweise muss die antragstellende Person vorlegen?",
+     "erwartet": [
+      "SGB I § 60"
+     ],
+     "gefunden": [
+      "SGB I § 60",
+      "SGB II § 60",
+      "SGB II § 29",
+      "SGB II § 41a",
+      "SGB II § 58"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Was passiert, wenn Unterlagen trotz Aufforderung nicht eingereicht werden?",
+     "erwartet": [
+      "SGB I § 66"
+     ],
+     "gefunden": [
+      "SGB II § 15a",
+      "SGB I § 66",
+      "SGB II § 5",
+      "SGB II § 40",
+      "SGB II § 32"
+     ],
+     "platz": 2
+    },
+    {
+     "frage": "Wann muss man persönlich beim Amt erscheinen?",
+     "erwartet": [
+      "SGB I § 61",
+      "SGB II § 59"
+     ],
+     "gefunden": [
+      "SGB I § 61",
+      "SGB II § 31a",
+      "SGB II § 7b",
+      "SGB II § 56",
+      "SGB II § 15a"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Gleicht das Jobcenter Daten automatisch mit anderen Stellen ab?",
+     "erwartet": [
+      "SGB II § 52",
+      "SGB II § 52a"
+     ],
+     "gefunden": [
+      "SGB II § 52",
+      "SGB II § 6d",
+      "SGB II § 15",
+      "SGB II § 43",
+      "SGB II § 53"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Dürfen private Dienstleister Sozialdaten im Auftrag verarbeiten?",
+     "erwartet": [
+      "SGB II § 51"
+     ],
+     "gefunden": [
+      "SGB II § 50",
+      "SGB II § 51",
+      "SGB II § 53",
+      "SGB II § 51b",
+      "SGB II § 65d"
+     ],
+     "platz": 2
+    },
+    {
+     "frage": "Muss man eine Krankmeldung beim Jobcenter einreichen?",
+     "erwartet": [
+      "SGB II § 56"
+     ],
+     "gefunden": [
+      "SGB II § 32",
+      "SGB II § 56",
+      "SGB II § 7b",
+      "SGB II § 43",
+      "SGB II § 44a"
+     ],
+     "platz": 2
+    }
+   ]
+  },
+  "hybrid": {
+   "n": 45,
+   "treffer@1": 0.667,
+   "treffer@3": 0.822,
+   "treffer@5": 0.822,
+   "mrr": 0.741,
+   "ms_median": 110.7,
+   "einzeln": [
+    {
+     "frage": "Wer bekommt überhaupt Leistungen nach dem SGB II?",
+     "erwartet": [
+      "SGB II § 7"
+     ],
+     "gefunden": [
+      "SGB II § 71",
+      "SGB II § 19",
+      "SGB II § 27",
+      "SGB II § 5",
+      "SGB II § 17"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Bis zu welchem Alter kann man Grundsicherung für Arbeitsuchende bekommen?",
+     "erwartet": [
+      "SGB II § 7a"
+     ],
+     "gefunden": [
+      "SGB II § 1",
+      "SGB II § 65",
+      "SGB II § 51b",
+      "SGB II § 40a",
+      "SGB II § 18c"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Muss ich für das Jobcenter erreichbar sein, wenn ich verreisen will?",
+     "erwartet": [
+      "SGB II § 7b"
+     ],
+     "gefunden": [
+      "SGB II § 7b",
+      "SGB II § 15",
+      "SGB II § 43",
+      "SGB II § 6d",
+      "SGB II § 32"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wann gilt jemand als erwerbsfähig?",
+     "erwartet": [
+      "SGB II § 8"
+     ],
+     "gefunden": [
+      "SGB II § 3",
+      "SGB II § 10",
+      "SGB II § 56",
+      "SGB II § 7b",
+      "SGB II § 16d"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Wann ist eine Person hilfebedürftig?",
+     "erwartet": [
+      "SGB II § 9"
+     ],
+     "gefunden": [
+      "SGB II § 9",
+      "SGB II § 44a",
+      "SGB II § 22",
+      "SGB II § 26",
+      "SGB II § 10"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Welche Arbeit muss man annehmen und welche ist nicht zumutbar?",
+     "erwartet": [
+      "SGB II § 10"
+     ],
+     "gefunden": [
+      "SGB II § 10",
+      "SGB II § 31a",
+      "SGB II § 15a",
+      "SGB II § 31",
+      "SGB II § 16d"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Was wird als Einkommen angerechnet?",
+     "erwartet": [
+      "SGB II § 11"
+     ],
+     "gefunden": [
+      "SGB II § 11",
+      "SGB II § 11a",
+      "SGB II § 13",
+      "SGB II § 11b",
+      "SGB II § 9"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Welche Einnahmen bleiben anrechnungsfrei?",
+     "erwartet": [
+      "SGB II § 11a"
+     ],
+     "gefunden": [
+      "SGB II § 11",
+      "SGB II § 11a",
+      "SGB II § 11b",
+      "SGB II § 13",
+      "SGB II § 65"
+     ],
+     "platz": 2
+    },
+    {
+     "frage": "Welche Beträge darf man vom Lohn abziehen, wie hoch ist der Freibetrag für Erwerbstätige?",
+     "erwartet": [
+      "SGB II § 11b"
+     ],
+     "gefunden": [
+      "SGB II § 11b",
+      "SGB II § 13",
+      "SGB II § 12",
+      "SGB II § 69",
+      "SGB II § 8"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wie viel Erspartes darf man behalten?",
+     "erwartet": [
+      "SGB II § 12"
+     ],
+     "gefunden": [
+      "SGB II § 6b",
+      "SGB II § 11b",
+      "SGB II § 12",
+      "SGB II § 1",
+      "SGB II § 2"
+     ],
+     "platz": 3
+    },
+    {
+     "frage": "Muss man vorher Rente oder Wohngeld beantragen?",
+     "erwartet": [
+      "SGB II § 12a"
+     ],
+     "gefunden": [
+      "SGB II § 12a",
+      "SGB II § 85",
+      "SGB II § 52a",
+      "SGB II § 65",
+      "SGB II § 22"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Was wird im Kooperationsplan zwischen Jobcenter und Leistungsberechtigten festgehalten?",
+     "erwartet": [
+      "SGB II § 15"
+     ],
+     "gefunden": [
+      "SGB II § 15",
+      "SGB II § 15a",
+      "SGB II § 44c",
+      "SGB II § 7b",
+      "SGB II § 18b"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Gibt es einen Zuschuss, wenn ich eine Arbeit aufnehme?",
+     "erwartet": [
+      "SGB II § 16b"
+     ],
+     "gefunden": [
+      "SGB II § 16c",
+      "SGB II § 16i",
+      "SGB II § 16e",
+      "SGB II § 26",
+      "SGB II § 27"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Welche Hilfen gibt es für Selbständige, die Leistungen beziehen?",
+     "erwartet": [
+      "SGB II § 16c"
+     ],
+     "gefunden": [
+      "SGB II § 16c",
+      "SGB II § 4",
+      "SGB II § 65d",
+      "SGB II § 7",
+      "SGB II § 9"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Was sind Arbeitsgelegenheiten, sogenannte Ein-Euro-Jobs?",
+     "erwartet": [
+      "SGB II § 16d"
+     ],
+     "gefunden": [
+      "SGB II § 16d",
+      "SGB II § 11b",
+      "SGB II § 73",
+      "SGB II § 71",
+      "SGB II § 68"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wie hoch ist der monatliche Regelbedarf für den Lebensunterhalt?",
+     "erwartet": [
+      "SGB II § 20"
+     ],
+     "gefunden": [
+      "SGB II § 20",
+      "SGB II § 42a",
+      "SGB II § 24",
+      "SGB II § 28",
+      "SGB II § 40"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Gibt es zusätzliches Geld für Schwangere oder Alleinerziehende?",
+     "erwartet": [
+      "SGB II § 21"
+     ],
+     "gefunden": [
+      "SGB II § 20",
+      "SGB II § 72",
+      "SGB II § 11",
+      "SGB II § 34",
+      "SGB II § 52"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Werden Miete und Heizkosten übernommen?",
+     "erwartet": [
+      "SGB II § 22"
+     ],
+     "gefunden": [
+      "SGB II § 22",
+      "SGB II § 24",
+      "SGB II § 6",
+      "SGB II § 1",
+      "SGB II § 6b"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Muss das Jobcenter einem Umzug vorher zustimmen?",
+     "erwartet": [
+      "SGB II § 22"
+     ],
+     "gefunden": [
+      "SGB II § 7b",
+      "SGB II § 22",
+      "SGB II § 6d",
+      "SGB II § 15",
+      "SGB II § 32"
+     ],
+     "platz": 2
+    },
+    {
+     "frage": "Kann die Miete direkt an den Vermieter überwiesen werden?",
+     "erwartet": [
+      "SGB II § 22"
+     ],
+     "gefunden": [
+      "SGB II § 22",
+      "SGB II § 42a",
+      "SGB II § 60",
+      "SGB II § 31a",
+      "SGB II § 40"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Werden Mietschulden übernommen, damit jemand nicht wohnungslos wird?",
+     "erwartet": [
+      "SGB II § 22"
+     ],
+     "gefunden": [
+      "SGB II § 22",
+      "SGB II § 60",
+      "SGB II § 1",
+      "SGB II § 2",
+      "SGB II § 6"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Bekommt man Geld für die Erstausstattung einer Wohnung?",
+     "erwartet": [
+      "SGB II § 24"
+     ],
+     "gefunden": [
+      "SGB II § 24",
+      "SGB II § 22",
+      "SGB II § 34",
+      "SGB II § 34a",
+      "SGB II § 41a"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Gibt es Zuschüsse zu den Beiträgen der Krankenversicherung?",
+     "erwartet": [
+      "SGB II § 26"
+     ],
+     "gefunden": [
+      "SGB II § 26",
+      "SGB II § 11b",
+      "SGB II § 16i",
+      "SGB II § 16c",
+      "SGB II § 27"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Haben Auszubildende Anspruch auf Leistungen?",
+     "erwartet": [
+      "SGB II § 27",
+      "SGB II § 7"
+     ],
+     "gefunden": [
+      "SGB II § 7",
+      "SGB II § 27",
+      "SGB II § 19",
+      "SGB II § 25",
+      "SGB II § 5"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Werden Klassenfahrten und Schulbedarf bezahlt?",
+     "erwartet": [
+      "SGB II § 28"
+     ],
+     "gefunden": [
+      "SGB II § 28",
+      "SGB II § 4",
+      "SGB II § 6",
+      "SGB II § 6b",
+      "SGB II § 1"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wie werden die Leistungen für Bildung und Teilhabe erbracht, etwa per Gutschein?",
+     "erwartet": [
+      "SGB II § 29"
+     ],
+     "gefunden": [
+      "SGB II § 29",
+      "SGB II § 19",
+      "SGB II § 28",
+      "SGB II § 7",
+      "SGB II § 4"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Was passiert, wenn jemand eine zumutbare Arbeit ablehnt?",
+     "erwartet": [
+      "SGB II § 31",
+      "SGB II § 31a"
+     ],
+     "gefunden": [
+      "SGB II § 10",
+      "SGB II § 31a",
+      "SGB II § 15a",
+      "SGB II § 31",
+      "SGB II § 44a"
+     ],
+     "platz": 2
+    },
+    {
+     "frage": "Wie stark und wie lange wird die Leistung bei einer Pflichtverletzung gemindert?",
+     "erwartet": [
+      "SGB II § 31a",
+      "SGB II § 31b"
+     ],
+     "gefunden": [
+      "SGB II § 31a",
+      "SGB II § 31b",
+      "SGB II § 31",
+      "SGB II § 42",
+      "SGB II § 5"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Welche Folgen hat es, wenn man einen Termin beim Jobcenter verpasst?",
+     "erwartet": [
+      "SGB II § 32"
+     ],
+     "gefunden": [
+      "SGB II § 32",
+      "SGB II § 43",
+      "SGB II § 7b",
+      "SGB II § 15",
+      "SGB II § 6d"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Muss jemand Leistungen ersetzen, der seine Hilfebedürftigkeit absichtlich herbeigeführt hat?",
+     "erwartet": [
+      "SGB II § 34"
+     ],
+     "gefunden": [
+      "SGB II § 34a",
+      "SGB II § 34",
+      "SGB II § 9",
+      "SGB I § 66",
+      "SGB I § 64"
+     ],
+     "platz": 2
+    },
+    {
+     "frage": "Welches Jobcenter ist örtlich zuständig?",
+     "erwartet": [
+      "SGB II § 36"
+     ],
+     "gefunden": [
+      "SGB II § 36",
+      "SGB II § 6d",
+      "SGB II § 18",
+      "SGB II § 7b",
+      "SGB II § 15"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Müssen Leistungen beantragt werden und ab wann werden sie gezahlt?",
+     "erwartet": [
+      "SGB II § 37"
+     ],
+     "gefunden": [
+      "SGB II § 71",
+      "SGB II § 29",
+      "SGB II § 3",
+      "SGB I § 61",
+      "SGB II § 22"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Darf eine Person den Antrag für die ganze Bedarfsgemeinschaft stellen?",
+     "erwartet": [
+      "SGB II § 38"
+     ],
+     "gefunden": [
+      "SGB II § 38",
+      "SGB II § 22",
+      "SGB II § 9",
+      "SGB II § 12",
+      "SGB II § 7"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Für wie lange werden die Leistungen bewilligt?",
+     "erwartet": [
+      "SGB II § 41"
+     ],
+     "gefunden": [
+      "SGB II § 74",
+      "SGB II § 41",
+      "SGB II § 41a",
+      "SGB II § 42",
+      "SGB II § 29"
+     ],
+     "platz": 2
+    },
+    {
+     "frage": "Wann entscheidet das Jobcenter nur vorläufig, etwa bei schwankendem Einkommen?",
+     "erwartet": [
+      "SGB II § 41a"
+     ],
+     "gefunden": [
+      "SGB II § 41a",
+      "SGB II § 43",
+      "SGB II § 6d",
+      "SGB II § 15",
+      "SGB II § 7b"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Wann wird das Geld ausgezahlt und darf es gepfändet werden?",
+     "erwartet": [
+      "SGB II § 42"
+     ],
+     "gefunden": [
+      "SGB II § 42",
+      "SGB II § 40",
+      "SGB II § 29",
+      "SGB II § 11",
+      "SGB II § 34"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Kann ein Darlehen gewährt werden und wie wird es zurückgezahlt?",
+     "erwartet": [
+      "SGB II § 42a",
+      "SGB II § 24"
+     ],
+     "gefunden": [
+      "SGB II § 42a",
+      "SGB II § 24",
+      "SGB II § 16c",
+      "SGB II § 21",
+      "SGB II § 22"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Darf das Jobcenter Rückforderungen mit der laufenden Leistung verrechnen?",
+     "erwartet": [
+      "SGB II § 43"
+     ],
+     "gefunden": [
+      "SGB II § 43",
+      "SGB II § 72",
+      "SGB II § 42",
+      "SGB II § 7b",
+      "SGB II § 46"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Muss der Arbeitgeber dem Jobcenter das Einkommen bescheinigen?",
+     "erwartet": [
+      "SGB II § 58",
+      "SGB II § 57"
+     ],
+     "gefunden": [
+      "SGB II § 58",
+      "SGB II § 56",
+      "SGB II § 43",
+      "SGB II § 6d",
+      "SGB II § 32"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Welche Angaben und Nachweise muss die antragstellende Person vorlegen?",
+     "erwartet": [
+      "SGB I § 60"
+     ],
+     "gefunden": [
+      "SGB I § 60",
+      "SGB II § 41a",
+      "SGB II § 56",
+      "SGB II § 22",
+      "SGB II § 57"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Was passiert, wenn Unterlagen trotz Aufforderung nicht eingereicht werden?",
+     "erwartet": [
+      "SGB I § 66"
+     ],
+     "gefunden": [
+      "SGB II § 32",
+      "SGB II § 5",
+      "SGB II § 7b",
+      "SGB II § 31",
+      "SGB II § 41a"
+     ],
+     "platz": null
+    },
+    {
+     "frage": "Wann muss man persönlich beim Amt erscheinen?",
+     "erwartet": [
+      "SGB I § 61",
+      "SGB II § 59"
+     ],
+     "gefunden": [
+      "SGB I § 61",
+      "SGB II § 31a",
+      "SGB I § 65a",
+      "SGB II § 7b",
+      "SGB II § 15"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Gleicht das Jobcenter Daten automatisch mit anderen Stellen ab?",
+     "erwartet": [
+      "SGB II § 52",
+      "SGB II § 52a"
+     ],
+     "gefunden": [
+      "SGB II § 6d",
+      "SGB II § 52",
+      "SGB II § 53",
+      "SGB II § 43",
+      "SGB II § 15"
+     ],
+     "platz": 2
+    },
+    {
+     "frage": "Dürfen private Dienstleister Sozialdaten im Auftrag verarbeiten?",
+     "erwartet": [
+      "SGB II § 51"
+     ],
+     "gefunden": [
+      "SGB II § 51",
+      "SGB II § 50",
+      "SGB II § 51b",
+      "SGB II § 50a",
+      "SGB II § 22"
+     ],
+     "platz": 1
+    },
+    {
+     "frage": "Muss man eine Krankmeldung beim Jobcenter einreichen?",
+     "erwartet": [
+      "SGB II § 56"
+     ],
+     "gefunden": [
+      "SGB II § 32",
+      "SGB II § 43",
+      "SGB II § 6d",
+      "SGB II § 7b",
+      "SGB II § 66a"
+     ],
+     "platz": null
+    }
+   ]
+  }
+ },
+ "extraktion": {
+  "faelle": 40,
+  "dokumente": 125,
+  "felder": 383,
+  "dokumentart_richtig": 0.912,
+  "feld_richtig": 0.877,
+  "belegt_anteil": 0.906,
+  "belegt_und_richtig": 0.968,
+  "belegt_aber_falsch": 11,
+  "unbelegt_aber_richtig": 0,
+  "vollstaendigkeit_richtig": 0.725,
+  "faelle_mit_fehlendem_nachweis": 11,
+  "sekunden_je_dokument": {
+   "median": 5.55,
+   "p95": 9.93,
+   "max": 10.67
+  },
+  "je_feld": {
+   "arbeitgeber": 1.0,
+   "brutto": 0.636,
+   "endsaldo": 0.818,
+   "geburtsdatum": 0.784,
+   "heizkosten": 1.0,
+   "kaltmiete": 1.0,
+   "kontoinhaber": 1.0,
+   "monat": 1.0,
+   "name": 0.784,
+   "nebenkosten": 1.0,
+   "netto": 0.636,
+   "personen_bg": 0.784,
+   "wohnflaeche": 1.0
+  },
+  "fehler": [
+   {
+    "dokument": "SYN-F0001-D3",
+    "feld": "name",
+    "wahr": null,
+    "wert": "Mehmet Wolf",
+    "richtig": false,
+    "belegt": true,
+    "fundstelle": "Mitarbeiter/in: Mehmet Wolf"
+   },
+   {
+    "dokument": "SYN-F0001-D3",
+    "feld": "personen_bg",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0001-D3",
+    "feld": "geburtsdatum",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0005-D2",
+    "feld": "endsaldo",
+    "wahr": "950.52",
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0006-D2",
+    "feld": "endsaldo",
+    "wahr": "814.15",
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0006-D3",
+    "feld": "name",
+    "wahr": null,
+    "wert": "Clara Braun",
+    "richtig": false,
+    "belegt": true,
+    "fundstelle": "Mitarbeiter/in: Clara Braun"
+   },
+   {
+    "dokument": "SYN-F0006-D3",
+    "feld": "personen_bg",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0006-D3",
+    "feld": "geburtsdatum",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0008-D3",
+    "feld": "brutto",
+    "wahr": "1650.94",
+    "wert": "nettoverdienst",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": "Gesamtbrutto: 1.650,94 €"
+   },
+   {
+    "dokument": "SYN-F0008-D3",
+    "feld": "netto",
+    "wahr": "1265.01",
+    "wert": "nettoverdienst",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": "Nettoverdienst: 1.265,01 €"
+   },
+   {
+    "dokument": "SYN-F0009-D3",
+    "feld": "name",
+    "wahr": null,
+    "wert": "Clara Yilmaz",
+    "richtig": false,
+    "belegt": true,
+    "fundstelle": "Mitarbeiter/in: Clara Yilmaz"
+   },
+   {
+    "dokument": "SYN-F0009-D3",
+    "feld": "personen_bg",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0009-D3",
+    "feld": "geburtsdatum",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0012-D3",
+    "feld": "brutto",
+    "wahr": "1924.68",
+    "wert": "gross",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": "Brutto gesamt: 1.924,68 €"
+   },
+   {
+    "dokument": "SYN-F0012-D3",
+    "feld": "netto",
+    "wahr": "1350.55",
+    "wert": "gross",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": "Netto: 1.350,55 Euro"
+   },
+   {
+    "dokument": "SYN-F0014-D3",
+    "feld": "name",
+    "wahr": null,
+    "wert": "Elif Popescu",
+    "richtig": false,
+    "belegt": true,
+    "fundstelle": "Mitarbeiter/in: Elif Popescu"
+   },
+   {
+    "dokument": "SYN-F0014-D3",
+    "feld": "personen_bg",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0014-D3",
+    "feld": "geburtsdatum",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0016-D3",
+    "feld": "name",
+    "wahr": null,
+    "wert": "Ivana Klein",
+    "richtig": false,
+    "belegt": true,
+    "fundstelle": "Mitarbeiter/in: Ivana Klein"
+   },
+   {
+    "dokument": "SYN-F0016-D3",
+    "feld": "personen_bg",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0016-D3",
+    "feld": "geburtsdatum",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0019-D2",
+    "feld": "endsaldo",
+    "wahr": "755.05",
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0021-D3",
+    "feld": "name",
+    "wahr": null,
+    "wert": "Anna Wolf",
+    "richtig": false,
+    "belegt": true,
+    "fundstelle": "Mitarbeiter/in: Anna Wolf"
+   },
+   {
+    "dokument": "SYN-F0021-D3",
+    "feld": "personen_bg",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0021-D3",
+    "feld": "geburtsdatum",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0024-D3",
+    "feld": "name",
+    "wahr": null,
+    "wert": "Lukas Braun",
+    "richtig": false,
+    "belegt": true,
+    "fundstelle": "Mitarbeiter/in: Lukas Braun"
+   },
+   {
+    "dokument": "SYN-F0024-D3",
+    "feld": "personen_bg",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0024-D3",
+    "feld": "geburtsdatum",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0025-D3",
+    "feld": "name",
+    "wahr": null,
+    "wert": "Jonas Weber",
+    "richtig": false,
+    "belegt": true,
+    "fundstelle": "Mitarbeiter/in: Jonas Weber"
+   },
+   {
+    "dokument": "SYN-F0025-D3",
+    "feld": "personen_bg",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0025-D3",
+    "feld": "geburtsdatum",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0026-D3",
+    "feld": "name",
+    "wahr": null,
+    "wert": "Stefan Weber",
+    "richtig": false,
+    "belegt": true,
+    "fundstelle": "Mitarbeiter/in: Stefan Weber"
+   },
+   {
+    "dokument": "SYN-F0026-D3",
+    "feld": "personen_bg",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0026-D3",
+    "feld": "geburtsdatum",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0027-D3",
+    "feld": "brutto",
+    "wahr": "2659.97",
+    "wert": "659.97",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": "Bruttobezüge: 2.659,97 Euro"
+   },
+   {
+    "dokument": "SYN-F0027-D3",
+    "feld": "netto",
+    "wahr": "2100.71",
+    "wert": "100.71",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": "Nettoverdienst: 2.100,71 EUR"
+   },
+   {
+    "dokument": "SYN-F0029-D3",
+    "feld": "name",
+    "wahr": null,
+    "wert": "Mehmet Weber",
+    "richtig": false,
+    "belegt": true,
+    "fundstelle": "Mitarbeiter/in: Mehmet Weber"
+   },
+   {
+    "dokument": "SYN-F0029-D3",
+    "feld": "personen_bg",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0029-D3",
+    "feld": "geburtsdatum",
+    "wahr": null,
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   },
+   {
+    "dokument": "SYN-F0030-D2",
+    "feld": "endsaldo",
+    "wahr": "1087.73",
+    "wert": "",
+    "richtig": false,
+    "belegt": false,
+    "fundstelle": ""
+   }
+  ],
+  "arten": [
+   {
+    "dokument": "SYN-F0001-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0001-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0001-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0001-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0002-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0002-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0002-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "lohnabrechnung"
+   },
+   {
+    "dokument": "SYN-F0003-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0003-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0003-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "lohnabrechnung"
+   },
+   {
+    "dokument": "SYN-F0003-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0004-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0004-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0004-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0005-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0005-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0005-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0006-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0006-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0006-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0006-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0007-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0007-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0007-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0008-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0008-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0008-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "lohnabrechnung"
+   },
+   {
+    "dokument": "SYN-F0009-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0009-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0009-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0010-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0010-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0010-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "lohnabrechnung"
+   },
+   {
+    "dokument": "SYN-F0010-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0011-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0011-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "lohnabrechnung"
+   },
+   {
+    "dokument": "SYN-F0011-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0012-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0012-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0012-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "lohnabrechnung"
+   },
+   {
+    "dokument": "SYN-F0012-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0013-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0013-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0013-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0014-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0014-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0014-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0015-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0015-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0015-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0016-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0016-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0016-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0016-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0017-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0017-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0018-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0018-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0018-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0019-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0019-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0020-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0020-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0020-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "lohnabrechnung"
+   },
+   {
+    "dokument": "SYN-F0020-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0021-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0021-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0021-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0021-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0022-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0022-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0023-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0023-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0023-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0024-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0024-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0024-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0025-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0025-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0026-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0026-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0026-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0027-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0027-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0027-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "lohnabrechnung"
+   },
+   {
+    "dokument": "SYN-F0027-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0028-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0028-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0028-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0029-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0029-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0029-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0029-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0030-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0030-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0030-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0031-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0031-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0032-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0032-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0032-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0033-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0033-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0034-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0034-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0034-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "lohnabrechnung"
+   },
+   {
+    "dokument": "SYN-F0035-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0035-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0035-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "lohnabrechnung"
+   },
+   {
+    "dokument": "SYN-F0035-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0036-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0036-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0037-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0037-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0037-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0038-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0038-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0039-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0039-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0039-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0039-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   },
+   {
+    "dokument": "SYN-F0040-D1",
+    "wahr": "antrag",
+    "vorhergesagt": "antrag"
+   },
+   {
+    "dokument": "SYN-F0040-D2",
+    "wahr": "kontoauszug",
+    "vorhergesagt": "kontoauszug"
+   },
+   {
+    "dokument": "SYN-F0040-D3",
+    "wahr": "lohnabrechnung",
+    "vorhergesagt": "lohnabrechnung"
+   },
+   {
+    "dokument": "SYN-F0040-D4",
+    "wahr": "mietbescheinigung",
+    "vorhergesagt": "mietbescheinigung"
+   }
+  ],
+  "vollstaendigkeit": [
+   {
+    "fall": "SYN-F0001",
+    "wahr": [],
+    "gefunden": [
+     "lohnabrechnung"
+    ]
+   },
+   {
+    "fall": "SYN-F0002",
+    "wahr": [
+     "mietbescheinigung"
+    ],
+    "gefunden": [
+     "mietbescheinigung"
+    ]
+   },
+   {
+    "fall": "SYN-F0003",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0004",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0005",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0006",
+    "wahr": [],
+    "gefunden": [
+     "lohnabrechnung"
+    ]
+   },
+   {
+    "fall": "SYN-F0007",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0008",
+    "wahr": [
+     "mietbescheinigung"
+    ],
+    "gefunden": [
+     "mietbescheinigung"
+    ]
+   },
+   {
+    "fall": "SYN-F0009",
+    "wahr": [],
+    "gefunden": [
+     "lohnabrechnung"
+    ]
+   },
+   {
+    "fall": "SYN-F0010",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0011",
+    "wahr": [
+     "kontoauszug"
+    ],
+    "gefunden": [
+     "kontoauszug"
+    ]
+   },
+   {
+    "fall": "SYN-F0012",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0013",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0014",
+    "wahr": [
+     "kontoauszug"
+    ],
+    "gefunden": [
+     "kontoauszug",
+     "lohnabrechnung"
+    ]
+   },
+   {
+    "fall": "SYN-F0015",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0016",
+    "wahr": [],
+    "gefunden": [
+     "lohnabrechnung"
+    ]
+   },
+   {
+    "fall": "SYN-F0017",
+    "wahr": [
+     "kontoauszug"
+    ],
+    "gefunden": [
+     "kontoauszug"
+    ]
+   },
+   {
+    "fall": "SYN-F0018",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0019",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0020",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0021",
+    "wahr": [],
+    "gefunden": [
+     "lohnabrechnung"
+    ]
+   },
+   {
+    "fall": "SYN-F0022",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0023",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0024",
+    "wahr": [
+     "kontoauszug"
+    ],
+    "gefunden": [
+     "kontoauszug",
+     "lohnabrechnung"
+    ]
+   },
+   {
+    "fall": "SYN-F0025",
+    "wahr": [
+     "kontoauszug"
+    ],
+    "gefunden": [
+     "kontoauszug",
+     "lohnabrechnung"
+    ]
+   },
+   {
+    "fall": "SYN-F0026",
+    "wahr": [
+     "mietbescheinigung"
+    ],
+    "gefunden": [
+     "lohnabrechnung",
+     "mietbescheinigung"
+    ]
+   },
+   {
+    "fall": "SYN-F0027",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0028",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0029",
+    "wahr": [],
+    "gefunden": [
+     "lohnabrechnung"
+    ]
+   },
+   {
+    "fall": "SYN-F0030",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0031",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0032",
+    "wahr": [
+     "lohnabrechnung"
+    ],
+    "gefunden": [
+     "lohnabrechnung"
+    ]
+   },
+   {
+    "fall": "SYN-F0033",
+    "wahr": [
+     "kontoauszug"
+    ],
+    "gefunden": [
+     "kontoauszug"
+    ]
+   },
+   {
+    "fall": "SYN-F0034",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0035",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0036",
+    "wahr": [
+     "kontoauszug"
+    ],
+    "gefunden": [
+     "kontoauszug"
+    ]
+   },
+   {
+    "fall": "SYN-F0037",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0038",
+    "wahr": [],
+    "gefunden": []
+   },
+   {
+    "fall": "SYN-F0039",
+    "wahr": [],
+    "gefunden": [
+     "lohnabrechnung"
+    ]
+   },
+   {
+    "fall": "SYN-F0040",
+    "wahr": [],
+    "gefunden": []
+   }
+  ]
+ },
+ "assistent": {
+  "n": 15,
+  "sekunden": {
+   "median": 2.04,
+   "p95": 4.34,
+   "max": 4.34
+  },
+  "mit_zitat": 15,
+  "zitate_alle_belegt": 15,
+  "erwarteter_paragraf_zitiert": 13,
+  "einzeln": [
+   {
+    "frage": "Wer bekommt überhaupt Leistungen nach dem SGB II?",
+    "antwort": "Leistungen nach dem SGB II erhalten erwerbsfähige Leistungsberechtigte, die 15 Jahre vollendet haben und ihren gewöhnlichen Aufenthalt in der Bundesrepublik Deutschland haben [SGB II § 7(1)]. Ausgenommen sind bestimmte Ausländerinnen und Ausländer sowie Leistungsberechtigte nach dem Asylbewerberleistungsgesetz [SGB II § 7(2) und (3)].",
+    "quellen": [
+     "SGB II § 19",
+     "SGB II § 7",
+     "SGB II § 5",
+     "SGB II § 6",
+     "SGB II § 16f"
+    ],
+    "zitate": [
+     "SGB II § 7"
+    ],
+    "unbelegt": [],
+    "ohne_zitat": false,
+    "sekunden": 2.34,
+    "erwartet": [
+     "SGB II § 7"
+    ],
+    "erwartet_zitiert": true
+   },
+   {
+    "frage": "Bis zu welchem Alter kann man Grundsicherung für Arbeitsuchende bekommen?",
+    "antwort": "Die Grundsicherung für Arbeitsuchende kann bis zum Vollendeten 59. Lebensjahr gewährt werden, es sei denn, dass der Leistungsberechtigte früher eine Rente wegen Alters in Anspruch nehmen muss [SGB II § 6].",
+    "quellen": [
+     "SGB II § 1",
+     "SGB II § 23",
+     "SGB II § 65",
+     "SGB II § 6",
+     "SGB II § 51b"
+    ],
+    "zitate": [
+     "SGB II § 6"
+    ],
+    "unbelegt": [],
+    "ohne_zitat": false,
+    "sekunden": 1.66,
+    "erwartet": [
+     "SGB II § 7a"
+    ],
+    "erwartet_zitiert": false
+   },
+   {
+    "frage": "Muss ich für das Jobcenter erreichbar sein, wenn ich verreisen will?",
+    "antwort": "Ja, Sie müssen erreichbar bleiben, es sei denn, für den Aufenthalt außerhalb des näheren Bereichs liegt ein wichtiger Grund vor und das Jobcenter hat dem zugestimmt [SGB II § 7b (2)].",
+    "quellen": [
+     "SGB II § 7b",
+     "SGB II § 15",
+     "SGB II § 3",
+     "SGB II § 32",
+     "SGB II § 43"
+    ],
+    "zitate": [
+     "SGB II § 7b"
+    ],
+    "unbelegt": [],
+    "ohne_zitat": false,
+    "sekunden": 1.37,
+    "erwartet": [
+     "SGB II § 7b"
+    ],
+    "erwartet_zitiert": true
+   },
+   {
+    "frage": "Wann gilt jemand als erwerbsfähig?",
+    "antwort": "Jemand gilt als erwerbsfähig, wenn er nicht wegen Krankheit oder Behinderung auf absehbare Zeit außerstande ist, unter den üblichen Bedingungen des allgemeinen Arbeitsmarktes mindestens drei Stunden täglich erwerbstätig zu sein [SGB II § 8(1)].",
+    "quellen": [
+     "SGB II § 8",
+     "SGB II § 16i",
+     "SGB II § 10",
+     "SGB II § 7b",
+     "SGB II § 16c"
+    ],
+    "zitate": [
+     "SGB II § 8"
+    ],
+    "unbelegt": [],
+    "ohne_zitat": false,
+    "sekunden": 1.67,
+    "erwartet": [
+     "SGB II § 8"
+    ],
+    "erwartet_zitiert": true
+   },
+   {
+    "frage": "Wann ist eine Person hilfebedürftig?",
+    "antwort": "Eine Person ist hilfebedürftig, wenn sie ihren Lebensunterhalt nicht oder nicht ausreichend aus dem zu berücksichtigenden Einkommen oder Vermögen sichert kann und die erforderliche Hilfe nicht von anderen, insbesondere von Angehörigen oder Trägern anderer Sozialleistungen, erhält [SGB II § 9].",
+    "quellen": [
+     "SGB II § 9",
+     "SGB II § 22",
+     "SGB II § 7b",
+     "SGB II § 44a",
+     "SGB I § 63"
+    ],
+    "zitate": [
+     "SGB II § 9"
+    ],
+    "unbelegt": [],
+    "ohne_zitat": false,
+    "sekunden": 1.78,
+    "erwartet": [
+     "SGB II § 9"
+    ],
+    "erwartet_zitiert": true
+   },
+   {
+    "frage": "Welche Arbeit muss man annehmen und welche ist nicht zumutbar?",
+    "antwort": "Arbeiten, die nicht zur früheren beruflichen Tätigkeit passen oder geringwertig sind [SGB II § 10], müssen nicht unbedingt angenommen werden. Arbeiten mit schlechteren Arbeitsbedingungen als bisher oder in weiterer Entfernung vom Wohnort können auch nicht zumutbar sein [SGB II § 10]. Selbständige Tätigkeit ist nur dann zu erlauben, wenn sie wirtschaftlich tragfähig und die Hilfebedürftigkeit dauerhaft verringern kann [SGB II § 16c]. Arbeiten zur Bewältigung außergewöhnlicher Ereignisse sind hingegen für kurze Zeit zumutbar [SGB II § 16d].",
+    "quellen": [
+     "SGB II § 10",
+     "SGB II § 31a",
+     "SGB II § 7b",
+     "SGB II § 16d",
+     "SGB II § 16c"
+    ],
+    "zitate": [
+     "SGB II § 10",
+     "SGB II § 16c",
+     "SGB II § 16d"
+    ],
+    "unbelegt": [],
+    "ohne_zitat": false,
+    "sekunden": 3.08,
+    "erwartet": [
+     "SGB II § 10"
+    ],
+    "erwartet_zitiert": true
+   },
+   {
+    "frage": "Was wird als Einkommen angerechnet?",
+    "antwort": "Als Einkommen werden in Geld abgesehen Steuern, Pflichtbeiträge zur Sozialversicherung und Versicherungen sowie Zuflüsse aus darlehensweise gewährten Sozialleistungen berücksichtigt [SGB II § 11]. Dies gilt auch für das Kindergeld [SGB II § 11], da es dem Lebensunterhalt dient.",
+    "quellen": [
+     "SGB II § 11",
+     "SGB II § 11a",
+     "SGB II § 11b",
+     "SGB II § 13",
+     "SGB II § 12"
+    ],
+    "zitate": [
+     "SGB II § 11"
+    ],
+    "unbelegt": [],
+    "ohne_zitat": false,
+    "sekunden": 2.46,
+    "erwartet": [
+     "SGB II § 11"
+    ],
+    "erwartet_zitiert": true
+   },
+   {
+    "frage": "Welche Einnahmen bleiben anrechnungsfrei?",
+    "antwort": "Nicht zu berücksichtigenden Einnahmen sind z.B. das Mutterschaftsgeld nach § 19 des Mutterschutzgesetzes [SGB II § 11a Nummer 7].",
+    "quellen": [
+     "SGB II § 11a",
+     "SGB II § 11",
+     "SGB II § 11b",
+     "SGB II § 13",
+     "SGB II § 12"
+    ],
+    "zitate": [
+     "SGB II § 11a"
+    ],
+    "unbelegt": [],
+    "ohne_zitat": false,
+    "sekunden": 1.85,
+    "erwartet": [
+     "SGB II § 11a"
+    ],
+    "erwartet_zitiert": true
+   },
+   {
+    "frage": "Welche Beträge darf man vom Lohn abziehen, wie hoch ist der Freibetrag für Erwerbstätige?",
+    "antwort": "Gemäß [SGB II § 11b] beträgt der Freibetrag für erwerbsfähige Leistungsberechtigte, die erwerbstätig sind, 100 Euro. Der Absetzbetrag wird für den Teil des monatlichen Erwerbseinkommens über 100 Euro berechnet: Bis zu 520 Euro werden 20%, darüber bis zu 1000 Euro 30% und darüber bis zu 1200 Euro (oder 1500 Euro bei bestimmten Bedingungen) 10% abgesetzt.",
+    "quellen": [
+     "SGB II § 11b",
+     "SGB II § 16i",
+     "SGB II § 12",
+     "SGB II § 16c",
+     "SGB II § 13"
+    ],
+    "zitate": [
+     "SGB II § 11b"
+    ],
+    "unbelegt": [],
+    "ohne_zitat": false,
+    "sekunden": 2.64,
+    "erwartet": [
+     "SGB II § 11b"
+    ],
+    "erwartet_zitiert": true
+   },
+   {
+    "frage": "Wie viel Erspartes darf man behalten?",
+    "antwort": "Das zu berücksichtigende Vermögen ist je nach Lebensalter abzusetzen. Für Personen bis zum 30. Lebensjahr beträgt der Freibetrag 5.000 Euro [SGB II § 12 Absatz 2]. Übersteigt das eigene Vermögen diesen Betrag, müssen nicht ausgeschöpfte Freibeträge der anderen Personen in der Bedarfsgemeinschaft übertragen werden.",
+    "quellen": [
+     "SGB II § 11b",
+     "SGB II § 43",
+     "SGB II § 12",
+     "SGB II § 6b",
+     "SGB II § 40"
+    ],
+    "zitate": [
+     "SGB II § 12"
+    ],
+    "unbelegt": [],
+    "ohne_zitat": false,
+    "sekunden": 1.87,
+    "erwartet": [
+     "SGB II § 12"
+    ],
+    "erwartet_zitiert": true
+   },
+   {
+    "frage": "Muss man vorher Rente oder Wohngeld beantragen?",
+    "antwort": "Gemäß [SGB II § 12a] sind Leistungsberechtigte nicht verpflichtet, eine Rente wegen Alters vorzeitig in Anspruch zu nehmen oder Wohngeld nach dem Wohngeldgesetz in Anspruch zu nehmen, wenn dadurch nicht die Hilfebedürftigkeit aller Mitglieder der Bedarfsgemeinschaft für einen zusammenhängenden Zeitraum von mindestens drei Monaten beseitigt würde.",
+    "quellen": [
+     "SGB II § 12a",
+     "SGB II § 22",
+     "SGB II § 65",
+     "SGB II § 12",
+     "SGB II § 85"
+    ],
+    "zitate": [
+     "SGB II § 12a"
+    ],
+    "unbelegt": [],
+    "ohne_zitat": false,
+    "sekunden": 2.47,
+    "erwartet": [
+     "SGB II § 12a"
+    ],
+    "erwartet_zitiert": true
+   },
+   {
+    "frage": "Was wird im Kooperationsplan zwischen Jobcenter und Leistungsberechtigten festgehalten?",
+    "antwort": "Im Kooperationsplan werden unter Berücksichtigung der §§ 3 und 3a folgende Punkte festgelegt [SGB II § 15 (2)]:\n1. in welche Ausbildungen, Tätigkeiten oder Tätigkeitsbereiche die erwerbsfähige leistungsberechtigte Person vermittelt werden soll,\n2. welche Eigenbemühungen die erwerbsfähige leistungsberechtigte Person mindestens zu unternehmen und nachzuweisen hat,\n3. welche Leistungen zur Eingliederung in Ausbildung oder Arbeit für sie in Betracht kommen,\n4. dass eine Teilnahme an einem Integrationskurs oder an einer Maßnahme der berufsbezogenen Deutschsprachförderung vorgesehen ist,\n5. ob und wie Leistungen anderer Leistungsträger einbezogen werden sollen, sowie\n6. dass im Falle eines Bedarfs an Leistungen gemäß § 5 des Neunten Buches eine Antragstellung durchgeführt wird.",
+    "quellen": [
+     "SGB II § 15",
+     "SGB II § 18b",
+     "SGB II § 15a",
+     "SGB II § 44c",
+     "SGB II § 18"
+    ],
+    "zitate": [
+     "SGB II § 15"
+    ],
+    "unbelegt": [],
+    "ohne_zitat": false,
+    "sekunden": 4.34,
+    "erwartet": [
+     "SGB II § 15"
+    ],
+    "erwartet_zitiert": true
+   },
+   {
+    "frage": "Gibt es einen Zuschuss, wenn ich eine Arbeit aufnehme?",
+    "antwort": "Es hängt davon ab, ob die Voraussetzungen des § 16i SGB II erfüllt sind. Wenn Sie ein sozialversicherungspflichtiges Arbeitsverhältnis mit einer Dauer von mindestens zwei Jahren begründen und es sich um eine nicht nur geringfügige Beschäftigung handelt, können Sie einen Zuschuss zum Arbeitsentgelt erhalten [SGB II § 16i].",
+    "quellen": [
+     "SGB II § 16e",
+     "SGB II § 16c",
+     "SGB II § 16i",
+     "SGB II § 16b",
+     "SGB II § 27"
+    ],
+    "zitate": [
+     "SGB II § 16i"
+    ],
+    "unbelegt": [],
+    "ohne_zitat": false,
+    "sekunden": 2.04,
+    "erwartet": [
+     "SGB II § 16b"
+    ],
+    "erwartet_zitiert": false
+   },
+   {
+    "frage": "Welche Hilfen gibt es für Selbständige, die Leistungen beziehen?",
+    "antwort": "Für Selbständige gibt es nach [SGB II § 16c] Leistungen zur Eingliederung, wenn die selbständige Tätigkeit wirtschaftlich tragfähig ist und Hilfebedürftigkeit durch diese Tätigkeit dauerhaft überwunden oder verringert werden kann. Diese Leistungen können beispielsweise umfassen, was in [SGB II § 16a] genannt wird: Betreuung minderjähriger Kinder, häusliche Pflege von Angehörigen, Schuldnerberatung, psychosoziale und Suchtberatung.",
+    "quellen": [
+     "SGB II § 16c",
+     "SGB II § 16a",
+     "SGB II § 30",
+     "SGB II § 18",
+     "SGB II § 4"
+    ],
+    "zitate": [
+     "SGB II § 16a",
+     "SGB II § 16c"
+    ],
+    "unbelegt": [],
+    "ohne_zitat": false,
+    "sekunden": 2.6,
+    "erwartet": [
+     "SGB II § 16c"
+    ],
+    "erwartet_zitiert": true
+   },
+   {
+    "frage": "Was sind Arbeitsgelegenheiten, sogenannte Ein-Euro-Jobs?",
+    "antwort": "Arbeitsgelegenheiten, auch als Ein-Euro-Jobs bezeichnet, sind nach [SGB II § 16d] Arbeiten, die zusätzlich zu bestehenden Beschäftigungen verrichtet werden. Sie dienen der Erhaltung oder Wiedererlangung der Beschäftigungsfähigkeit und müssen im öffentlichen Interesse liegen sowie wettbewerbsneutral sein.",
+    "quellen": [
+     "SGB II § 16d",
+     "SGB II § 8",
+     "SGB II § 71",
+     "SGB II § 48b",
+     "SGB II § 11b"
+    ],
+    "zitate": [
+     "SGB II § 16d"
+    ],
+    "unbelegt": [],
+    "ohne_zitat": false,
+    "sekunden": 1.7,
+    "erwartet": [
+     "SGB II § 16d"
+    ],
+    "erwartet_zitiert": true
+   }
+  ]
+ },
+ "laufzeit_sekunden": 787.0
+}

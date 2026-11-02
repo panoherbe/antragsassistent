@@ -1,0 +1,32 @@
+# Prototyp lokal: Sprachmodell (Ollama, offenes Modell, GPU) + Anwendung. Beides bleibt auf diesem Rechner;
+# die Anwendung lauscht nur auf 127.0.0.1. Start:
+#   DEMO_PASSWORT=... docker compose up -d                 # Oberfläche: http://127.0.0.1:${APP_PORT:-8420}
+#   docker compose exec ollama ollama pull qwen2.5:7b-instruct && docker compose exec ollama ollama pull bge-m3
+#   docker compose run --rm test                           # Tests (ohne Modell)
+#   docker compose run --rm app python -m eval.messen --ausgabe nachweis/neu
+name: antragsassistent
+services:
+  ollama:
+    image: ollama/ollama:latest
+    volumes: ["./daten/ollama:/root/.ollama"]
+    environment: [OLLAMA_KEEP_ALIVE=30m]
+    deploy:
+      resources:
+        reservations:
+          devices: [{driver: nvidia, count: 1, capabilities: [gpu]}]
+  app:
+    build: .
+    environment:
+      OLLAMA_URL: http://ollama:11434
+      SPRACHMODELL: ${SPRACHMODELL:-qwen2.5:7b-instruct}
+      EINBETTUNGSMODELL: ${EINBETTUNGSMODELL:-bge-m3}
+      DEMO_PASSWORT: ${DEMO_PASSWORT:?DEMO_PASSWORT setzen}
+      DEMO_FAELLE: ${DEMO_FAELLE:-20}
+    volumes: ["./daten:/app/daten", "./nachweis:/app/nachweis"]
+    ports: ["127.0.0.1:${APP_PORT:-8420}:8000"]
+    depends_on: [ollama]
+  test:
+    build: .
+    environment: {DATENVERZEICHNIS: /tmp/test, DEMO_PASSWORT: nur-fuer-tests}
+    entrypoint: ["python", "-m", "pytest", "-q", "tests"]
+    profiles: [test]

@@ -1,0 +1,95 @@
+{
+ "suche": {
+  "bm25": {
+   "n": 45,
+   "treffer@1": 0.511,
+   "treffer@3": 0.711,
+   "treffer@5": 0.756,
+   "mrr": 0.606,
+   "ms_median": 0.4
+  },
+  "dicht": {
+   "n": 45,
+   "treffer@1": 0.778,
+   "treffer@3": 0.911,
+   "treffer@5": 0.933,
+   "mrr": 0.846,
+   "ms_median": 108.8
+  },
+  "hybrid": {
+   "n": 45,
+   "treffer@1": 0.667,
+   "treffer@3": 0.822,
+   "treffer@5": 0.822,
+   "mrr": 0.741,
+   "ms_median": 109.1
+  }
+ },
+ "extraktion": {
+  "faelle": 40,
+  "dokumente": 133,
+  "felder": 418,
+  "dokumentart_richtig": 1.0,
+  "feld_richtig": 0.959,
+  "belegt_anteil": 0.964,
+  "belegt_und_richtig": 0.993,
+  "belegt_aber_falsch": 3,
+  "unbelegt_aber_richtig": 1,
+  "vollstaendigkeit_richtig": 1.0,
+  "faelle_mit_fehlendem_nachweis": 7,
+  "sekunden_je_dokument": {
+   "median": 4.17,
+   "p95": 6.34,
+   "max": 12.24
+  },
+  "je_feld": {
+   "arbeitgeber": 0.864,
+   "brutto": 0.682,
+   "endsaldo": 1.0,
+   "geburtsdatum": 1.0,
+   "heizkosten": 1.0,
+   "kaltmiete": 1.0,
+   "kontoinhaber": 1.0,
+   "monat": 1.0,
+   "name": 1.0,
+   "nebenkosten": 1.0,
+   "netto": 0.682,
+   "personen_bg": 1.0,
+   "wohnflaeche": 1.0
+  }
+ },
+ "assistent": {
+  "n": 15,
+  "sekunden": {
+   "median": 2.04,
+   "p95": 4.34,
+   "max": 4.34
+  },
+  "mit_zitat": 15,
+  "zitate_alle_belegt": 15,
+  "erwarteter_paragraf_zitiert": 13
+ },
+ "prompt": "extraktion-v3",
+ "startwert": 9001,
+ "normen": {
+  "absaetze": 519,
+  "paragrafen": 150,
+  "einbetten_sekunden": 0.2
+ },
+ "umgebung": {
+  "python": "3.12.13",
+  "ollama": "0.20.6",
+  "gpu": "über Ollama-Container",
+  "modelle": {
+   "bge-m3:latest": {
+    "digest": "790764642607",
+    "groesse_gb": 1.16
+   },
+   "qwen2.5:7b-instruct": {
+    "digest": "845dbda0ea48",
+    "groesse_gb": 4.68
+   }
+  }
+ },
+ "laufzeit": 673.8
+}

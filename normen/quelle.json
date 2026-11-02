@@ -1,0 +1,15 @@
+{
+  "abgerufen": "2026-11-02",
+  "dateien": {
+    "SGB II": {
+      "url": "https://www.gesetze-im-internet.de/sgb_2/xml.zip",
+      "sha256": "5b4508356a3b015af95a9648c732ed50ecda55da95c513607c5f130d33923c78",
+      "bytes": 76376
+    },
+    "SGB I": {
+      "url": "https://www.gesetze-im-internet.de/sgb_1/xml.zip",
+      "sha256": "4cc0fd9277d169acc4e0f847ca693429c57c0d21b8e6e90aa3fb88664f4cbeb2",
+      "bytes": 22735
+    }
+  }
+}

@@ -1,0 +1,56 @@
+# Unterlagenliste und Plausibilitätsregeln. BEISPIELKONFIGURATION für den Prototyp, fachlich NICHT abgestimmt:
+# Welche Nachweise ein Jobcenter wirklich verlangt, legt die Fachseite fest. Die Datei ist bewusst so gebaut, dass
+# sie ohne Programmierkenntnisse geändert werden kann; eine Änderung braucht keinen neuen Code.
+version: beispiel-2026-11-02
+
+dokumentarten:
+  antrag: Antrag oder Veränderungsmitteilung der leistungsberechtigten Person an das Jobcenter
+  lohnabrechnung: Entgelt-, Lohn- oder Verdienstabrechnung eines Arbeitgebers
+  mietbescheinigung: Mietbescheinigung oder Bescheinigung des Vermieters
+  kontoauszug: Kontoauszug einer Bank
+
+felder:
+  antrag: [name, geburtsdatum, personen_bg]
+  lohnabrechnung: [arbeitgeber, monat, brutto, netto]
+  mietbescheinigung: [kaltmiete, nebenkosten, heizkosten, wohnflaeche]
+  kontoauszug: [kontoinhaber, endsaldo]
+
+# Was mit einem Feld gemeint ist; geht je Dokumentart in die Anweisung an das Sprachmodell (Prompt extraktion-v3).
+beschreibung:
+  name: Vor- und Nachname der antragstellenden Person
+  personen_bg: Anzahl der Personen in der Bedarfsgemeinschaft
+  arbeitgeber: nur der Firmenname des Arbeitgebers, ohne Abteilung
+  monat: Abrechnungsmonat mit Jahr
+  brutto: Gesamtbrutto des Monats (Summe aller Bezüge, nicht die Grundvergütung allein)
+  netto: Nettoverdienst bzw. Auszahlungsbetrag
+  kaltmiete: Grundmiete ohne Nebenkosten und Heizung
+  nebenkosten: Betriebs- bzw. Nebenkosten ohne Heizung (auch "kalte Betriebskosten", "Betriebskostenvorauszahlung")
+  heizkosten: Heizkosten bzw. Heizung und Warmwasser
+  wohnflaeche: Wohnfläche in Quadratmetern
+  kontoinhaber: Name des Kontoinhabers
+  endsaldo: neuer Kontostand am Ende des Auszugs (kann negativ sein)
+
+# Pflichtnachweise je Antragsart; "wenn" bezieht sich auf die Angaben im Antrag.
+pflicht:
+  Weiterbewilligungsantrag:
+    - {art: antrag}
+    - {art: kontoauszug}
+    - {art: lohnabrechnung, wenn: erwerbstaetig}
+    - {art: mietbescheinigung, wenn: miete}
+  Veränderungsmitteilung:
+    - {art: antrag}
+    - {art: kontoauszug}
+    - {art: lohnabrechnung, wenn: erwerbstaetig}
+    - {art: mietbescheinigung, wenn: miete}
+
+# Plausibilitätsregeln erzeugen nur Hinweise, nie eine Entscheidung.
+regeln:
+  - id: netto_hoechstens_brutto
+    text: Nettoverdienst ist größer als der Bruttoverdienst.
+    pruefe: "lohnabrechnung.netto <= lohnabrechnung.brutto"
+  - id: kontoinhaber_gleich_antrag
+    text: Kontoinhaber weicht von der antragstellenden Person ab.
+    pruefe: "kontoauszug.kontoinhaber == antrag.name"
+  - id: kaltmiete_positiv
+    text: Kaltmiete fehlt oder ist nicht größer als 0.
+    pruefe: "mietbescheinigung.kaltmiete > 0"

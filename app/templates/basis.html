@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block titel %}Antragsassistent{% endblock %} · Prototyp</title>
+<link rel="stylesheet" href="/static/stil.css"></head>
+<body>
+<header>
+  <a class="marke" href="/">Antragsassistent <span>Prototyp · nur synthetische Daten</span></a>
+  {% if b %}<nav>
+    {% if b.rolle != 'administration' %}<a href="/">Fälle</a><a href="/assistent">Fragen zum SGB II</a>{% endif %}
+    {% if b.rolle in ('pruefung', 'administration') %}<a href="/protokoll">Prüfprotokoll</a>{% endif %}
+    <span class="wer">{{ b.anzeigename }} · {{ b.rolle }}{% if b.jobcenter_id %} · {{ b.jobcenter_id }}{% endif %}</span>
+    <a href="/abmelden">Abmelden</a></nav>{% endif %}
+</header>
+<main>{% block inhalt %}{% endblock %}</main>
+<footer>Prototyp. Das System entscheidet nichts: Jede Angabe bestätigt eine Person. KI-Ausgaben sind Entwürfe, keine Rechtsauskunft. Modell: {{ modell }} (lokal).</footer>
+</body></html>

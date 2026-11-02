@@ -1,0 +1,10 @@
+{% extends "basis.html" %}{% block titel %}Prüfprotokoll{% endblock %}
+{% block inhalt %}
+<h1>Prüfprotokoll</h1>
+<p class="{{ 'gut' if kette[0] else 'warn' }}"><b>Hash-Kette:</b> {{ kette[2] }}</p>
+{% if zeilen %}
+<table class="klein"><thead><tr><th>Nr.</th><th>Zeit (UTC)</th><th>Person</th><th>Aktion</th><th>Daten</th><th>Hash</th></tr></thead><tbody>
+{% for z in zeilen %}<tr><td>{{ z.nr }}</td><td>{{ z.zeit[:19] }}</td><td>{{ z.benutzer or '—' }}</td><td>{{ z.aktion }}</td><td class="daten">{{ z.daten[:220] }}</td><td><code>{{ z.hash[:12] }}</code></td></tr>{% endfor %}
+</tbody></table>
+{% elif b.rolle == 'administration' %}<p class="klein">Die Administration prüft nur die Kette; Inhalte sieht sie nicht.</p>{% endif %}
+{% endblock %}

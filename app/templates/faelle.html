@@ -1,0 +1,11 @@
+{% extends "basis.html" %}{% block titel %}Fälle{% endblock %}
+{% block inhalt %}
+<h1>Fälle {{ b.jobcenter_id }}</h1>
+<table>
+<thead><tr><th>Fall</th><th>Antragsart</th><th>Dokumente</th><th>Status</th><th>offene Angaben</th></tr></thead>
+<tbody>
+{% for f in faelle %}<tr><td><a href="/fall/{{ f.id }}">{{ f.id }}</a></td><td>{{ f.antragsart }}</td><td>{{ f.dokumente }}</td>
+<td><span class="status {{ f.status }}">{{ {'eingang':'Eingang','in_pruefung':'in Prüfung','prueffertig':'prüffertig'}[f.status] }}</span></td><td>{{ f.offen }}</td></tr>
+{% else %}<tr><td colspan="5">Keine Fälle.</td></tr>{% endfor %}
+</tbody></table>
+{% endblock %}

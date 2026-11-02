@@ -1,0 +1,15 @@
+{% extends "basis.html" %}{% block titel %}Fragen zum SGB II{% endblock %}
+{% block inhalt %}
+<h1>Fragen zum SGB II</h1>
+<form method="get" action="/assistent" class="frage"><input name="frage" value="{{ frage }}" placeholder="z. B. Welche Kosten der Unterkunft werden in der Karenzzeit übernommen?" required><button>Fragen</button></form>
+{% if e %}
+<section class="karte"><p class="klein">KI-Entwurf aus den unten gefundenen Normen, keine Rechtsauskunft, keine Entscheidung im Einzelfall. {{ e.sekunden }} s.</p>
+<div class="antwort">{{ e.antwort }}</div>
+{% if e.unbelegt %}<p class="warn">Zitat nicht belegt: {{ e.unbelegt | join(', ') }} steht nicht unter den gefundenen Normen.</p>{% endif %}
+{% if e.ohne_zitat %}<p class="warn">Die Antwort nennt keine Fundstelle.</p>{% endif %}
+</section>
+<h2>Gefundene Normen</h2>
+{% for t in e.quellen %}<details><summary>{{ t.paragraf }} · {{ t.titel }}</summary><p>{{ t.text }}</p></details>{% endfor %}
+<p class="klein">Quelle: gesetze-im-internet.de (amtliche Werke, § 5 UrhG); Stand siehe normen/quelle.json.</p>
+{% endif %}
+{% endblock %}

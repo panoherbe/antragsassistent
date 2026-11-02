@@ -1,0 +1,42 @@
+{% extends "basis.html" %}{% block titel %}{{ a.fall.id }}{% endblock %}
+{% block inhalt %}
+<h1>{{ a.fall.id }} <small>{{ a.fall.antragsart }}</small>
+<span class="status {{ a.fall.status }}">{{ {'eingang':'Eingang','in_pruefung':'in Prüfung','prueffertig':'prüffertig'}[a.fall.status] }}</span></h1>
+{% if meldung %}<p class="meldung">{{ meldung }}</p>{% endif %}
+<div class="leiste">
+  <div><b>Angaben im Antrag:</b> erwerbstätig {{ 'ja' if a.merkmale.erwerbstaetig else 'nein' }}, Miete {{ 'ja' if a.merkmale.miete else 'nein' }}, {{ a.merkmale.personen }} Person(en)</div>
+  {% if a.fehlend is not none %}<div class="{{ 'warn' if a.fehlend else 'gut' }}"><b>Unterlagen:</b>
+    {% if a.fehlend %}es fehlt {% for x in a.fehlend %}{{ konf.dokumentarten[x] }}{% if not loop.last %}, {% endif %}{% endfor %} (Nachforderung prüfen){% else %}vollständig laut Unterlagenliste{% endif %}</div>{% endif %}
+  {% for h in a.hinweise %}<div class="warn"><b>Hinweis:</b> {{ h.text }}</div>{% endfor %}
+</div>
+{% if darf_entscheiden and not a.analysiert %}
+<form method="post" action="/fall/{{ a.fall.id }}/analysieren"><button>Dokumente auswerten lassen (KI-Vorschläge)</button></form>
+{% endif %}
+{% for d in a.dokumente %}
+<section class="dok">
+  <div class="text"><h2>{{ d.id }} <small>{{ konf.dokumentarten.get(d.dokumentart, d.dokumentart or 'noch nicht ausgewertet') }}{% if d.dokumentart %} (KI-Vorschlag){% endif %}</small></h2>
+  <pre>{{ d.text }}</pre></div>
+  <div class="vorschlaege">
+  {% for v in a.vorschlaege if v.dokument_id == d.id %}
+    <div class="v {{ 'belegt' if v.belegt else 'unbelegt' }} {{ v.entscheidung or 'offen' }}">
+      <div class="kopf"><b>{{ v.feld }}</b> <span>{{ v.wert or '—' }}</span>
+        {% if v.belegt %}<em class="ok">Fundstelle geprüft</em>{% else %}<em class="nein">nicht belegt, bitte selbst eintragen</em>{% endif %}</div>
+      {% if v.fundstelle %}<div class="fund">„{{ v.fundstelle }}“</div>{% endif %}
+      {% if v.entscheidung %}<div class="ent">{{ v.entscheidung }}{% if v.endwert and v.entscheidung == 'korrigiert' %}: {{ v.endwert }}{% endif %} · {{ v.entschieden_von }}</div>
+      {% elif darf_entscheiden and a.fall.status != 'prueffertig' %}
+      <form method="post" action="/vorschlag/{{ v.id }}" class="knopf">
+        <input type="hidden" name="fall_id" value="{{ a.fall.id }}">
+        {% if v.belegt %}<button name="entscheidung" value="uebernommen">übernehmen</button>{% endif %}
+        <input name="endwert" placeholder="Wert" size="12"><button name="entscheidung" value="korrigiert">korrigieren</button>
+        <button name="entscheidung" value="verworfen" class="leise">verwerfen</button>
+      </form>{% endif %}
+    </div>
+  {% endfor %}
+  </div>
+</section>
+{% endfor %}
+{% if darf_entscheiden and a.analysiert and a.fall.status != 'prueffertig' %}
+<form method="post" action="/fall/{{ a.fall.id }}/prueffertig"><button {% if a.offen %}disabled{% endif %}>Fall als prüffertig markieren{% if a.offen %} ({{ a.offen }} Angaben offen){% endif %}</button></form>
+{% endif %}
+{% if a.fall.status == 'prueffertig' %}<p><a href="/api/faelle/{{ a.fall.id }}/export">Export (JSON)</a></p>{% endif %}
+{% endblock %}

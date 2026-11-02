@@ -1,0 +1,6 @@
+daten
+.git
+__pycache__
+.pytest_cache
+._*
+.DS_Store

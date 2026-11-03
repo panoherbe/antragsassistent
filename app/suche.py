@@ -59,6 +59,11 @@ class Normen:
             self._vek += [_einheit(v) for v in modell.einbetten(texte[i:i + 32])]
         cache.write_text(json.dumps({"schluessel": schluessel, "vektoren": self._vek}))
 
+    def vektoren_bereit(self, modell, cache: Path) -> None:
+        """Einbettungen beim ersten Bedarf laden (aus dem Cache oder neu berechnet); danach nichts mehr tun."""
+        if self._vek is None:
+            self.vektoren_laden(modell, cache)
+
     def dicht(self, frage: str, modell) -> list[float]:
         q = _einheit(modell.einbetten([frage])[0])
         return [sum(a * b for a, b in zip(q, v)) for v in self._vek]

@@ -122,6 +122,7 @@ def assistent_seite(request: Request, frage: str | None = None):
     dienst._pruefe(b, "assistent")
     ergebnis = None
     if frage:
+        NORMEN.vektoren_bereit(MODELL, E.datenbank.parent / "normen_vektoren.json")  # wie im Messlauf (eval/messen.py)
         ergebnis = assistent.beantworten(frage, NORMEN, MODELL)
         audit.eintragen(CON, "assistent_frage", {"frage": frage, "zitate": ergebnis["zitate"],
                                                  "unbelegt": ergebnis["unbelegt"], "modell": E.sprachmodell},

@@ -1,31 +1,118 @@
-# Antragsassistent (Prototyp)
+# Antragsassistent
 
-KI-assistierte Antragsbearbeitung im SGB II, gebaut als lauffähiger Prototyp: Dokumente eines Antrags auswerten,
-Angaben **mit Fundstelle** vorschlagen, fehlende Nachweise finden, Fragen zum SGB II mit Paragrafenangabe
-beantworten. **Das System entscheidet nichts.** Jede Angabe übernimmt, korrigiert oder verwirft eine angemeldete
-Person; erst dann wird ein Fall „prüffertig“. Alles wird in einem manipulationssicheren Prüfprotokoll festgehalten.
+**KI-Unterstützung für die Antragsbearbeitung im SGB II: liest die Nachweise eines Antrags, schlägt jede Angabe mit
+Fundstelle vor, findet fehlende Unterlagen und beantwortet Fragen zum SGB II mit Paragrafenangabe. Entscheiden tut
+immer ein Mensch. Das läuft heute, lokal, mit synthetischen Testdaten.**
 
-**Nur synthetische Daten.** Der Prototyp verarbeitet keine echten Personen- oder Sozialdaten und nimmt nur
-Dokumente an, die als synthetisches Testdokument gekennzeichnet sind. Lizenz: Apache 2.0.
+![Rundgang durch den Antragsassistenten: Anmeldung, Fallliste, KI-Auswertung der Dokumente, Vorschläge mit geprüfter Fundstelle, fehlender Nachweis, Entscheidung je Angabe, prüffertig, Frage zum SGB II mit geprüften Fundstellen, Prüfprotokoll mit Hash-Kette](medien/rundgang.gif)
 
-## Gemessen am 02.11.2026
+<sub>Rundgang, 63 Sekunden, ohne Ton, mit Untertiteln; aufgenommen am 03.11.2026 an einer laufenden Installation mit
+einem offenen Sprachmodell auf einer GPU. Wartezeiten des Modells sind im Video gekürzt; die Anwendung zeigt die echte
+Dauer an. [Video herunterladen (MP4, 1,3 MB)](https://github.com/panoherbe/antragsassistent/raw/main/medien/rundgang.mp4)
+· Text des Rundgangs weiter unten.</sub>
 
-40 synthetische Fälle (133 Dokumente, 418 Angaben), offenes Modell auf einer GPU mit 12 GB:
+## Was Sie brauchen → läuft hier schon
 
-| | |
+| Was Sie brauchen | läuft hier schon (gemessen am 02.11.2026, 40 synthetische Fälle, 133 Dokumente, 418 Angaben) |
 |---|---|
-| Dokumentart richtig bestimmt | 100 % |
-| Angaben richtig | 95,9 % |
-| belegte Angaben (Fundstelle geprüft), davon richtig | 96,4 %, davon 99,3 % |
-| fehlende Nachweise richtig erkannt | 100 % der Fälle |
-| Dauer je Dokument (Median / 95 %) | 4,2 s / 6,3 s |
-| Suche: erwarteter Paragraf unter den ersten 3 (45 Fragen) | 91,1 % |
-| Assistent: alle genannten Fundstellen unter den Treffern | 15 von 15 Antworten |
-| Tests | 23 grün |
+| Dokumente eines Antrags automatisch auswerten | Dokumentart in 133 von 133 Dokumenten richtig; 95,9 % der Angaben richtig; 4,2 s je Dokument im Median (95 %: 6,3 s) mit einem offenen Modell auf einer GPU mit 12 GB |
+| Nachvollziehbare Vorschläge statt Blackbox | jede Angabe mit Fundstelle; „belegt“ nur, wenn die zitierte Zeile wörtlich im Dokument steht und den Wert enthält: 96,4 % belegt, davon 99,3 % richtig; Unbelegtes lässt sich nicht übernehmen, nur selbst eintragen |
+| Fehlende Nachweise erkennen | in allen 40 Fällen richtig (7 mit Lücke), nach einer lesbaren Regelliste ohne KI, änderbar ohne Programmierung |
+| Die Entscheidung bleibt beim Menschen | je Angabe übernehmen, korrigieren oder verwerfen, keine Sammelübernahme; „prüffertig“ erst, wenn nichts mehr offen ist; Export danach |
+| Fragen zum SGB II beantworten | Suche in SGB II und SGB I §§ 60–67: erwarteter Paragraf bei 91,1 % von 45 Testfragen unter den ersten drei; in 15 von 15 Antworten stehen alle genannten Fundstellen unter den Treffern |
+| Revisionssicher protokollieren | Prüfprotokoll nur erweiterbar, mit Hash-Kette; je Vorschlag Modell, Prompt- und Regelversion |
+| Rollen und Mandanten trennen | Sachbearbeitung entscheidet, Prüfung liest, Administration prüft nur die Kette; Fälle anderer Jobcenter gesperrt |
+| Daten bleiben im Haus | Modell und Anwendung laufen auf demselben Rechner, kein Cloud-Dienst; Modell austauschbar |
+| Geprüfte Qualität | 24 automatische Tests grün (03.11.2026; das Messprotokoll vom 02.11.2026 nennt 23, dazu kam der Test zur Korrektur der Fragen-Seite); alle drei Messläufe offen, auch der schlechtere |
+| Offen und übergabefähig | Quellcode unter Apache 2.0, Modelle unter Apache 2.0 und MIT |
 
-Messweg, alle drei Messläufe (auch der schlechtere) und die verbleibenden Fehler: [`nachweis/PROTOKOLL.md`](nachweis/PROTOKOLL.md).
+Messweg, alle drei Messläufe und die verbleibenden Fehler: [Messprotokoll](nachweis/PROTOKOLL.md).
 
-## Was er kann
+## In zwei Minuten selbst prüfen
+
+1. **Das Messprotokoll lesen:** [nachweis/PROTOKOLL.md](nachweis/PROTOKOLL.md) – Ergebnisse, der schlechtere zweite
+   Lauf und was in der gültigen Fassung noch falsch ist.
+2. **Die Tests laufen lassen** (Docker, ohne Sprachmodell, gemessen 6 s):
+   ```bash
+   git clone https://github.com/panoherbe/antragsassistent.git
+   cd antragsassistent
+   docker compose run --rm test
+   ```
+3. **Die ganze Anwendung starten** (Docker mit Compose, NVIDIA-GPU mit 8 GB oder mehr): Abschnitt „Start“ unten; die
+   beiden Modelle sind zusammen 5,8 GB groß.
+
+## Ihr Vorteil: Sie bewerten ein laufendes System, kein Versprechen
+
+- **Sie sehen vorher, wie die KI-Unterstützung arbeitet:** mit Fundstelle, mit menschlicher Entscheidung und mit
+  Protokoll, nicht als Folie.
+- **Die Qualität ist gemessen, nicht behauptet:** an 133 Dokumenten, mit allen drei Messläufen und den verbleibenden
+  Fehlern offen. Derselbe Messweg prüft im Projekt jedes Modell und jede Änderung.
+- **Die heiklen Teile sind von Anfang an da:** menschliche Letztentscheidung, Nachvollziehbarkeit, Rollen,
+  Mandantentrennung und ein manipulationssicheres Protokoll.
+- **Keine Bindung an einen Anbieter:** offener Quellcode (Apache 2.0), offene Modelle, Modell austauschbar.
+
+## So sieht es aus
+
+<table>
+<tr>
+<td width="50%" valign="top"><img src="medien/bild-ausgewertet.png" alt="Fall nach der KI-Auswertung: Meldung mit der Dauer, Hinweis auf eine fehlende Mietbescheinigung, links das Dokument, rechts die Angaben mit geprüfter Fundstelle und den Knöpfen übernehmen, korrigieren, verwerfen"><br><sub>Nach der Auswertung: oben die echte Dauer und der fehlende Nachweis (gefunden von der Regelliste); links das Dokument, rechts jede Angabe mit Fundstelle und „Fundstelle geprüft“. Entschieden wird je Angabe.</sub></td>
+<td width="50%" valign="top"><img src="medien/bild-frage.png" alt="Seite Fragen zum SGB II mit Antwort, Fundstelle SGB II § 22 und den gefundenen Normen"><br><sub>Fragen zum SGB II: Antwort nur aus den gefundenen Paragrafen, jede genannte Fundstelle gegen die Treffer geprüft. Ein Entwurf, keine Rechtsauskunft.</sub></td>
+</tr>
+<tr>
+<td colspan="2" valign="top"><img src="medien/bild-protokoll.png" alt="Prüfprotokoll mit Hash-Kette und Einträgen zu Anmeldung, Frage, prüffertig und Entscheidungen"><br><sub>Das Prüfprotokoll, wie die Rolle „Prüfung“ es sieht: wer wann was entschieden hat, mit Modell und Regelversion; die Hash-Kette zeigt jede nachträgliche Änderung.</sub></td>
+</tr>
+</table>
+
+<details>
+<summary><b>Text des Rundgangs</b> (die Untertitel des Videos)</summary>
+
+| ab | Untertitel |
+|---|---|
+| 0:00 | **Titel:** Antragsassistent – KI-assistierte Antragsbearbeitung im SGB II: Dokumente auswerten, Angaben mit Fundstelle vorschlagen, fehlende Nachweise finden. Entscheiden tut immer ein Mensch. |
+| 0:04 | Anmeldung als Sachbearbeitung, mit einer Demo-Kennung. Alle Daten sind erfunden. |
+| 0:08 | Die Fälle des eigenen Jobcenters. Fälle anderer Jobcenter sind gesperrt. |
+| 0:11 | Ein Antrag mit seinen Nachweisen, so wie sie eingehen: noch nicht ausgewertet. |
+| 0:14 | Ein offenes Sprachmodell liest die Dokumente – auf diesem Rechner, ohne Cloud-Dienst … (Die Wartezeit ist im Video gekürzt; die echte Dauer meldet die Anwendung gleich selbst.) |
+| 0:16 | … fertig: „3 Dokumente in 13.46 s ausgewertet“. (Gemessen an 133 Dokumenten, 02.11.2026: 4,2 s je Dokument im Median.) |
+| 0:20 | Fehlende Nachweise findet eine feste, lesbare Regelliste – ohne KI. |
+| 0:23 | Jede Angabe kommt mit Fundstelle: Die zitierte Zeile steht wörtlich im Dokument. Nur belegte Angaben lassen sich übernehmen. |
+| 0:27 | Die Sachbearbeitung entscheidet jede Angabe einzeln: übernehmen, korrigieren oder verwerfen. |
+| 0:31 | Die übrigen 8 Angaben ebenso (im Video übersprungen). Erst wenn keine Angabe mehr offen ist, lässt sich der Fall als prüffertig markieren. |
+| 0:34 | Prüffertig – mit Export als JSON für die weitere Bearbeitung im Fachverfahren. |
+| 0:37 | Fragen zum SGB II: Die Antwort stützt sich nur auf gefundene Paragrafen. |
+| 0:40 | Jede genannte Fundstelle wird gegen die Treffer geprüft. Ein Entwurf, keine Rechtsauskunft. |
+| 0:47 | Anmeldung als Prüfung: sieht Fälle und Protokoll, entscheidet aber nichts. |
+| 0:49 | Das Prüfprotokoll: wer wann was entschieden hat, mit Modell und Regelversion. Die Hash-Kette macht jede nachträgliche Änderung sichtbar. |
+| 0:53 | **Gemessen am 02.11.2026, 40 synthetische Fälle:** 95,9 % der 418 Angaben richtig, Dokumentart in 133 von 133 Dokumenten richtig · 99,3 % der belegten Angaben richtig (belegt heißt: die Fundstelle steht wörtlich im Dokument) · fehlende Nachweise in allen Fällen richtig erkannt (7 Fälle mit Lücke) · 4,2 s je Dokument (Median) mit einem offenen Modell auf einer GPU mit 12 GB. |
+| 0:59 | **Selbst prüfen:** Quellcode, 24 Tests, Goldsatz und Messprotokoll liegen offen. Die Tests laufen ohne Sprachmodell mit einem Befehl. Apache 2.0. |
+
+</details>
+
+## Ehrlich gesagt: Was der Prototyp noch nicht ist
+
+Ein Prototyp mit synthetischen Testdaten, kein Produkt. Er verarbeitet keine echten Personen- oder Sozialdaten und nimmt
+nur Dokumente an, die als synthetisches Testdokument gekennzeichnet sind.
+
+| Heute noch nicht enthalten | Was ein Auftrag ergänzen würde |
+|---|---|
+| Echte Nachweise: die synthetischen Dokumente sind Text aus Vorlagen; Scans, Tabellen in PDF und Handschrift sind schwerer, eine Texterkennung fehlt | Texterkennung und Messung an realistischen, freigegebenen Testdokumenten |
+| Eine fachlich abgestimmte Unterlagenliste; die mitgelieferte ist ein Beispiel | Ihre Regeln, mit Ihrer Fachseite festgelegt |
+| Ein unabhängiger Maßstab für die Suche; der Goldsatz ist selbst geschrieben | Testfragen aus Ihrer Praxis |
+| Anmeldung über OpenID Connect oder SAML, Anbindung an Fachverfahren oder DMS | Anbindung an Ihre Umgebung |
+| Betrieb mit echten Daten, Einordnung nach der EU-KI-Verordnung | Betrieb in einem EU-Rechenzentrum, Einordnung und Dokumentation |
+| Bescheide, Leistungsberechnung, Zahlungen | bewusst nicht Teil des Assistenten |
+
+Antworten des Assistenten sind Entwürfe, keine Rechtsauskunft.
+
+## Kontakt
+
+Panagiotis Herbe · [panoherbe.com](https://panoherbe.com)
+
+---
+
+## Für Ihre IT: Technik im Detail
+
+### Bausteine
 
 | Baustein | Umsetzung |
 |---|---|
@@ -44,7 +131,7 @@ Messweg, alle drei Messläufe (auch der schlechtere) und die verbleibenden Fehle
 oder DMS, Texterkennung gescannter Papierdokumente (die synthetischen Dokumente sind Text), Anmeldung über
 OpenID Connect/SAML, Betrieb mit echten Daten.
 
-## Wo was läuft
+### Wo was läuft
 
 | Teil | Ort |
 |---|---|
@@ -55,7 +142,7 @@ OpenID Connect/SAML, Betrieb mit echten Daten.
 Das Modell ist über `OLLAMA_URL`, `SPRACHMODELL` und `EINBETTUNGSMODELL` austauschbar, etwa gegen einen
 Modelldienst mit Verarbeitung in der EU. Kein anderer Teil des Codes spricht mit einem Modell (`app/llm.py`).
 
-## Start
+### Start
 
 Voraussetzung: Docker mit Compose, für flüssige Antworten eine NVIDIA-GPU mit 8 GB oder mehr (gemessen: RTX 3060,
 12 GB).
@@ -71,12 +158,12 @@ docker compose exec ollama ollama pull bge-m3
 Beim Start legt die Anwendung 20 synthetische Fälle für zwei fiktive Jobcenter an (`DEMO_FAELLE`).
 
 ```bash
-docker compose run --rm test                                          # 23 Tests, ohne Modell
+docker compose run --rm test                                          # 24 Tests, ohne Modell
 docker compose run --rm app python -m normen.laden                    # Gesetzestexte neu laden
 docker compose run --rm app python -m eval.messen --ausgabe nachweis/neu   # Messlauf
 ```
 
-## Aufbau
+### Aufbau
 
 ```
 app/synth.py        Generator synthetischer Fälle (Antrag, Entgeltabrechnung, Mietbescheinigung, Kontoauszug)
@@ -89,13 +176,24 @@ app/audit.py        Prüfprotokoll mit Hash-Kette
 app/main.py         Oberfläche und REST
 eval/               Goldsatz (selbst geschrieben) und Messlauf
 nachweis/           Messprotokolle
+medien/             Rundgang (Video, GIF) und Bilder für diese Seite
 ```
 
-## Grenzen
+### Einordnung
 
-Ein Prototyp, kein Produkt. Die synthetischen Dokumente sind Textdateien mit variierenden Vorlagen; echte
-Nachweise (Scans, Handschrift, Tabellen in PDFs) sind schwerer. Die Unterlagenliste ist ein Beispiel und fachlich
-nicht abgestimmt. Der Goldsatz für die Suche ist selbst geschrieben. Antworten des Assistenten sind Entwürfe, keine
-Rechtsauskunft. Eine Einordnung nach der EU-KI-Verordnung (Anhang III Nr. 5 Buchst. a, Art. 6 Abs. 3) ist für einen
-echten Einsatz nötig; der Prototyp ist so gebaut, dass Protokollierung, menschliche Aufsicht und Nachvollziehbarkeit
-von Anfang an vorhanden sind.
+Eine Einordnung nach der EU-KI-Verordnung (Anhang III Nr. 5 Buchst. a, Art. 6 Abs. 3) ist für einen echten Einsatz
+nötig; der Prototyp ist so gebaut, dass Protokollierung, menschliche Aufsicht und Nachvollziehbarkeit von Anfang an
+vorhanden sind.
+
+### Rundgang und Bilder
+
+Aufgenommen am 03.11.2026 mit Playwright (Chromium) an einer laufenden Installation dieses Repositorys auf einem
+Linux-Server mit NVIDIA RTX 3060 (12 GB): Ollama 0.20.6, `qwen2.5:7b-instruct` (Digest 845dbda0ea48) und `bge-m3`
+(Digest 790764642607), dieselben Modelle wie im Messprotokoll, 20 synthetische Demo-Fälle. Vor der Aufnahme liefen
+die Modelle einmal warm, mit einem Fall und einer Frage des zweiten fiktiven Jobcenters (im gezeigten Protokoll nicht
+sichtbar). Wartezeiten des Modells sind im Video gekürzt, die echte Dauer steht in der Meldung der Anwendung. Im Video
+ist eine Entscheidung zu sehen; die übrigen 8 Angaben des Falls sind ebenso entschieden, im Video übersprungen. Untertitel und
+Mauszeiger sind in die Seite gezeichnet, ohne Ton. Die Messwerte stammen aus dem Protokoll vom 02.11.2026, nicht aus
+der Aufnahme.
+
+Lizenz: Apache 2.0.

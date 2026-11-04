@@ -94,7 +94,8 @@ def _zurueck(fall_id: str, meldung: str = ""):
 @app.post("/fall/{fall_id}/analysieren")
 def analysieren(request: Request, fall_id: str):
     r = dienst.analysieren(CON, MODELL, KONF, wer(request), fall_id, E.prompt_version)
-    return _zurueck(fall_id, f"{r['dokumente']} Dokumente in {r['sekunden']} s ausgewertet")
+    sekunden = format(r["sekunden"], ".2f").replace(".", ",")
+    return _zurueck(fall_id, f"{r['dokumente']} Dokumente in {sekunden} s ausgewertet")
 
 
 @app.post("/vorschlag/{vid}")

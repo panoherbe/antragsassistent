@@ -7,7 +7,7 @@
 name: antragsassistent
 services:
   ollama:
-    image: ollama/ollama:latest
+    image: ollama/ollama:0.20.6
     volumes: ["./daten/ollama:/root/.ollama"]
     environment: [OLLAMA_KEEP_ALIVE=30m]
     deploy:

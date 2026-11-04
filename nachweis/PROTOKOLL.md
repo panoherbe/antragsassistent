@@ -72,4 +72,5 @@ Beschreibungen je Dokumentart und wurde auf einem neuen Startwert gemessen, den 
 - Synthetische Textdokumente aus Vorlagen mit Varianten; echte Nachweise (Scans, Tabellen in PDF, Handschrift) sind schwerer. Keine Texterkennung im Prototyp.
 - Der Goldsatz der Suche ist selbst geschrieben, kein unabhängiger Maßstab; die Paragrafenzuordnung folgt den Überschriften der Normen.
 - 40 Fälle je Lauf; Unterschiede von 1–2 Prozentpunkten zwischen Läufen sind nicht belastbar.
-- Gemessen auf einer Consumer-GPU; im Projekt laufen Modell und Anwendung in einem EU-Rechenzentrum.
+- Gemessen auf einer Consumer-GPU; in einem Auftrag laufen Modell und Anwendung in einem EU-Rechenzentrum.
+- Seit 04.11.2026 tragen die synthetischen Anschriften andere, über Deutschland verteilte Postleitzahlen (`app/synth.py`, `ORTE`). Die Zufallsfolge ist dieselbe, nur die Zeichenketten der Orte sind andere; die Anschrift ist kein gemessenes Feld. Die Läufe oben liefen mit den früheren Postleitzahlen.

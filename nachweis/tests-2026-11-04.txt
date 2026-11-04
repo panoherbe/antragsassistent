@@ -1,0 +1,38 @@
+# antragsassistent: docker compose run --rm test, 2026-11-04T02:57:11Z, Commit 3d0ce2d + neutrale Postleitzahlen in app/synth.py
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-8.3.4, pluggy-1.7.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /app
+configfile: pyproject.toml
+plugins: anyio-4.16.0
+collecting ... collected 24 items
+tests/test_beleg.py::test_betrag PASSED                                  [  4%]
+tests/test_beleg.py::test_beleg_richtig PASSED                           [  8%]
+tests/test_beleg.py::test_beleg_falsch PASSED                            [ 12%]
+tests/test_beleg.py::test_gleich PASSED                                  [ 16%]
+tests/test_entscheidung.py::test_kein_statuswechsel_ohne_bestaetigung PASSED [ 20%]
+tests/test_entscheidung.py::test_unbelegt_nicht_uebernehmbar PASSED      [ 25%]
+tests/test_entscheidung.py::test_ablauf_bis_export PASSED                [ 29%]
+tests/test_protokoll.py::test_kette_in_ordnung PASSED                    [ 33%]
+tests/test_protokoll.py::test_update_und_delete_gesperrt PASSED          [ 37%]
+tests/test_protokoll.py::test_manipulation_wird_erkannt PASSED           [ 41%]
+tests/test_regeln.py::test_vollstaendigkeit_gegen_wahrheit PASSED        [ 45%]
+tests/test_regeln.py::test_plausibilitaet PASSED                         [ 50%]
+tests/test_regeln.py::test_kein_freier_ausdruck PASSED                   [ 54%]
+tests/test_rollen.py::test_mandantentrennung PASSED                      [ 58%]
+tests/test_rollen.py::test_pruefung_entscheidet_nicht PASSED             [ 62%]
+tests/test_rollen.py::test_administration_sieht_keine_faelle PASSED      [ 66%]
+tests/test_rollen.py::test_falsches_passwort PASSED                      [ 70%]
+tests/test_suche.py::test_bm25_findet_unterkunft PASSED                  [ 75%]
+tests/test_suche.py::test_dichte_suche_laedt_einbettungen_beim_ersten_bedarf PASSED [ 79%]
+tests/test_synth.py::test_kennung_und_keine_echte_iban PASSED            [ 83%]
+tests/test_synth.py::test_dokument_ohne_kennung_abgewiesen PASSED        [ 87%]
+tests/test_synth.py::test_deterministisch PASSED                         [ 91%]
+tests/test_web.py::test_ohne_anmeldung PASSED                            [ 95%]
+tests/test_web.py::test_anmeldung_und_rollen PASSED                      [100%]
+=============================== warnings summary ===============================
+../usr/local/lib/python3.12/site-packages/starlette/testclient.py:40
+  /usr/local/lib/python3.12/site-packages/starlette/testclient.py:40: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 24 passed, 1 warning in 6.00s =========================

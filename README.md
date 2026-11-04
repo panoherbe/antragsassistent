@@ -6,7 +6,7 @@ immer ein Mensch. Das läuft heute, lokal, mit synthetischen Testdaten.**
 
 ![Rundgang durch den Antragsassistenten: Anmeldung, Fallliste, KI-Auswertung der Dokumente, Vorschläge mit geprüfter Fundstelle, fehlender Nachweis, Entscheidung je Angabe, prüffertig, Frage zum SGB II mit geprüften Fundstellen, Prüfprotokoll mit Hash-Kette](medien/rundgang.gif)
 
-<sub>Rundgang, 63 Sekunden, ohne Ton, mit Untertiteln; aufgenommen am 03.11.2026 an einer laufenden Installation mit
+<sub>Rundgang, 63 Sekunden, ohne Ton, mit Untertiteln; aufgenommen am 04.11.2026 an einer laufenden Installation mit
 einem offenen Sprachmodell auf einer GPU. Wartezeiten des Modells sind im Video gekürzt; die Anwendung zeigt die echte
 Dauer an. [Video herunterladen (MP4, 1,3 MB)](https://github.com/panoherbe/antragsassistent/raw/main/medien/rundgang.mp4)
 · Text des Rundgangs weiter unten.</sub>
@@ -23,7 +23,7 @@ Dauer an. [Video herunterladen (MP4, 1,3 MB)](https://github.com/panoherbe/antra
 | Revisionssicher protokollieren | Prüfprotokoll nur erweiterbar, mit Hash-Kette; je Vorschlag Modell, Prompt- und Regelversion |
 | Rollen und Mandanten trennen | Sachbearbeitung entscheidet, Prüfung liest, Administration prüft nur die Kette; Fälle anderer Jobcenter gesperrt |
 | Daten bleiben im Haus | Modell und Anwendung laufen auf demselben Rechner, kein Cloud-Dienst; Modell austauschbar |
-| Geprüfte Qualität | 24 automatische Tests grün (03.11.2026; das Messprotokoll vom 02.11.2026 nennt 23, dazu kam der Test zur Korrektur der Fragen-Seite); alle drei Messläufe offen, auch der schlechtere |
+| Geprüfte Qualität | 24 automatische Tests grün (04.11.2026, [Testlauf](nachweis/tests-2026-11-04.txt); das Messprotokoll vom 02.11.2026 nennt 23, dazu kam der Test zur Korrektur der Fragen-Seite); alle drei Messläufe offen, auch der schlechtere |
 | Offen und übergabefähig | Quellcode unter AGPL-3.0, Modelle unter Apache 2.0 und MIT |
 
 Messweg, alle drei Messläufe und die verbleibenden Fehler: [Messprotokoll](nachweis/PROTOKOLL.md).
@@ -46,7 +46,7 @@ Messweg, alle drei Messläufe und die verbleibenden Fehler: [Messprotokoll](nach
 - **Sie sehen vorher, wie die KI-Unterstützung arbeitet:** mit Fundstelle, mit menschlicher Entscheidung und mit
   Protokoll, nicht als Folie.
 - **Die Qualität ist gemessen, nicht behauptet:** an 133 Dokumenten, mit allen drei Messläufen und den verbleibenden
-  Fehlern offen. Derselbe Messweg prüft im Projekt jedes Modell und jede Änderung.
+  Fehlern offen. Derselbe Messweg prüft in einem Auftrag jedes Modell und jede Änderung.
 - **Die heiklen Teile sind von Anfang an da:** menschliche Letztentscheidung, Nachvollziehbarkeit, Rollen,
   Mandantentrennung und ein manipulationssicheres Protokoll.
 - **Keine Bindung an einen Anbieter:** offener Quellcode (AGPL-3.0), offene Modelle, Modell austauschbar.
@@ -73,7 +73,7 @@ Messweg, alle drei Messläufe und die verbleibenden Fehler: [Messprotokoll](nach
 | 0:08 | Die Fälle des eigenen Jobcenters. Fälle anderer Jobcenter sind gesperrt. |
 | 0:11 | Ein Antrag mit seinen Nachweisen, so wie sie eingehen: noch nicht ausgewertet. |
 | 0:14 | Ein offenes Sprachmodell liest die Dokumente – auf diesem Rechner, ohne Cloud-Dienst … (Die Wartezeit ist im Video gekürzt; die echte Dauer meldet die Anwendung gleich selbst.) |
-| 0:16 | … fertig: „3 Dokumente in 13.46 s ausgewertet“. (Gemessen an 133 Dokumenten, 02.11.2026: 4,2 s je Dokument im Median.) |
+| 0:16 | … fertig: „3 Dokumente in 14,13 s ausgewertet“. (Gemessen an 133 Dokumenten, 02.11.2026: 4,2 s je Dokument im Median.) |
 | 0:20 | Fehlende Nachweise findet eine feste, lesbare Regelliste – ohne KI. |
 | 0:23 | Jede Angabe kommt mit Fundstelle: Die zitierte Zeile steht wörtlich im Dokument. Nur belegte Angaben lassen sich übernehmen. |
 | 0:27 | Die Sachbearbeitung entscheidet jede Angabe einzeln: übernehmen, korrigieren oder verwerfen. |
@@ -141,7 +141,7 @@ OpenID Connect/SAML, Betrieb mit echten Daten.
 |---|---|
 | Sprachmodell `qwen2.5:7b-instruct` (Apache 2.0) und Einbettungsmodell `bge-m3` (MIT) | eigener Ollama-Container auf demselben Rechner, GPU; kein Aufruf eines Cloud-Dienstes |
 | Anwendung (FastAPI, SQLite) | Container, lauscht nur auf `127.0.0.1` |
-| Gesetzestexte | einmalig von gesetze-im-internet.de geladen (`normen/laden.py`), Prüfsumme in `normen/quelle.json` |
+| Gesetzestexte | einmalig von gesetze-im-internet.de geladen (`normen/laden.py`), Prüfsumme in `normen/quelle.json`; amtliche Werke nach § 5 UrhG (`normen/HINWEIS.md`) |
 
 Das Modell ist über `OLLAMA_URL`, `SPRACHMODELL` und `EINBETTUNGSMODELL` austauschbar, etwa gegen einen
 Modelldienst mit Verarbeitung in der EU. Kein anderer Teil des Codes spricht mit einem Modell (`app/llm.py`).
@@ -191,15 +191,14 @@ vorhanden sind.
 
 ### Rundgang und Bilder
 
-Aufgenommen am 03.11.2026 mit Playwright (Chromium) an einer laufenden Installation dieses Repositorys auf einem
+Aufgenommen am 04.11.2026 mit Playwright (Chromium) an einer laufenden Installation dieses Repositorys auf einem
 Linux-Server mit NVIDIA RTX 3060 (12 GB): Ollama 0.20.6, `qwen2.5:7b-instruct` (Digest 845dbda0ea48) und `bge-m3`
 (Digest 790764642607), dieselben Modelle wie im Messprotokoll, 20 synthetische Demo-Fälle. Vor der Aufnahme liefen
 die Modelle einmal warm, mit einem Fall und einer Frage des zweiten fiktiven Jobcenters (im gezeigten Protokoll nicht
 sichtbar). Wartezeiten des Modells sind im Video gekürzt, die echte Dauer steht in der Meldung der Anwendung. Im Video
 ist eine Entscheidung zu sehen; die übrigen 8 Angaben des Falls sind ebenso entschieden, im Video übersprungen. Untertitel und
 Mauszeiger sind in die Seite gezeichnet, ohne Ton. Die Messwerte stammen aus dem Protokoll vom 02.11.2026, nicht aus
-der Aufnahme. Die Schlusskarte wurde am 04.11.2026 nach dem Lizenzwechsel ersetzt; alles davor ist die Aufnahme vom
-03.11.2026. Seit 04.11.2026 zeigt die Anwendung Sekunden mit Dezimalkomma („13,46 s“); im Rundgang steht noch der
-Punkt.
+der Aufnahme. Neu aufgenommen am 04.11.2026 nach dem Lizenzwechsel, mit Sekunden im deutschen Format und mit
+neutralen Postleitzahlen in den synthetischen Anschriften (die erste Aufnahme vom 03.11.2026 ist ersetzt).
 
 Lizenz: AGPL-3.0 (bis Commit `4b2ac99` Apache-2.0).

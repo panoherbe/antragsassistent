@@ -18,7 +18,7 @@ ARBEITGEBER = ["Beispiel Logistik GmbH", "Musterbau KG", "Probe Gastro GmbH", "F
                "Testhandel Süd GmbH", "Demo Reinigung GmbH & Co. KG", "Muster Service AG"]
 MONATE = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober",
           "November", "Dezember"]
-ORTE = ["64646 Musterstadt", "64625 Beispielheim", "68623 Probedorf", "64653 Testhausen"]
+ORTE = ["10115 Musterstadt", "20095 Beispielheim", "80331 Probedorf", "50667 Testhausen"]
 
 
 @dataclass

@@ -24,7 +24,7 @@ Dauer an. [Video herunterladen (MP4, 1,3 MB)](https://github.com/panoherbe/antra
 | Rollen und Mandanten trennen | Sachbearbeitung entscheidet, Prüfung liest, Administration prüft nur die Kette; Fälle anderer Jobcenter gesperrt |
 | Daten bleiben im Haus | Modell und Anwendung laufen auf demselben Rechner, kein Cloud-Dienst; Modell austauschbar |
 | Geprüfte Qualität | 24 automatische Tests grün (03.11.2026; das Messprotokoll vom 02.11.2026 nennt 23, dazu kam der Test zur Korrektur der Fragen-Seite); alle drei Messläufe offen, auch der schlechtere |
-| Offen und übergabefähig | Quellcode unter Apache 2.0, Modelle unter Apache 2.0 und MIT |
+| Offen und übergabefähig | Quellcode unter AGPL-3.0, Modelle unter Apache 2.0 und MIT |
 
 Messweg, alle drei Messläufe und die verbleibenden Fehler: [Messprotokoll](nachweis/PROTOKOLL.md).
 
@@ -49,7 +49,7 @@ Messweg, alle drei Messläufe und die verbleibenden Fehler: [Messprotokoll](nach
   Fehlern offen. Derselbe Messweg prüft im Projekt jedes Modell und jede Änderung.
 - **Die heiklen Teile sind von Anfang an da:** menschliche Letztentscheidung, Nachvollziehbarkeit, Rollen,
   Mandantentrennung und ein manipulationssicheres Protokoll.
-- **Keine Bindung an einen Anbieter:** offener Quellcode (Apache 2.0), offene Modelle, Modell austauschbar.
+- **Keine Bindung an einen Anbieter:** offener Quellcode (AGPL-3.0), offene Modelle, Modell austauschbar.
 
 ## So sieht es aus
 
@@ -84,7 +84,7 @@ Messweg, alle drei Messläufe und die verbleibenden Fehler: [Messprotokoll](nach
 | 0:47 | Anmeldung als Prüfung: sieht Fälle und Protokoll, entscheidet aber nichts. |
 | 0:49 | Das Prüfprotokoll: wer wann was entschieden hat, mit Modell und Regelversion. Die Hash-Kette macht jede nachträgliche Änderung sichtbar. |
 | 0:53 | **Gemessen am 02.11.2026, 40 synthetische Fälle:** 95,9 % der 418 Angaben richtig, Dokumentart in 133 von 133 Dokumenten richtig · 99,3 % der belegten Angaben richtig (belegt heißt: die Fundstelle steht wörtlich im Dokument) · fehlende Nachweise in allen Fällen richtig erkannt (7 Fälle mit Lücke) · 4,2 s je Dokument (Median) mit einem offenen Modell auf einer GPU mit 12 GB. |
-| 0:59 | **Selbst prüfen:** Quellcode, 24 Tests, Goldsatz und Messprotokoll liegen offen. Die Tests laufen ohne Sprachmodell mit einem Befehl. Apache 2.0. |
+| 0:59 | **Selbst prüfen:** Quellcode, 24 Tests, Goldsatz und Messprotokoll liegen offen. Die Tests laufen ohne Sprachmodell mit einem Befehl. AGPL-3.0. |
 
 </details>
 
@@ -103,6 +103,10 @@ nur Dokumente an, die als synthetisches Testdokument gekennzeichnet sind.
 | Bescheide, Leistungsberechnung, Zahlungen | bewusst nicht Teil des Assistenten |
 
 Antworten des Assistenten sind Entwürfe, keine Rechtsauskunft.
+
+## Lizenz
+
+Ab 04.11.2026 AGPL-3.0. Frühere Stände bis Commit [`4650be4`](https://github.com/panoherbe/antragsassistent/tree/4650be4) bleiben unter Apache-2.0. Auftraggeber erhalten im Auftrag die vertraglich vereinbarte Lizenz.
 
 ## Kontakt
 
@@ -194,6 +198,7 @@ die Modelle einmal warm, mit einem Fall und einer Frage des zweiten fiktiven Job
 sichtbar). Wartezeiten des Modells sind im Video gekürzt, die echte Dauer steht in der Meldung der Anwendung. Im Video
 ist eine Entscheidung zu sehen; die übrigen 8 Angaben des Falls sind ebenso entschieden, im Video übersprungen. Untertitel und
 Mauszeiger sind in die Seite gezeichnet, ohne Ton. Die Messwerte stammen aus dem Protokoll vom 02.11.2026, nicht aus
-der Aufnahme.
+der Aufnahme. Die Schlusskarte wurde am 04.11.2026 nach dem Lizenzwechsel ersetzt; alles davor ist die Aufnahme vom
+03.11.2026.
 
-Lizenz: Apache 2.0.
+Lizenz: AGPL-3.0 (bis Commit `4650be4` Apache-2.0).

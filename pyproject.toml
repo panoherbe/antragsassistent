@@ -3,7 +3,7 @@ name = "antragsassistent"
 version = "0.1.0"
 description = "Prototyp: KI-assistierte Antragsbearbeitung SGB II mit synthetischen Daten, Fundstellen, menschlicher Letztentscheidung und Prüfprotokoll"
 requires-python = ">=3.12"
-license = { text = "Apache-2.0" }
+license = { text = "AGPL-3.0-only" }
 dependencies = [
     "fastapi==0.115.6",
     "uvicorn==0.34.0",

@@ -199,6 +199,7 @@ sichtbar). Wartezeiten des Modells sind im Video gekürzt, die echte Dauer steht
 ist eine Entscheidung zu sehen; die übrigen 8 Angaben des Falls sind ebenso entschieden, im Video übersprungen. Untertitel und
 Mauszeiger sind in die Seite gezeichnet, ohne Ton. Die Messwerte stammen aus dem Protokoll vom 02.11.2026, nicht aus
 der Aufnahme. Die Schlusskarte wurde am 04.11.2026 nach dem Lizenzwechsel ersetzt; alles davor ist die Aufnahme vom
-03.11.2026.
+03.11.2026. Seit 04.11.2026 zeigt die Anwendung Sekunden mit Dezimalkomma („13,46 s“); im Rundgang steht noch der
+Punkt.
 
 Lizenz: AGPL-3.0 (bis Commit `4b2ac99` Apache-2.0).

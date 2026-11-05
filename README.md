@@ -106,7 +106,7 @@ Antworten des Assistenten sind Entwürfe, keine Rechtsauskunft.
 
 ## Lizenz
 
-Ab 04.11.2026 AGPL-3.0. Frühere Stände bis Commit [`4b2ac99`](https://github.com/panoherbe/antragsassistent/tree/4b2ac99) bleiben unter Apache-2.0. Auftraggeber erhalten im Auftrag die vertraglich vereinbarte Lizenz.
+Ab 04.11.2026 AGPL-3.0. Frühere Stände bis Commit [`460bed9`](https://github.com/panoherbe/antragsassistent/tree/460bed9) bleiben unter Apache-2.0. Auftraggeber erhalten im Auftrag die vertraglich vereinbarte Lizenz.
 
 ## Kontakt
 
@@ -201,4 +201,4 @@ Mauszeiger sind in die Seite gezeichnet, ohne Ton. Die Messwerte stammen aus dem
 der Aufnahme. Neu aufgenommen am 04.11.2026 nach dem Lizenzwechsel, mit Sekunden im deutschen Format und mit
 neutralen Postleitzahlen in den synthetischen Anschriften (die erste Aufnahme vom 03.11.2026 ist ersetzt).
 
-Lizenz: AGPL-3.0 (bis Commit `4b2ac99` Apache-2.0).
+Lizenz: AGPL-3.0 (bis Commit `460bed9` Apache-2.0).

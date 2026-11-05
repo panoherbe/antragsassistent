@@ -1,4 +1,4 @@
-# antragsassistent: docker compose run --rm test, 2026-11-04T02:57:11Z, Commit 3d0ce2d + neutrale Postleitzahlen in app/synth.py
+# antragsassistent: docker compose run --rm test, 2026-11-04T02:57:11Z, Commit ab3eb13 + neutrale Postleitzahlen in app/synth.py
 ============================= test session starts ==============================
 platform linux -- Python 3.12.13, pytest-8.3.4, pluggy-1.7.0 -- /usr/local/bin/python
 cachedir: .pytest_cache

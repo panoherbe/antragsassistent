@@ -47,7 +47,7 @@ Messweg, alle drei Messläufe und die verbleibenden Fehler: [Messprotokoll](nach
   lauffähigen Anwendung.
 - **Die gemessene Qualität:** an 133 Dokumenten, mit allen drei Messläufen und den verbleibenden Fehlern. Derselbe
   Messweg prüft in einem Auftrag jedes Modell und jede Änderung.
-- **Die heiklen Teile sind von Anfang an da:** menschliche Letztentscheidung, Nachvollziehbarkeit, Rollen,
+- **Von Anfang an eingebaut:** menschliche Letztentscheidung, Nachvollziehbarkeit, Rollen,
   Mandantentrennung und ein nur erweiterbares Protokoll mit Hash-Kette.
 - **Keine Bindung an einen Anbieter:** offener Quellcode (AGPL-3.0), offene Modelle, Modell austauschbar.
 

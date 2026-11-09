@@ -1,8 +1,8 @@
 # Antragsassistent
 
 **KI-Unterstützung für die Antragsbearbeitung im SGB II: liest die Nachweise eines Antrags, schlägt jede Angabe mit
-Fundstelle vor, findet fehlende Unterlagen und beantwortet Fragen zum SGB II mit Paragrafenangabe. Entscheiden tut
-immer ein Mensch. Das läuft heute, lokal, mit synthetischen Testdaten.**
+Fundstelle vor, findet fehlende Unterlagen und beantwortet Fragen zum SGB II mit Paragrafenangabe. Die Entscheidung
+trifft immer ein Mensch. Das läuft heute, lokal, mit synthetischen Testdaten.**
 
 ![Rundgang durch den Antragsassistenten: Anmeldung, Fallliste, KI-Auswertung der Dokumente, Vorschläge mit geprüfter Fundstelle, fehlender Nachweis, Entscheidung je Angabe, prüffertig, Frage zum SGB II mit geprüften Fundstellen, Prüfprotokoll mit Hash-Kette](medien/rundgang.gif)
 
@@ -16,11 +16,11 @@ Dauer an. [Video herunterladen (MP4, 1,3 MB)](https://github.com/panoherbe/antra
 | Was Sie brauchen | läuft hier schon (gemessen am 02.11.2026, 40 synthetische Fälle, 133 Dokumente, 418 Angaben) |
 |---|---|
 | Dokumente eines Antrags automatisch auswerten | Dokumentart in 133 von 133 Dokumenten richtig; 95,9 % der Angaben richtig; 4,2 s je Dokument im Median (95 %: 6,3 s) mit einem offenen Modell auf einer GPU mit 12 GB |
-| Nachvollziehbare Vorschläge statt Blackbox | jede Angabe mit Fundstelle; „belegt“ nur, wenn die zitierte Zeile wörtlich im Dokument steht und den Wert enthält: 96,4 % belegt, davon 99,3 % richtig; Unbelegtes lässt sich nicht übernehmen, nur selbst eintragen |
+| Nachvollziehbare Vorschläge | jede Angabe mit Fundstelle; „belegt“ nur, wenn die zitierte Zeile wörtlich im Dokument steht und den Wert enthält: 96,4 % belegt, davon 99,3 % richtig; Unbelegtes lässt sich nicht übernehmen, nur selbst eintragen |
 | Fehlende Nachweise erkennen | in allen 40 Fällen richtig (7 mit Lücke), nach einer lesbaren Regelliste ohne KI, änderbar ohne Programmierung |
 | Die Entscheidung bleibt beim Menschen | je Angabe übernehmen, korrigieren oder verwerfen, keine Sammelübernahme; „prüffertig“ erst, wenn nichts mehr offen ist; Export danach |
 | Fragen zum SGB II beantworten | Suche in SGB II und SGB I §§ 60–67: erwarteter Paragraf bei 91,1 % von 45 Testfragen unter den ersten drei; in 15 von 15 Antworten stehen alle genannten Fundstellen unter den Treffern |
-| Revisionssicher protokollieren | Prüfprotokoll nur erweiterbar, mit Hash-Kette; je Vorschlag Modell, Prompt- und Regelversion |
+| Nachvollziehbar protokollieren | Prüfprotokoll nur erweiterbar, mit Hash-Kette (eine Änderung einzelner Einträge fällt bei der Prüfung auf); je Vorschlag Modell, Prompt- und Regelversion |
 | Rollen und Mandanten trennen | Sachbearbeitung entscheidet, Prüfung liest, Administration prüft nur die Kette; Fälle anderer Jobcenter gesperrt |
 | Daten bleiben im Haus | Modell und Anwendung laufen auf demselben Rechner, kein Cloud-Dienst; Modell austauschbar |
 | Geprüfte Qualität | 24 automatische Tests grün (04.11.2026, [Testlauf](nachweis/tests-2026-11-04.txt); das Messprotokoll vom 02.11.2026 nennt 23, dazu kam der Test zur Korrektur der Fragen-Seite); alle drei Messläufe offen, auch der schlechtere |
@@ -48,7 +48,7 @@ Messweg, alle drei Messläufe und die verbleibenden Fehler: [Messprotokoll](nach
 - **Die gemessene Qualität:** an 133 Dokumenten, mit allen drei Messläufen und den verbleibenden Fehlern. Derselbe
   Messweg prüft in einem Auftrag jedes Modell und jede Änderung.
 - **Die heiklen Teile sind von Anfang an da:** menschliche Letztentscheidung, Nachvollziehbarkeit, Rollen,
-  Mandantentrennung und ein manipulationssicheres Protokoll.
+  Mandantentrennung und ein nur erweiterbares Protokoll mit Hash-Kette.
 - **Keine Bindung an einen Anbieter:** offener Quellcode (AGPL-3.0), offene Modelle, Modell austauschbar.
 
 ## So sieht es aus
@@ -128,7 +128,7 @@ Panagiotis Herbe · [panoherbe.com](https://panoherbe.com)
 | Fragen zum SGB II | Suche in SGB II und SGB I §§ 60–67 (bge-m3; BM25 und die Kombination sind gemessen und schwächer), Antwort nur aus den gefundenen Normen, jede genannte Fundstelle wird gegen die Treffer geprüft |
 | Rollen | Sachbearbeitung (entscheidet), Prüfung (liest Fälle und Protokoll, entscheidet nicht), Administration (prüft nur die Protokollkette, sieht keine Fallinhalte) |
 | Mandanten | jede fachliche Tabelle trägt die Jobcenter-Kennung; fremde Fälle sind gesperrt |
-| Prüfprotokoll | nur erweiterbar (Datenbank-Trigger), Hash-Kette über alle Einträge; jede Änderung fällt bei der Prüfung auf; Modell, Prompt-Version und Regelversion je Vorschlag |
+| Prüfprotokoll | nur erweiterbar (Datenbank-Trigger), Hash-Kette über alle Einträge; eine Änderung einzelner Einträge fällt bei der Prüfung auf; Modell, Prompt-Version und Regelversion je Vorschlag |
 | Schnittstelle | REST mit OpenAPI (`/docs`, `/openapi.json`), Export als JSON |
 
 **Bewusst nicht umgesetzt:** Berechnung des Leistungsanspruchs, Bescheide, Zahlungen, Anbindung an Fachverfahren

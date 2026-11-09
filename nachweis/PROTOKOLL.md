@@ -74,3 +74,5 @@ Beschreibungen je Dokumentart und wurde auf einem neuen Startwert gemessen, den 
 - 40 Fälle je Lauf; Unterschiede von 1–2 Prozentpunkten zwischen Läufen sind nicht belastbar.
 - Gemessen auf einer Consumer-GPU; in einem Auftrag laufen Modell und Anwendung in einem EU-Rechenzentrum.
 - Die synthetischen Anschriften (`app/synth.py`) sind kein gemessenes Feld.
+- Ob die Antworten zum SGB II inhaltlich stimmen, misst der Lauf nicht; gemessen ist, ob der erwartete Paragraf unter den ersten drei Treffern steht und ob die genannten Fundstellen unter den Treffern stehen. Bei Durchsicht enthalten Antworten fachliche Fehler (etwa zur Altersgrenze in § 7a); deshalb bleibt jede Antwort ein Entwurf. Tabellen in Normen sind beim Laden zusammengezogen.
+- Die Hash-Kette ist ohne Schlüssel und ohne äußeren Anker: Sie zeigt Änderungen an einzelnen Einträgen; wer Schreibzugriff auf die Datenbank hat, kann die Kette neu berechnen.

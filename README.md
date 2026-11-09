@@ -41,12 +41,12 @@ Messweg, alle drei Messläufe und die verbleibenden Fehler: [Messprotokoll](nach
 3. **Die ganze Anwendung starten** (Docker mit Compose, NVIDIA-GPU mit 8 GB oder mehr): Abschnitt „Start“ unten; die
    beiden Modelle sind zusammen 5,8 GB groß.
 
-## Ihr Vorteil: Sie bewerten ein laufendes System, kein Versprechen
+## Was Sie heute schon prüfen können
 
-- **Sie sehen vorher, wie die KI-Unterstützung arbeitet:** mit Fundstelle, mit menschlicher Entscheidung und mit
-  Protokoll, nicht als Folie.
-- **Die Qualität ist gemessen, nicht behauptet:** an 133 Dokumenten, mit allen drei Messläufen und den verbleibenden
-  Fehlern offen. Derselbe Messweg prüft in einem Auftrag jedes Modell und jede Änderung.
+- **Wie die KI-Unterstützung arbeitet:** mit Fundstelle, menschlicher Entscheidung und Protokoll, in einer
+  lauffähigen Anwendung.
+- **Die gemessene Qualität:** an 133 Dokumenten, mit allen drei Messläufen und den verbleibenden Fehlern. Derselbe
+  Messweg prüft in einem Auftrag jedes Modell und jede Änderung.
 - **Die heiklen Teile sind von Anfang an da:** menschliche Letztentscheidung, Nachvollziehbarkeit, Rollen,
   Mandantentrennung und ein manipulationssicheres Protokoll.
 - **Keine Bindung an einen Anbieter:** offener Quellcode (AGPL-3.0), offene Modelle, Modell austauschbar.
@@ -88,7 +88,7 @@ Messweg, alle drei Messläufe und die verbleibenden Fehler: [Messprotokoll](nach
 
 </details>
 
-## Ehrlich gesagt: Was der Prototyp noch nicht ist
+## Was der Prototyp noch nicht ist
 
 Ein Prototyp mit synthetischen Testdaten, kein Produkt. Er verarbeitet keine echten Personen- oder Sozialdaten und nimmt
 nur Dokumente an, die als synthetisches Testdokument gekennzeichnet sind.

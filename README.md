@@ -6,7 +6,7 @@ trifft immer ein Mensch. Das läuft heute, lokal, mit synthetischen Testdaten.**
 
 ![Rundgang durch den Antragsassistenten: Anmeldung, Fallliste, KI-Auswertung der Dokumente, Vorschläge mit geprüfter Fundstelle, fehlender Nachweis, Entscheidung je Angabe, prüffertig, Frage zum SGB II mit geprüften Fundstellen, Prüfprotokoll mit Hash-Kette](medien/rundgang.gif)
 
-<sub>Rundgang, 63 Sekunden, ohne Ton, mit Untertiteln; aufgenommen am 04.11.2026 an einer laufenden Installation mit
+<sub>Rundgang, 63 Sekunden, ohne Ton, mit Untertiteln; aufgenommen am 10.11.2026 an einer laufenden Installation mit
 einem offenen Sprachmodell auf einer GPU. Wartezeiten des Modells sind im Video gekürzt; die Anwendung zeigt die echte
 Dauer an. [Video herunterladen (MP4, 1,3 MB)](https://github.com/panoherbe/antragsassistent/raw/main/medien/rundgang.mp4)
 · Text des Rundgangs weiter unten.</sub>
@@ -56,10 +56,10 @@ Messweg, alle drei Messläufe und die verbleibenden Fehler: [Messprotokoll](nach
 <table>
 <tr>
 <td width="50%" valign="top"><img src="medien/bild-ausgewertet.png" alt="Fall nach der KI-Auswertung: Meldung mit der Dauer, Hinweis auf eine fehlende Mietbescheinigung, links das Dokument, rechts die Angaben mit geprüfter Fundstelle und den Knöpfen übernehmen, korrigieren, verwerfen"><br><sub>Nach der Auswertung: oben die echte Dauer und der fehlende Nachweis (gefunden von der Regelliste); links das Dokument, rechts jede Angabe mit Fundstelle und „Fundstelle geprüft“. Entschieden wird je Angabe.</sub></td>
-<td width="50%" valign="top"><img src="medien/bild-frage.png" alt="Seite Fragen zum SGB II mit Antwort, Fundstelle SGB II § 22 und den gefundenen Normen"><br><sub>Fragen zum SGB II: Antwort nur aus den gefundenen Paragrafen, jede genannte Fundstelle gegen die Treffer geprüft. Ein Entwurf, keine Rechtsauskunft.</sub></td>
+<td width="50%" valign="top"><img src="medien/bild-frage.png" alt="Seite Fragen zum SGB II mit Antwort, Fundstelle SGB II § 41 und den gefundenen Normen"><br><sub>Fragen zum SGB II: Antwort nur aus den gefundenen Paragrafen, jede genannte Fundstelle gegen die Treffer geprüft. Ein Entwurf, keine Rechtsauskunft.</sub></td>
 </tr>
 <tr>
-<td colspan="2" valign="top"><img src="medien/bild-protokoll.png" alt="Prüfprotokoll mit Hash-Kette und Einträgen zu Anmeldung, Frage, prüffertig und Entscheidungen"><br><sub>Das Prüfprotokoll, wie die Rolle „Prüfung“ es sieht: wer wann was entschieden hat, mit Modell und Regelversion; die Hash-Kette zeigt jede nachträgliche Änderung.</sub></td>
+<td colspan="2" valign="top"><img src="medien/bild-protokoll.png" alt="Prüfprotokoll mit Hash-Kette und Einträgen zu Anmeldung, Frage, prüffertig und Entscheidungen"><br><sub>Das Prüfprotokoll, wie die Rolle „Prüfung“ es sieht: wer wann was entschieden hat, mit Modell und Regelversion; die Hash-Kette zeigt Änderungen an einzelnen Einträgen.</sub></td>
 </tr>
 </table>
 
@@ -68,21 +68,21 @@ Messweg, alle drei Messläufe und die verbleibenden Fehler: [Messprotokoll](nach
 
 | ab | Untertitel |
 |---|---|
-| 0:00 | **Titel:** Antragsassistent – KI-assistierte Antragsbearbeitung im SGB II: Dokumente auswerten, Angaben mit Fundstelle vorschlagen, fehlende Nachweise finden. Entscheiden tut immer ein Mensch. |
+| 0:00 | **Titel:** Antragsassistent – KI-assistierte Antragsbearbeitung im SGB II: Dokumente auswerten, Angaben mit Fundstelle vorschlagen, fehlende Nachweise finden. Die Entscheidung trifft immer ein Mensch. |
 | 0:04 | Anmeldung als Sachbearbeitung, mit einer Demo-Kennung. Alle Daten sind erfunden. |
 | 0:08 | Die Fälle des eigenen Jobcenters. Fälle anderer Jobcenter sind gesperrt. |
 | 0:11 | Ein Antrag mit seinen Nachweisen, so wie sie eingehen: noch nicht ausgewertet. |
 | 0:14 | Ein offenes Sprachmodell liest die Dokumente – auf diesem Rechner, ohne Cloud-Dienst … (Die Wartezeit ist im Video gekürzt; die echte Dauer meldet die Anwendung gleich selbst.) |
-| 0:16 | … fertig: „3 Dokumente in 14,13 s ausgewertet“. (Gemessen an 133 Dokumenten, 02.11.2026: 4,2 s je Dokument im Median.) |
+| 0:16 | … fertig: „3 Dokumente in 13,41 s ausgewertet“. (Gemessen an 133 Dokumenten, 02.11.2026: 4,2 s je Dokument im Median.) |
 | 0:20 | Fehlende Nachweise findet eine feste, lesbare Regelliste – ohne KI. |
 | 0:23 | Jede Angabe kommt mit Fundstelle: Die zitierte Zeile steht wörtlich im Dokument. Nur belegte Angaben lassen sich übernehmen. |
 | 0:27 | Die Sachbearbeitung entscheidet jede Angabe einzeln: übernehmen, korrigieren oder verwerfen. |
 | 0:31 | Die übrigen 8 Angaben ebenso (im Video übersprungen). Erst wenn keine Angabe mehr offen ist, lässt sich der Fall als prüffertig markieren. |
 | 0:34 | Prüffertig – mit Export als JSON für die weitere Bearbeitung im Fachverfahren. |
-| 0:37 | Fragen zum SGB II: Die Antwort stützt sich nur auf gefundene Paragrafen. |
-| 0:40 | Jede genannte Fundstelle wird gegen die Treffer geprüft. Ein Entwurf, keine Rechtsauskunft. |
+| 0:37 | Fragen zum SGB II: Die Antwort stützt sich nur auf gefundene Paragrafen. (Im Bild die Frage: „Für welchen Zeitraum wird über die Leistungen in der Regel entschieden?“) |
+| 0:40 | Jede genannte Fundstelle wird gegen die Treffer geprüft. Ein Entwurf, keine Rechtsauskunft. (Im Bild die Antwort: „In der Regel wird über den Anspruch auf Leistungen zur Sicherung des Lebensunterhalts für ein Jahr entschieden [SGB II § 41 Absatz 3 Satz 1].“) |
 | 0:47 | Anmeldung als Prüfung: sieht Fälle und Protokoll, entscheidet aber nichts. |
-| 0:49 | Das Prüfprotokoll: wer wann was entschieden hat, mit Modell und Regelversion. Die Hash-Kette macht jede nachträgliche Änderung sichtbar. |
+| 0:49 | Das Prüfprotokoll: wer wann was entschieden hat, mit Modell und Regelversion. Die Hash-Kette zeigt Änderungen an einzelnen Einträgen. |
 | 0:53 | **Gemessen am 02.11.2026, 40 synthetische Fälle:** 95,9 % der 418 Angaben richtig, Dokumentart in 133 von 133 Dokumenten richtig · 99,3 % der belegten Angaben richtig (belegt heißt: die Fundstelle steht wörtlich im Dokument) · fehlende Nachweise in allen Fällen richtig erkannt (7 Fälle mit Lücke) · 4,2 s je Dokument (Median) mit einem offenen Modell auf einer GPU mit 12 GB. |
 | 0:59 | **Selbst prüfen:** Quellcode, 24 Tests, Goldsatz und Messprotokoll liegen offen. Die Tests laufen ohne Sprachmodell mit einem Befehl. AGPL-3.0. |
 
@@ -191,14 +191,16 @@ vorhanden sind.
 
 ### Rundgang und Bilder
 
-Aufgenommen am 04.11.2026 mit Playwright (Chromium) an einer laufenden Installation dieses Repositorys auf einem
+Aufgenommen am 10.11.2026 mit Playwright (Chromium) an einer laufenden Installation dieses Repositorys auf einem
 Linux-Server mit NVIDIA RTX 3060 (12 GB): Ollama 0.20.6, `qwen2.5:7b-instruct` (Digest 845dbda0ea48) und `bge-m3`
 (Digest 790764642607), dieselben Modelle wie im Messprotokoll, 20 synthetische Demo-Fälle. Vor der Aufnahme liefen
 die Modelle einmal warm, mit einem Fall und einer Frage des zweiten fiktiven Jobcenters (im gezeigten Protokoll nicht
 sichtbar). Wartezeiten des Modells sind im Video gekürzt, die echte Dauer steht in der Meldung der Anwendung. Im Video
 ist eine Entscheidung zu sehen; die übrigen 8 Angaben des Falls sind ebenso entschieden, im Video übersprungen. Untertitel und
 Mauszeiger sind in die Seite gezeichnet, ohne Ton. Die Messwerte stammen aus dem Protokoll vom 02.11.2026, nicht aus
-der Aufnahme. Neu aufgenommen am 04.11.2026 nach dem Lizenzwechsel, mit Sekunden im deutschen Format
-(die erste Aufnahme vom 03.11.2026 ist ersetzt).
+der Aufnahme. Die Antwort auf die Frage im Video („in der Regel für ein Jahr“, § 41 Abs. 3 Satz 1 SGB II) ist am
+Gesetzestext geprüft (Fassung in `normen/` vom 02.11.2026 und gesetze-im-internet.de am 10.11.2026); fünfmal vor
+der Aufnahme gestellt, kam sie jedes Mal wortgleich. Neu aufgenommen am 10.11.2026 mit einer anderen Beispielfrage; die Aufnahmen
+vom 03. und 04.11.2026 sind ersetzt.
 
 Lizenz: AGPL-3.0 (bis Commit `4650be4` Apache-2.0).

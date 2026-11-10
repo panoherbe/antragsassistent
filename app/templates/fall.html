@@ -22,7 +22,7 @@
       <div class="kopf"><b>{{ v.feld }}</b> <span>{{ v.wert or '—' }}</span>
         {% if v.belegt %}<em class="ok">Fundstelle geprüft</em>{% else %}<em class="nein">nicht belegt, bitte selbst eintragen</em>{% endif %}</div>
       {% if v.fundstelle %}<div class="fund">„{{ v.fundstelle }}“</div>{% endif %}
-      {% if v.entscheidung %}<div class="ent">{{ v.entscheidung }}{% if v.endwert and v.entscheidung == 'korrigiert' %}: {{ v.endwert }}{% endif %} · {{ v.entschieden_von }}</div>
+      {% if v.entscheidung %}<div class="ent">{{ {'uebernommen': 'übernommen'}.get(v.entscheidung, v.entscheidung) }}{% if v.endwert and v.entscheidung == 'korrigiert' %}: {{ v.endwert }}{% endif %} · {{ v.entschieden_von }}</div>
       {% elif darf_entscheiden and a.fall.status != 'prueffertig' %}
       <form method="post" action="/vorschlag/{{ v.id }}" class="knopf">
         <input type="hidden" name="fall_id" value="{{ a.fall.id }}">

@@ -4,6 +4,7 @@ Nur Darstellung. Gespeichert und exportiert werden weiter die technischen Werte 
 """
 import json
 import re
+from datetime import datetime, timedelta, timezone
 
 from markupsafe import Markup, escape
 
@@ -99,9 +100,24 @@ def protokoll(aktion: str, daten: str) -> str:
 
 
 def zeit(iso: str) -> str:
-    """„2026-11-11T15:03:12.123+00:00“ → „11.11.2026, 15:03 UTC“."""
-    m = re.match(r"(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d)", iso or "")
-    return f"{m[3]}.{m[2]}.{m[1]}, {m[4]}:{m[5]} UTC" if m else iso
+    """UTC-Zeitstempel des Protokolls in deutscher Zeit: „2026-11-11T19:14:03+00:00“ → „11.11.2026, 20:14 Uhr“.
+
+    Sommerzeit nach EU-Regel (letzter Sonntag im März bis letzter Sonntag im Oktober, jeweils 01:00 UTC); ohne
+    Zeitzonendatenbank, damit das schlanke Image keine braucht. Gespeichert bleibt UTC.
+    """
+    try:
+        t = datetime.fromisoformat(iso)
+    except (TypeError, ValueError):
+        return iso
+    t = t.replace(tzinfo=timezone.utc) if t.tzinfo is None else t.astimezone(timezone.utc)
+
+    def letzter_sonntag(monat):
+        d = datetime(t.year, monat, 31, 1, tzinfo=timezone.utc)
+        return d - timedelta(days=(d.weekday() + 1) % 7)
+
+    sommer = letzter_sonntag(3) <= t < letzter_sonntag(10)
+    d = t + timedelta(hours=2 if sommer else 1)
+    return d.strftime("%d.%m.%Y, %H:%M Uhr")
 
 
 def dauer(sekunden: float) -> str:

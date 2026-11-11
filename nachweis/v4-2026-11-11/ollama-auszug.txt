@@ -1,0 +1,6 @@
+# Auszug aus dem Protokoll des Ollama-Containers (0.40.16) im Messlauf v4, 11.11.2026: Verteilung von qwen3.8:27b
+load_tensors: offloading 35 repeating layers to GPU
+load_tensors: offloaded 36/66 layers to GPU
+# `ollama ps` während des Laufs:
+# qwen3.8:27b         aaee06c39dcf  18 GB   45%/55% CPU/GPU  8192 (Kontext)
+# qwen3-embedding:4b  df5bd2e3c74c  3.5 GB  100% CPU         4096 (Kontext)

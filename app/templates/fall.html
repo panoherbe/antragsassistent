@@ -15,7 +15,7 @@
 
 {% if not a.analysiert %}
 <section class="karte start"><div><h2>{{ a.dokumente | length }} Nachweise sind eingegangen</h2>
-  <p>Der Assistent liest die Dokumente, schlägt jede Angabe mit Fundstelle vor und prüft, ob etwas fehlt. Entscheiden tun Sie.</p></div>
+  <p>Der Assistent liest die Dokumente, schlägt jede Angabe mit Fundstelle vor und prüft, ob etwas fehlt. Die Entscheidung treffen Sie.</p></div>
   {% if darf_entscheiden %}<form method="post" action="/fall/{{ a.fall.id }}/analysieren" class="lesen"><button class="gross" data-laeuft="Der Assistent liest …">Nachweise auslesen</button></form>{% endif %}
 </section>
 {% else %}

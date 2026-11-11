@@ -4,6 +4,8 @@ Gültig ist **v4 vom 11.11.2026** mit den neuesten offenen Modellen (`qwen3.8:27
 v1–v3 vom 02.11.2026 mit `qwen2.5:7b-instruct` und `bge-m3` stehen unverändert darunter; v4 lief auf **denselben 40
 Fällen wie v3** (Startwert 9001) mit derselben Anweisung (`extraktion-v3`) und demselben Goldsatz, ist also direkt
 vergleichbar. Alle Einzelwerte: `v4-2026-11-11/messung.json`, `lauf.log`; die Modellwahl: `v4-2026-11-11/vorpruefung/`.
+`messung.json` listet unter `umgebung.modelle` alle Modelle, die auf dem Messrechner installiert waren (auch gemma4 und
+embeddinggemma-2, die dort eine andere Arbeit nutzt); gemessen wurden nur die hier genannten.
 Alle Daten sind erfunden (synthetische Testdokumente aus `app/synth.py`).
 
 ## v4, 11.11.2026: neueste Modelle (gültig)
@@ -14,8 +16,8 @@ Alle Daten sind erfunden (synthetische Testdokumente aus `app/synth.py`).
 |---|---|
 | Rechner | Linux-Server (Ubuntu 24.04), NVIDIA GeForce RTX 3060 mit 12 GB, 62 GB Arbeitsspeicher, Intel Core i7-11700B (8 Kerne), Docker |
 | Modelle | Ollama 0.40.16; `qwen3.8:27b` (Digest aaee06c39dcf, 17,7 GB, Q4, Apache 2.0) und `qwen3-embedding:4b` (Digest df5bd2e3c74c, 2,5 GB, Apache 2.0); Temperatur 0, Denkmodus aus (`think: false`) |
-| Verteilung | `ollama ps` während des Laufs: `qwen3.8:27b` 45 % CPU / 55 % GPU (36 von 66 Schichten auf der GPU), Kontext 8192; `qwen3-embedding:4b` 100 % CPU (`EINBETTUNG_CPU=1`) |
-| Neueste Generation | am 11.11.2026 auf ollama.com nachgesehen: Qwen3.8 ist die neueste Qwen-Generation (kein Qwen3.9 oder Qwen4), Ollama 0.40.16 die neueste stabile Version (09.11.2026) |
+| Verteilung | `ollama ps` während des Laufs: `qwen3.8:27b` 45 % CPU / 55 % GPU (36 von 66 Schichten auf der GPU, `v4-2026-11-11/ollama-auszug.txt`), Kontext 8192; `qwen3-embedding:4b` 100 % CPU (`EINBETTUNG_CPU=1`) |
+| Neueste Generation | am 11.11.2026 auf ollama.com nachgesehen: Qwen3.8 ist die neueste Qwen-Generation (kein Qwen3.9 oder Qwen4), Ollama 0.40.16 die neueste stabile Version (09.11.2026). `ollama pull qwen3.8:27b` liefert am 11.11.2026 das Manifest aaee06c39dcf (Registry abgefragt; die Tag-Seite auf ollama.com zeigt eine andere Kennung, e118e4d12a70) |
 | Anwendung | Python 3.12.13, Image aus diesem Repository |
 | Normen | wie v3: 519 Absätze aus 150 Paragrafen (abgerufen 02.11.2026); Einbetten aller Absätze auf dem Prozessor 705,7 s, einmalig (danach aus dem Zwischenspeicher) |
 | Tests | `docker compose run --rm test`: **24 Tests grün** (`tests-2026-11-11.txt`) |
@@ -32,7 +34,7 @@ Alle Daten sind erfunden (synthetische Testdokumente aus `app/synth.py`).
 | belegt, aber falsch | 3 | **0** |
 | fehlende Nachweise richtig erkannt (Fälle) | 100 % (7 mit Lücke) | **100 % (7 mit Lücke)** |
 | Sekunden je Dokument, Median / 95 % / Maximum | 4,17 / 6,34 / 12,24 | **13,75 / 19,06 / 23,90** |
-| Suche: richtiger Paragraf an erster Stelle (Treffer@1) | 77,8 % | **88,9 %** |
+| Suche: erwarteter Paragraf an erster Stelle (Treffer@1) | 77,8 % | **88,9 %** |
 | Suche: unter den ersten drei / fünf (Treffer@3 / @5) | 91,1 % / 93,3 % | **95,6 % / 95,6 %** |
 | Suche: MRR, Dauer je Frage (Median) | 0,846, rund 110 ms (GPU) | **0,922, 538 ms (Prozessor)** |
 | Assistent: alle genannten Fundstellen unter den Treffern | 15 von 15 | **15 von 15** |
@@ -73,11 +75,11 @@ Rechengenauigkeit auf Prozessor und GPU unterscheidet sich geringfügig). Gülti
 
 **Sprachmodell:** `qwen3.8:27b` gegen die Variante mit Mehr-Token-Vorhersage `qwen3.8:27b-mtp-q4_K_M`, je 13 Dokumente
 (4 Fälle, Startwert 777): beide 13 von 13 Dokumentarten und 40 von 40 Angaben richtig; Median 13,63 s gegen 16,12 s
-je Dokument. Die MTP-Variante war beim Auslesen **langsamer** (nur rund die Hälfte der vorhergesagten Token wurde
-angenommen) und ist deshalb nicht gewählt.
+je Dokument. Die MTP-Variante war beim Auslesen **langsamer** und ist deshalb nicht gewählt.
 
-**Speicher:** Mit beiden Modellen auf der GPU verdrängte das Einbettungsmodell (3,4 GB) das Sprachmodell; die nächste
-Antwort dauerte danach 15,7 s statt weniger Sekunden, weil das Sprachmodell neu geladen wurde. Seitdem rechnet der
+**Speicher:** Mit beiden Modellen auf der GPU verdrängte das Einbettungsmodell (3,4 GB) das Sprachmodell: Nach einer
+Einbettung war laut `ollama ps` nur noch das Einbettungsmodell geladen, und die nächste kurze Antwort brauchte 15,7 s
+einschließlich Neuladen (eine 27-Mrd.-Variante aus dem Arbeitsspeicher zu laden dauerte in der Vorprüfung 8,0 s). Seitdem rechnet der
 Prozessor die Einbettungen (`EINBETTUNG_CPU=1`); beide Modelle bleiben geladen. Preis: 538 ms statt rund 90 ms je
 Suchanfrage und einmalig 705,7 s für das Einbetten der Normen.
 

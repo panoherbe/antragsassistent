@@ -1,40 +1,41 @@
 # Antragsassistent
 
-**Weniger abtippen, nichts übersehen: Der Antragsassistent liest die Nachweise eines Antrags im SGB II, schlägt jede
+**Weniger abtippen, Fehlendes sofort sehen: Der Antragsassistent liest die Nachweise eines Antrags im SGB II, schlägt jede
 Angabe mit Fundstelle vor und zeigt, welcher Nachweis fehlt. Die Entscheidung trifft immer die Sachbearbeitung. Das
-läuft heute, lokal, mit erfundenen Testdaten und den neuesten offenen KI-Modellen.**
+läuft heute, lokal, mit erfundenen Testdaten und der neuesten Generation offener KI-Modelle (Qwen3.8, Stand
+11.11.2026).**
 
 ![Rundgang durch den Antragsassistenten: Fallliste, ein Klick lässt die Nachweise auslesen, fehlender Nachweis auf einen Blick, jede Angabe mit gelb markierter Fundstelle, Entscheidung je Angabe, fertig zur Prüfung, Frage zum SGB II mit geprüfter Fundstelle, Protokoll](medien/rundgang.gif)
 
-<sub>Rundgang, 61 Sekunden, ohne Ton, mit Untertiteln; aufgenommen am 11.11.2026 an einer laufenden Installation
+<sub>Rundgang, 79 Sekunden, ohne Ton, mit Untertiteln; aufgenommen am 11.11.2026 an einer laufenden Installation
 mit dem Sprachmodell qwen3.8 auf einer GPU. Wartezeiten des Modells sind im Video gekürzt; die Anwendung zeigt die echte
-Dauer an. [Video herunterladen (MP4, 1,4 MB)](https://github.com/panoherbe/antragsassistent/raw/main/medien/rundgang.mp4)
+Dauer an. [Video herunterladen (MP4, 1,5 MB)](https://github.com/panoherbe/antragsassistent/raw/main/medien/rundgang.mp4)
 · Text des Rundgangs weiter unten.</sub>
 
 ## Was Sie brauchen → läuft hier schon
 
 | Was Sie brauchen | läuft hier schon (gemessen am 11.11.2026: 40 erfundene Fälle, 133 Dokumente, 418 Angaben) |
 |---|---|
-| Dokumente eines Antrags automatisch auswerten | Dokumentart in 133 von 133 Dokumenten richtig; alle 418 Angaben richtig; 13,8 s je Dokument im Median (95 %: 19,1 s) mit dem offenen Modell qwen3.8 (27 Mrd. Parameter) auf einer GPU mit 12 GB |
+| Dokumente eines Antrags automatisch auswerten | Dokumentart in 133 von 133 Dokumenten richtig; alle 418 Angaben richtig; 13,8 s je Dokument (Median; 95 % unter 19,1 s) mit dem offenen Modell qwen3.8 (27 Mrd. Parameter) auf einer Grafikkarte (GPU) mit 12 GB |
 | Nachvollziehbare Vorschläge | jede Angabe mit Fundstelle, im Dokument gelb markiert; „belegt“ nur, wenn die zitierte Zeile wörtlich im Dokument steht und den Wert enthält: alle 418 belegt und richtig; Unbelegtes lässt sich nicht übernehmen, nur selbst eintragen |
-| Fehlende Nachweise erkennen | in 40 von 40 Fällen richtig (7 mit Lücke), nach einer lesbaren Regelliste ohne KI, änderbar ohne Programmierung |
+| Fehlende Nachweise erkennen | in 40 von 40 Fällen richtig (7 mit Lücke), nach einer lesbaren Regelliste (selbst ohne KI; sie prüft die vom Modell erkannten Dokumentarten), änderbar ohne Programmierung |
 | Die Entscheidung bleibt beim Menschen | je Angabe übernehmen, korrigieren oder verwerfen, keine Sammelübernahme; „Fertig zur Prüfung“ erst, wenn nichts mehr offen ist; Export danach |
-| Fragen zum SGB II beantworten | Suche in SGB II und SGB I §§ 60–67: richtiger Paragraf bei 88,9 % von 45 Testfragen an erster Stelle, bei 95,6 % unter den ersten drei; in 15 von 15 Antworten stehen alle genannten Fundstellen unter den Treffern |
-| Nachvollziehbar protokollieren | Protokoll nur erweiterbar, mit Hash-Kette (eine Änderung einzelner Einträge fällt bei der Prüfung auf); je Vorschlag Modell, Prompt- und Regelversion |
-| Rollen und Mandanten trennen | Sachbearbeitung entscheidet, Prüfung liest, Administration prüft nur die Kette; Fälle anderer Jobcenter gesperrt |
+| Fragen zum SGB II beantworten | Suche in SGB II und SGB I §§ 60–67: erwarteter Paragraf bei 88,9 % von 45 Testfragen an erster Stelle, bei 95,6 % unter den ersten drei; in 15 von 15 Antworten stehen alle genannten Fundstellen unter den Treffern |
+| Nachvollziehbar protokollieren | Protokoll nur erweiterbar, mit Hash-Kette (eine Änderung einzelner Einträge fällt bei der Prüfung auf); je Vorschlag das KI-Modell und die Version von Anweisung und Regeln |
+| Rollen und Jobcenter trennen | Sachbearbeitung entscheidet, Prüfung liest, Administration prüft nur die Kette; Fälle anderer Jobcenter gesperrt |
 | Daten bleiben im Haus | Modelle und Anwendung laufen auf demselben Rechner, kein Cloud-Dienst; Modelle austauschbar |
 | Geprüfte Qualität | 24 automatische Tests grün (11.11.2026, [Testlauf](nachweis/tests-2026-11-11.txt)); alle Messläufe offen, auch die schlechteren |
 | Offen und übergabefähig | Quellcode unter AGPL-3.0, beide Modelle unter Apache 2.0 |
 
 **Neueste Modelle seit 11.11.2026:** qwen3.8 (27 Mrd. Parameter) statt qwen2.5 (7 Mrd.) und qwen3-embedding statt
-bge-m3. Auf denselben 40 Fällen wie am 02.11.2026: Angaben richtig 95,9 % → 100 % (418 von 418), belegte Angaben richtig 99,3 % → 100 %, richtiger Paragraf an erster Stelle 77,8 % → 88,9 %; Auslesen 4,2 s → 13,8 s je Dokument (Median), weil das größere Modell auf der GPU mit 12 GB nur zur Hälfte Platz hat. Messweg, alle Messläufe und die verbleibenden Fehler:
+bge-m3. Auf denselben 40 Fällen wie am 02.11.2026: Angaben richtig 95,9 % → 100 % (418 von 418), belegte Angaben richtig 99,3 % → 100 %, erwarteter Paragraf an erster Stelle 77,8 % → 88,9 %; Auslesen 4,2 s → 13,8 s je Dokument (Median), weil das Modell rund viermal so groß ist und auf der GPU mit 12 GB nur zur Hälfte Platz hat. Messweg, alle Messläufe und die verbleibenden Fehler:
 [Messprotokoll](nachweis/PROTOKOLL.md).
 
 ## In zwei Minuten selbst prüfen
 
 1. **Das Messprotokoll lesen:** [nachweis/PROTOKOLL.md](nachweis/PROTOKOLL.md) – Ergebnisse, die schlechteren Läufe
    und was noch falsch ist.
-2. **Die Tests laufen lassen** (Docker, ohne Sprachmodell, gemessen 6 s):
+2. **Die Tests laufen lassen** (Docker, ohne Sprachmodell, gemessen 6 s ohne den ersten Bau des Images):
    ```bash
    git clone https://github.com/panoherbe/antragsassistent.git
    cd antragsassistent
@@ -57,12 +58,12 @@ bge-m3. Auf denselben 40 Fällen wie am 02.11.2026: Angaben richtig 95,9 % → 1
 
 <table>
 <tr>
-<td width="50%" valign="top"><img src="medien/bild-ausgewertet.png" alt="Fall nach dem Auslesen: drei Kacheln mit gelesenen Nachweisen und echter Dauer, dem fehlenden Nachweis und dem Stand der Entscheidungen"><br><sub>Nach dem Auslesen: wie lange es gedauert hat, welcher Nachweis fehlt (gefunden von der Regelliste, nicht von der KI) und wie viele Angaben schon entschieden sind.</sub></td>
+<td width="50%" valign="top"><img src="medien/bild-ausgewertet.png" alt="Fall nach dem Auslesen: drei Kacheln mit gelesenen Nachweisen und echter Dauer, dem fehlenden Nachweis und dem Stand der Entscheidungen"><br><sub>Nach dem Auslesen: wie lange es gedauert hat, welcher Nachweis fehlt (gefunden von der Regelliste anhand der erkannten Dokumentarten) und wie viele Angaben schon entschieden sind.</sub></td>
 <td width="50%" valign="top"><img src="medien/bild-fundstellen.png" alt="Links das Dokument mit gelb markierten Zeilen, rechts die vorgeschlagenen Angaben mit „steht so im Dokument“ und den Knöpfen Übernehmen, Korrigieren, Verwerfen"><br><sub>Jede Angabe mit Fundstelle: links das Dokument mit gelb markierten Zeilen, rechts die Vorschläge. Entschieden wird je Angabe.</sub></td>
 </tr>
 <tr>
 <td width="50%" valign="top"><img src="medien/bild-frage.png" alt="Seite Frage zum SGB II mit der Frage „Wann gilt jemand als erwerbsfähig?“, der Antwort mit den hervorgehobenen Fundstellen SGB II § 8 und § 7 und dem Hinweis, dass jede Fundstelle unter den gefundenen Paragrafen steht"><br><sub>Frage zum SGB II: Antwort nur aus den gefundenen Paragrafen, jede genannte Fundstelle gegen die Treffer geprüft. Ein Entwurf, keine Rechtsauskunft.</sub></td>
-<td width="50%" valign="top"><img src="medien/bild-protokoll.png" alt="Protokoll mit geprüfter Hash-Kette und Einträgen wie Anmeldung, Frage, fertig zur Prüfung und Entscheidungen"><br><sub>Das Protokoll, wie die Rolle „Prüfung“ es sieht: wer wann was entschieden hat, mit Modell und Regelversion; die Hash-Kette zeigt Änderungen an einzelnen Einträgen.</sub></td>
+<td width="50%" valign="top"><img src="medien/bild-protokoll.png" alt="Protokoll mit geprüfter Hash-Kette und Einträgen wie Anmeldung, Frage, fertig zur Prüfung und Entscheidungen"><br><sub>Das Protokoll, wie die Rolle „Prüfung“ es sieht: oben die Prüfung der Hash-Kette, darunter wer wann was entschieden hat (deutsche Zeit). Die Hash-Kette zeigt Änderungen an einzelnen Einträgen.</sub></td>
 </tr>
 </table>
 
@@ -71,20 +72,20 @@ bge-m3. Auf denselben 40 Fällen wie am 02.11.2026: Angaben richtig 95,9 % → 1
 
 | ab | Untertitel |
 |---|---|
-| 0:00 | **Titel:** Nachweise lesen lassen. Selbst entscheiden. Der Assistent liest die Unterlagen eines Antrags, schlägt jede Angabe mit Fundstelle vor und zeigt, was fehlt. Die Entscheidung trifft immer die Sachbearbeitung. (Für das SGB II · Jede Angabe mit Beleg · KI-Modell Qwen3.8, lokal) |
-| 0:05 | Ihre Fälle: neue Anträge mit ihren Nachweisen. |
-| 0:08 | Ein Antrag mit drei Nachweisen. Ein Klick genügt. |
-| 0:11 | Der Assistent liest die Nachweise – auf diesem Rechner, ohne Cloud-Dienst. (Die Wartezeit ist im Video gekürzt; die echte Dauer zeigt die Anwendung gleich selbst.) |
-| 0:14 | Sofort sichtbar: Ein Nachweis fehlt. Das prüft eine feste Regelliste, keine KI. (Echte Dauer des Auslesens: 48 Sekunden (48,4 s), in der Kachel links.) |
-| 0:18 | Jede Angabe zeigt, wo sie im Dokument steht: gelb markiert, Wort für Wort geprüft. |
-| 0:22 | Sie entscheiden jede Angabe: übernehmen, korrigieren oder verwerfen. |
-| 0:26 | Alles entschieden: Der Fall geht zur Prüfung. (Die übrigen 8 Angaben sind ebenso entschieden, im Video übersprungen.) |
-| 0:29 | Fertig zur Prüfung – das Ergebnis lässt sich ins Fachverfahren übernehmen. |
-| 0:32 | Eine Frage zum SGB II? Der Assistent antwortet mit Paragraf. |
-| 0:35 | Die Antwort nennt ihre Quelle, geprüft gegen die gefundenen Paragrafen. Ein Entwurf, keine Rechtsauskunft. |
-| 0:40 | Das Protokoll zeigt, wer wann was entschieden hat. Einträge lassen sich nur anhängen. |
-| 0:45 | **Was die Sachbearbeitung davon hat** (gemessen am 11.11.2026 an 40 erfundenen Testfällen): Weniger abtippen – alle 418 Angaben richtig vorgeschlagen (aus 133 Testdokumenten) · Nichts übersehen – fehlende Nachweise in 40 von 40 Testfällen richtig erkannt · Jede Angabe mit Beleg – Fundstelle steht wörtlich im Dokument; alle belegten Angaben richtig · Daten bleiben im Haus – das Sprachmodell läuft auf dem eigenen Rechner, ohne Cloud-Dienst |
-| 0:54 | **Selbst ausprobieren:** github.com/panoherbe/antragsassistent. Quellcode, Tests, Testdaten-Generator und Messprotokoll liegen offen. Die Tests laufen ohne Sprachmodell mit einem Befehl. (AGPL-3.0 · 24 Tests · KI-Modell Qwen3.8, lokal) |
+| 0:00 | **Titel:** Nachweise lesen lassen. Selbst entscheiden. Der Assistent liest die Nachweise eines Antrags, schlägt jede Angabe mit Fundstelle vor und zeigt, was fehlt. Die Entscheidung trifft immer die Sachbearbeitung. (Für das SGB II · Jede Angabe mit Beleg · KI-Modell Qwen3.8, lokal) |
+| 0:07 | Ihre Fälle: neue Anträge mit ihren Nachweisen. |
+| 0:10 | Ein Antrag mit drei Nachweisen. Ein Klick genügt. |
+| 0:14 | Der Assistent liest die Nachweise – auf diesem Rechner, ohne Cloud-Dienst. (Wartezeit im Video gekürzt; die echte Dauer zeigt die Anwendung.) |
+| 0:21 | Sofort sichtbar: Ein Nachweis fehlt. – Kleine Zeile: Feste Regelliste, angewandt auf die erkannten Dokumentarten · echte Lesedauer: 48 Sekunden (48,3 s) |
+| 0:26 | Jede Angabe zeigt, wo sie im Dokument steht: gelb markiert, Wort für Wort geprüft. |
+| 0:31 | Sie entscheiden jede Angabe: übernehmen, korrigieren oder verwerfen. |
+| 0:35 | Alles entschieden: Der Fall geht zur Prüfung. (Die übrigen 8 Angaben ebenso entschieden, im Video übersprungen.) |
+| 0:40 | Fertig zur Prüfung. Das Ergebnis gibt es als Datei zum Herunterladen. |
+| 0:45 | Eine Frage zum SGB II? Der Assistent antwortet mit Paragraf. |
+| 0:50 | Die Antwort nennt ihre Quelle; jede Fundstelle steht unter den gefundenen Paragrafen. (Ein Entwurf, keine Rechtsauskunft.) |
+| 0:56 | Das Protokoll zeigt, wer wann was entschieden hat. Einträge lassen sich nur anhängen. |
+| 1:01 | **Was die Sachbearbeitung davon hat** (gemessen am 11.11.2026 an 40 erfundenen Testfällen): Weniger abtippen – alle 418 Angaben richtig vorgeschlagen (133 Testdokumente) · Fehlendes sofort sehen – fehlende Nachweise in 40 von 40 Testfällen erkannt · Jede Angabe mit Beleg – Fundstelle steht wörtlich im Dokument; alle belegten Angaben richtig · Daten bleiben im Haus – das KI-Modell läuft auf dem eigenen Rechner, ohne Cloud-Dienst |
+| 1:12 | **Selbst ausprobieren:** github.com/panoherbe/antragsassistent. Quellcode, Tests, Testdaten-Generator und Messprotokoll liegen offen. Die Tests laufen ohne Sprachmodell mit einem Befehl. (AGPL-3.0 · 24 Tests · KI-Modell Qwen3.8, lokal) |
 
 </details>
 
@@ -141,7 +142,7 @@ OpenID Connect/SAML, Betrieb mit echten Daten.
 
 | Teil | Ort |
 |---|---|
-| Sprachmodell `qwen3.8:27b` (Apache 2.0, 17 GB) und Einbettungsmodell `qwen3-embedding:4b` (Apache 2.0, 2,5 GB) | eigener Ollama-Container auf demselben Rechner; kein Aufruf eines Cloud-Dienstes. Auf einer GPU mit 12 GB liegt gut die Hälfte (55 %) des Sprachmodells auf der GPU, der Rest im Arbeitsspeicher; die Einbettungen rechnet der Prozessor (`EINBETTUNG_CPU=1`), damit das Sprachmodell geladen bleibt |
+| Sprachmodell `qwen3.8:27b` (Apache 2.0, 17,7 GB) und Einbettungsmodell `qwen3-embedding:4b` (Apache 2.0, 2,5 GB) | eigener Ollama-Container auf demselben Rechner; kein Aufruf eines Cloud-Dienstes. Auf einer GPU mit 12 GB liegt gut die Hälfte (55 %) des Sprachmodells auf der GPU, der Rest im Arbeitsspeicher; die Einbettungen rechnet der Prozessor (`EINBETTUNG_CPU=1`), damit das Sprachmodell geladen bleibt |
 | Anwendung (FastAPI, SQLite) | Container, lauscht nur auf `127.0.0.1` |
 | Gesetzestexte | einmalig von gesetze-im-internet.de geladen (`normen/laden.py`), Prüfsumme in `normen/quelle.json`; amtliche Werke nach § 5 UrhG (`normen/HINWEIS.md`) |
 
@@ -167,7 +168,7 @@ Beim Start legt die Anwendung 20 synthetische Fälle für zwei fiktive Jobcenter
 ```bash
 docker compose run --rm test                                          # 24 Tests, ohne Modell
 docker compose run --rm app python -m normen.laden                    # Gesetzestexte neu laden
-docker compose run --rm app python -m eval.messen --ausgabe nachweis/neu   # Messlauf
+docker compose run --rm app python -m eval.messen --faelle 40 --startwert 9001 --assistent 15 --ausgabe nachweis/neu   # Messlauf wie v4
 ```
 
 ### Aufbau

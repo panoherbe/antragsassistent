@@ -15,7 +15,8 @@ ZITAT = re.compile(r"\[(SGB I{1,2}) §\s*(\d+[a-z]?)[^\]]*\]")
 
 
 def beantworten(frage: str, normen, modell, k: int = 5, verfahren: str = "dicht") -> dict:
-    # "dicht" (bge-m3) traf im Messlauf vom 02.11.2026 besser als BM25 und die Kombination (nachweis/)
+    # "dicht" (Einbettungen, seit 11.11.2026 qwen3-embedding:4b) traf in allen Messläufen besser als BM25 und die
+    # Kombination (nachweis/PROTOKOLL.md)
     treffer = normen.suchen(frage, verfahren, modell, k=k)
     kontext = "\n\n".join(f"[{t['paragraf']}] {t['titel']}\n{t['text']}" for t in treffer)
     antwort, dauer = modell.text_antwort(SYSTEM, f"Normen:\n{kontext}\n\nFrage: {frage}")

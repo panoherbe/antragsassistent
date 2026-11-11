@@ -16,7 +16,7 @@ class Sprachmodell:
     def __init__(self, url: str, modell: str, einbettung: str, zeitlimit: float = 600, einbettung_cpu: bool = False):
         self.url, self.modell, self.einbettungsmodell = url.rstrip("/"), modell, einbettung
         # Auf einer GPU mit 12 GB füllt das Sprachmodell den Speicher; lädt dann das Einbettungsmodell auf die GPU,
-        # verdrängt es das Sprachmodell, und jede Frage lädt es neu (gemessen 11.11.2026: rund 10 s mehr je Antwort).
+        # verdrängt es das Sprachmodell, und jede Frage muss es neu laden (beobachtet 11.11.2026, nachweis/PROTOKOLL.md).
         # EINBETTUNG_CPU=1 rechnet die Einbettungen auf dem Prozessor; beide Modelle bleiben geladen.
         self.einbettung_optionen = {"num_gpu": 0} if einbettung_cpu else {}
         self.client = httpx.Client(timeout=zeitlimit)

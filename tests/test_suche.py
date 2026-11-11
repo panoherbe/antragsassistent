@@ -13,7 +13,7 @@ def test_bm25_findet_unterkunft():
 
 
 class Einbettung:
-    """Ersatz für bge-m3: ein kleiner Vektor aus Wortzählungen; zählt die Aufrufe."""
+    """Ersatz für das Einbettungsmodell: ein kleiner Vektor aus Wortzählungen; zählt die Aufrufe."""
     einbettungsmodell = "test"
 
     def __init__(self):

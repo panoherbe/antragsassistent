@@ -7,9 +7,9 @@ läuft heute, lokal, mit erfundenen Testdaten und der neuesten Generation offene
 
 ![Rundgang durch den Antragsassistenten: Fallliste, ein Klick lässt die Nachweise auslesen, fehlender Nachweis auf einen Blick, jede Angabe mit gelb markierter Fundstelle, Entscheidung je Angabe, fertig zur Prüfung, Frage zum SGB II mit geprüfter Fundstelle, Protokoll](medien/rundgang.gif)
 
-<sub>Rundgang, 79 Sekunden, ohne Ton, mit Untertiteln; aufgenommen am 11.11.2026 an einer laufenden Installation
+<sub>Rundgang, 85 Sekunden, ohne Ton, mit Untertiteln; aufgenommen am 11.11.2026 an einer laufenden Installation
 mit dem Sprachmodell qwen3.8 auf einer GPU. Wartezeiten des Modells sind im Video gekürzt; die Anwendung zeigt die echte
-Dauer an. [Video herunterladen (MP4, 1,5 MB)](https://github.com/panoherbe/antragsassistent/raw/main/medien/rundgang.mp4)
+Dauer an. [Video herunterladen (MP4, 1,6 MB)](https://github.com/panoherbe/antragsassistent/raw/main/medien/rundgang.mp4)
 · Text des Rundgangs weiter unten.</sub>
 
 ## Was Sie brauchen → läuft hier schon
@@ -17,7 +17,7 @@ Dauer an. [Video herunterladen (MP4, 1,5 MB)](https://github.com/panoherbe/antra
 | Was Sie brauchen | läuft hier schon (gemessen am 11.11.2026: 40 erfundene Fälle, 133 Dokumente, 418 Angaben) |
 |---|---|
 | Dokumente eines Antrags automatisch auswerten | Dokumentart in 133 von 133 Dokumenten richtig; alle 418 Angaben richtig; 13,8 s je Dokument (Median; 95 % unter 19,1 s) mit dem offenen Modell qwen3.8 (27 Mrd. Parameter) auf einer Grafikkarte (GPU) mit 12 GB |
-| Nachvollziehbare Vorschläge | jede Angabe mit Fundstelle, im Dokument gelb markiert; „belegt“ nur, wenn die zitierte Zeile wörtlich im Dokument steht und den Wert enthält: alle 418 belegt und richtig; Unbelegtes lässt sich nicht übernehmen, nur selbst eintragen |
+| Nachvollziehbare Vorschläge | jede Angabe mit Fundstelle, im Dokument gelb markiert; „belegt“ nur, wenn die zitierte Zeile wörtlich im Dokument steht (Groß-/Kleinschreibung und Leerzeichen zählen nicht) und den Wert enthält: alle 418 belegt und richtig; Unbelegtes lässt sich nicht übernehmen, nur selbst eintragen |
 | Fehlende Nachweise erkennen | in 40 von 40 Fällen richtig (7 mit Lücke), nach einer lesbaren Regelliste (selbst ohne KI; sie prüft die vom Modell erkannten Dokumentarten), änderbar ohne Programmierung |
 | Die Entscheidung bleibt beim Menschen | je Angabe übernehmen, korrigieren oder verwerfen, keine Sammelübernahme; „Fertig zur Prüfung“ erst, wenn nichts mehr offen ist; Export danach |
 | Fragen zum SGB II beantworten | Suche in SGB II und SGB I §§ 60–67: erwarteter Paragraf bei 88,9 % von 45 Testfragen an erster Stelle, bei 95,6 % unter den ersten drei; in 15 von 15 Antworten stehen alle genannten Fundstellen unter den Treffern |
@@ -72,20 +72,20 @@ bge-m3. Auf denselben 40 Fällen wie am 02.11.2026: Angaben richtig 95,9 % → 1
 
 | ab | Untertitel |
 |---|---|
-| 0:00 | **Titel:** Nachweise lesen lassen. Selbst entscheiden. Der Assistent liest die Nachweise eines Antrags, schlägt jede Angabe mit Fundstelle vor und zeigt, was fehlt. Die Entscheidung trifft immer die Sachbearbeitung. (Für das SGB II · Jede Angabe mit Beleg · KI-Modell Qwen3.8, lokal) |
-| 0:07 | Ihre Fälle: neue Anträge mit ihren Nachweisen. |
-| 0:10 | Ein Antrag mit drei Nachweisen. Ein Klick genügt. |
-| 0:14 | Der Assistent liest die Nachweise – auf diesem Rechner, ohne Cloud-Dienst. (Wartezeit im Video gekürzt; die echte Dauer zeigt die Anwendung.) |
-| 0:21 | Sofort sichtbar: Ein Nachweis fehlt. – Kleine Zeile: Feste Regelliste, angewandt auf die erkannten Dokumentarten · echte Lesedauer: 48 Sekunden (48,3 s) |
-| 0:26 | Jede Angabe zeigt, wo sie im Dokument steht: gelb markiert, Wort für Wort geprüft. |
-| 0:31 | Sie entscheiden jede Angabe: übernehmen, korrigieren oder verwerfen. |
-| 0:35 | Alles entschieden: Der Fall geht zur Prüfung. (Die übrigen 8 Angaben ebenso entschieden, im Video übersprungen.) |
-| 0:40 | Fertig zur Prüfung. Das Ergebnis gibt es als Datei zum Herunterladen. |
-| 0:45 | Eine Frage zum SGB II? Der Assistent antwortet mit Paragraf. |
-| 0:50 | Die Antwort nennt ihre Quelle; jede Fundstelle steht unter den gefundenen Paragrafen. (Ein Entwurf, keine Rechtsauskunft.) |
-| 0:56 | Das Protokoll zeigt, wer wann was entschieden hat. Einträge lassen sich nur anhängen. |
-| 1:01 | **Was die Sachbearbeitung davon hat** (gemessen am 11.11.2026 an 40 erfundenen Testfällen): Weniger abtippen – alle 418 Angaben richtig vorgeschlagen (133 Testdokumente) · Fehlendes sofort sehen – fehlende Nachweise in 40 von 40 Testfällen erkannt · Jede Angabe mit Beleg – Fundstelle steht wörtlich im Dokument; alle belegten Angaben richtig · Daten bleiben im Haus – das KI-Modell läuft auf dem eigenen Rechner, ohne Cloud-Dienst |
-| 1:12 | **Selbst ausprobieren:** github.com/panoherbe/antragsassistent. Quellcode, Tests, Testdaten-Generator und Messprotokoll liegen offen. Die Tests laufen ohne Sprachmodell mit einem Befehl. (AGPL-3.0 · 24 Tests · KI-Modell Qwen3.8, lokal) |
+| 0:00 | **Titel:** Nachweise lesen lassen. Selbst entscheiden. Der Assistent liest die Nachweise und schlägt jede Angabe mit Fundstelle vor. Die Entscheidung trifft die Sachbearbeitung. (Für das SGB II · KI-Modell Qwen3.8, lokal) |
+| 0:08 | Ihre Fälle: neue Anträge mit ihren Nachweisen. |
+| 0:11 | Ein Antrag mit drei Nachweisen. Ein Klick genügt. |
+| 0:15 | Der Assistent liest die Nachweise – auf diesem Rechner, ohne Cloud-Dienst. (Wartezeit im Video gekürzt; die echte Dauer zeigt die Anwendung.) |
+| 0:22 | Sofort sichtbar: Ein Nachweis fehlt. – Kleine Zeile: Feste Regelliste, angewandt auf die erkannten Dokumentarten · echte Lesedauer: 48 Sekunden (48,3 s) |
+| 0:28 | Jede Angabe zeigt, wo sie im Dokument steht: gelb markiert, Wort für Wort geprüft. |
+| 0:33 | Sie entscheiden jede Angabe: übernehmen, korrigieren oder verwerfen. |
+| 0:37 | Alles entschieden: Der Fall geht zur Prüfung. (Die übrigen 8 Angaben ebenso entschieden, im Video übersprungen.) |
+| 0:43 | Fertig zur Prüfung. Das Ergebnis gibt es als Datei zum Herunterladen. |
+| 0:48 | Eine Frage zum SGB II? Der Assistent antwortet mit Paragraf. |
+| 0:52 | Die Antwort nennt ihre Quelle; jede Fundstelle steht unter den gefundenen Paragrafen. (Ein Entwurf, keine Rechtsauskunft.) |
+| 0:59 | Das Protokoll zeigt, wer wann was entschieden hat. Einträge lassen sich nur anhängen. |
+| 1:04 | **Was die Sachbearbeitung davon hat** (gemessen am 11.11.2026 an 40 erfundenen Testfällen): Weniger abtippen – alle 418 Angaben richtig vorgeschlagen · Fehlendes sofort sehen – Vollständigkeit in 40 von 40 Testfällen richtig beurteilt (7 mit Lücke) · Jede Angabe mit Beleg – Fundstelle steht im Dokument; alle belegten Angaben richtig · Daten bleiben im Haus – das KI-Modell läuft auf dem eigenen Rechner |
+| 1:17 | **Selbst ausprobieren:** github.com/panoherbe/antragsassistent. Quellcode, Tests und Messprotokoll liegen offen. (AGPL-3.0 · 24 Tests) |
 
 </details>
 

@@ -1,0 +1,13 @@
+# Messrechner des Laufs v4, abgefragt am 2026-11-11T21:02Z (nvidia-smi, free -g, lscpu, /etc/os-release)
+name, memory.total [MiB], driver_version
+NVIDIA GeForce RTX 3060, 12288 MiB, 580.173.02
+
+               total
+Mem:              62   (GB)
+
+Model name:            11th Gen Intel(R) Core(TM) i7-11700B @ 3.20GHz
+Core(s) per socket:    8
+Thread(s) per core:    2
+
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+Docker version 29.1.3

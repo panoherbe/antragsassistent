@@ -14,7 +14,7 @@ Alle Daten sind erfunden (synthetische Testdokumente aus `app/synth.py`).
 
 | | |
 |---|---|
-| Rechner | Linux-Server (Ubuntu 24.04), NVIDIA GeForce RTX 3060 mit 12 GB, 62 GB Arbeitsspeicher, Intel Core i7-11700B (8 Kerne), Docker |
+| Rechner | Linux-Server (Ubuntu 24.04.5), NVIDIA GeForce RTX 3060 mit 12 GB, 62 GB Arbeitsspeicher, Intel Core i7-11700B (8 Kerne, 16 Threads), Docker 29.1.3 (`v4-2026-11-11/rechner.txt`) |
 | Modelle | Ollama 0.40.16; `qwen3.8:27b` (Digest aaee06c39dcf, 17,7 GB, Q4, Apache 2.0) und `qwen3-embedding:4b` (Digest df5bd2e3c74c, 2,5 GB, Apache 2.0); Temperatur 0, Denkmodus aus (`think: false`) |
 | Verteilung | `ollama ps` während des Laufs: `qwen3.8:27b` 45 % CPU / 55 % GPU (36 von 66 Schichten auf der GPU, `v4-2026-11-11/ollama-auszug.txt`), Kontext 8192; `qwen3-embedding:4b` 100 % CPU (`EINBETTUNG_CPU=1`) |
 | Neueste Generation | am 11.11.2026 auf ollama.com nachgesehen: Qwen3.8 ist die neueste Qwen-Generation (kein Qwen3.9 oder Qwen4), Ollama 0.40.16 die neueste stabile Version (09.11.2026). `ollama pull qwen3.8:27b` liefert am 11.11.2026 das Manifest aaee06c39dcf (Registry abgefragt; die Tag-Seite auf ollama.com zeigt eine andere Kennung, e118e4d12a70) |
@@ -79,7 +79,7 @@ je Dokument. Die MTP-Variante war beim Auslesen **langsamer** und ist deshalb ni
 
 **Speicher:** Mit beiden Modellen auf der GPU verdrängte das Einbettungsmodell (3,4 GB) das Sprachmodell: Nach einer
 Einbettung war laut `ollama ps` nur noch das Einbettungsmodell geladen, und die nächste kurze Antwort brauchte 15,7 s
-einschließlich Neuladen (eine 27-Mrd.-Variante aus dem Arbeitsspeicher zu laden dauerte in der Vorprüfung 8,0 s). Seitdem rechnet der
+einschließlich Neuladen (Laden in der Vorprüfung: qwen3.8:27b beim ersten Mal 47,9 s, danach die MTP-Variante 8,0 s). Seitdem rechnet der
 Prozessor die Einbettungen (`EINBETTUNG_CPU=1`); beide Modelle bleiben geladen. Preis: 538 ms statt rund 90 ms je
 Suchanfrage und einmalig 705,7 s für das Einbetten der Normen.
 

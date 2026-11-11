@@ -3,7 +3,7 @@
 #   DEMO_PASSWORT=... docker compose up -d                 # Oberfläche: http://127.0.0.1:${APP_PORT:-8420}
 #   docker compose exec ollama ollama pull qwen3.8:27b && docker compose exec ollama ollama pull qwen3-embedding:4b
 #   docker compose run --rm test                           # Tests (ohne Modell)
-#   docker compose run --rm app python -m eval.messen --ausgabe nachweis/neu
+#   docker compose run --rm app python -m eval.messen --faelle 40 --startwert 9001 --assistent 15 --ausgabe nachweis/neu  # wie v4
 # Gemessen auf einer GPU mit 12 GB (11.11.2026): qwen3.8:27b liegt zu gut der Hälfte auf der GPU, der Rest im
 # Arbeitsspeicher (gemessen mit 62 GB RAM); die Einbettungen rechnet der Prozessor (EINBETTUNG_CPU=1), damit das
 # Sprachmodell geladen bleibt. Auf einer GPU ab 24 GB sollten beide Modelle Platz haben (nicht gemessen): EINBETTUNG_CPU=0.

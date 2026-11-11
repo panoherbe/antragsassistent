@@ -86,7 +86,8 @@ def demo_faelle(con, anzahl: int, startwert: int = 20261102) -> int:
 def faelle(con, b) -> list:
     _pruefe(b, "fall_lesen")
     return con.execute("SELECT f.*, (SELECT count(*) FROM dokument d WHERE d.fall_id = f.id) AS dokumente, "
-                       "(SELECT count(*) FROM vorschlag v WHERE v.fall_id = f.id AND v.entscheidung IS NULL) AS offen "
+                       "(SELECT count(*) FROM vorschlag v WHERE v.fall_id = f.id AND v.entscheidung IS NULL) AS offen, "
+                       "(SELECT d.text FROM dokument d WHERE d.fall_id = f.id ORDER BY d.id LIMIT 1) AS antrag_text "
                        "FROM fall f WHERE f.jobcenter_id = ? ORDER BY f.id", (b["jobcenter_id"],)).fetchall()
 
 
@@ -112,6 +113,7 @@ def analysieren(con, modell, konf: dict, b, fall_id: str, prompt_version: str) -
                          modell.modell, prompt_version))
         audit.eintragen(con, "ki_vorschlag", {"fall": fall_id, "dokument": d["id"], "sha256": d["sha256"],
                                               "dokumentart": art, "modell": modell.modell, "prompt": prompt_version,
+                                              "sekunden": round(sek, 2),
                                               "regeln": konf["version"], "felder": felder}, b["kennung"], f["jobcenter_id"])
     con.execute("UPDATE fall SET status = 'in_pruefung' WHERE id = ? AND status = 'eingang'", (fall_id,))
     return {"dokumente": len(dauer), "sekunden": round(sum(dauer), 2)}
@@ -154,7 +156,12 @@ def ansicht(con, konf: dict, b, fall_id: str) -> dict:
         art = next(d["dokumentart"] for d in docs if d["id"] == v["dokument_id"])
         if v["entscheidung"] in ("uebernommen", "korrigiert"):
             werte[(art, v["feld"])] = v["endwert"]
+    # echte Dauer der KI-Auswertung, wie sie im Protokoll steht (je Dokument ein Eintrag „ki_vorschlag“)
+    sek = [json.loads(z["daten"]).get("sekunden") for z in con.execute(
+        "SELECT daten FROM protokoll WHERE aktion = 'ki_vorschlag' AND jobcenter_id = ? AND daten LIKE ?",
+        (f["jobcenter_id"], f'%"fall": "{fall_id}"%'))]
     return {"fall": f, "merkmale": json.loads(f["merkmale"]), "dokumente": docs, "vorschlaege": vs,
+            "gelesen_s": sum(sek) if sek and None not in sek else None,
             "fehlend": regeln.fehlende_unterlagen(konf, f["antragsart"], json.loads(f["merkmale"]), arten) if analysiert else None,
             "hinweise": regeln.plausibilitaet(konf, werte), "offen": sum(1 for v in vs if v["entscheidung"] is None),
             "analysiert": analysiert}

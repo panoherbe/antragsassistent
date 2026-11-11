@@ -16,6 +16,7 @@ class Einstellungen:
     demo_passwort: str
     normen: Path
     unterlagen_konfiguration: Path
+    einbettung_cpu: bool = False
     prompt_version: str = "extraktion-v3"
 
 
@@ -32,8 +33,9 @@ def laden() -> Einstellungen:
     return Einstellungen(
         datenbank=daten / "antragsassistent.sqlite3",
         ollama_url=os.environ.get("OLLAMA_URL", "http://localhost:11434"),
-        sprachmodell=os.environ.get("SPRACHMODELL", "qwen2.5:7b-instruct"),
-        einbettungsmodell=os.environ.get("EINBETTUNGSMODELL", "bge-m3"),
+        sprachmodell=os.environ.get("SPRACHMODELL", "qwen3.8:27b"),
+        einbettungsmodell=os.environ.get("EINBETTUNGSMODELL", "qwen3-embedding:4b"),
+        einbettung_cpu=os.environ.get("EINBETTUNG_CPU", "") == "1",
         sitzungsschluessel=schluessel,
         demo_passwort=os.environ.get("DEMO_PASSWORT", ""),
         normen=Path(os.environ.get("NORMEN", BASIS / "normen" / "normen.jsonl")),

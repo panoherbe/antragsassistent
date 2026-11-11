@@ -1,0 +1,119 @@
+{
+ "suche": {
+  "bm25": {
+   "n": 45,
+   "treffer@1": 0.511,
+   "treffer@3": 0.711,
+   "treffer@5": 0.756,
+   "mrr": 0.606,
+   "ms_median": 0.4
+  },
+  "dicht": {
+   "n": 45,
+   "treffer@1": 0.889,
+   "treffer@3": 0.956,
+   "treffer@5": 0.956,
+   "mrr": 0.922,
+   "ms_median": 537.6
+  },
+  "hybrid": {
+   "n": 45,
+   "treffer@1": 0.689,
+   "treffer@3": 0.822,
+   "treffer@5": 0.844,
+   "mrr": 0.756,
+   "ms_median": 523.0
+  }
+ },
+ "extraktion": {
+  "faelle": 40,
+  "dokumente": 133,
+  "felder": 418,
+  "dokumentart_richtig": 1.0,
+  "feld_richtig": 1.0,
+  "belegt_anteil": 1.0,
+  "belegt_und_richtig": 1.0,
+  "belegt_aber_falsch": 0,
+  "unbelegt_aber_richtig": 0,
+  "vollstaendigkeit_richtig": 1.0,
+  "faelle_mit_fehlendem_nachweis": 7,
+  "sekunden_je_dokument": {
+   "median": 13.75,
+   "p95": 19.06,
+   "max": 23.9
+  },
+  "je_feld": {
+   "arbeitgeber": 1.0,
+   "brutto": 1.0,
+   "endsaldo": 1.0,
+   "geburtsdatum": 1.0,
+   "heizkosten": 1.0,
+   "kaltmiete": 1.0,
+   "kontoinhaber": 1.0,
+   "monat": 1.0,
+   "name": 1.0,
+   "nebenkosten": 1.0,
+   "netto": 1.0,
+   "personen_bg": 1.0,
+   "wohnflaeche": 1.0
+  }
+ },
+ "assistent": {
+  "n": 15,
+  "sekunden": {
+   "median": 22.67,
+   "p95": 38.54,
+   "max": 38.54
+  },
+  "mit_zitat": 15,
+  "zitate_alle_belegt": 15,
+  "erwarteter_paragraf_zitiert": 13
+ },
+ "prompt": "extraktion-v3",
+ "startwert": 9001,
+ "normen": {
+  "absaetze": 519,
+  "paragrafen": 150,
+  "einbetten_sekunden": 705.7
+ },
+ "umgebung": {
+  "python": "3.12.13",
+  "ollama": "0.40.16",
+  "gpu": "über Ollama-Container",
+  "modelle": {
+   "gemma4:26b-a4b": {
+    "digest": "001e5dafc3c7",
+    "groesse_gb": 18.73
+   },
+   "gemma4:31b": {
+    "digest": "17ba34c06c80",
+    "groesse_gb": 20.39
+   },
+   "qwen3.8:27b-mtp-q4_K_M": {
+    "digest": "22130167c4c2",
+    "groesse_gb": 17.74
+   },
+   "qwen3.8:27b": {
+    "digest": "aaee06c39dcf",
+    "groesse_gb": 17.74
+   },
+   "qwen3-embedding:8b": {
+    "digest": "64b933495768",
+    "groesse_gb": 4.68
+   },
+   "qwen3-embedding:4b": {
+    "digest": "df5bd2e3c74c",
+    "groesse_gb": 2.5
+   },
+   "qwen3-embedding:0.6b": {
+    "digest": "ac6da0dfba84",
+    "groesse_gb": 0.64
+   },
+   "embeddinggemma-2:latest": {
+    "digest": "f4981a15b998",
+    "groesse_gb": 1.28
+   }
+  }
+ },
+ "laufzeit": 3198.6
+}

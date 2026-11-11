@@ -1,0 +1,74 @@
+{
+ "qwen3.8:27b": {
+  "laden_s": 47.9,
+  "geladen": [
+   {
+    "name": "qwen3.8:27b",
+    "groesse_gb": 18.38,
+    "vram_gb": 10.03,
+    "kontext": 8192
+   }
+  ],
+  "dokumente": 13,
+  "s_median": 13.63,
+  "s_max": 18.33,
+  "s_summe": 193.6,
+  "dokumentart_richtig": "13/13",
+  "felder_richtig": "40/40",
+  "einbettung_kalt_s": 4.77,
+  "nach_einbettung": [
+   {
+    "name": "qwen3-embedding:4b",
+    "groesse_gb": 3.43,
+    "vram_gb": 3.43,
+    "kontext": 4096
+   }
+  ],
+  "textantwort_danach_s": 15.73,
+  "antwort": "Eine Bedarfsgemeinschaft ist eine Gruppe von Personen, die zusammenleben und deren Einkommen und Vermögen bei der Berechnung von Sozialleistungen wie dem Bürgergeld oder der Grundsicherung zusammengerechnet werden.",
+  "ps_ende": [
+   {
+    "name": "qwen3.8:27b",
+    "groesse_gb": 18.38,
+    "vram_gb": 10.03,
+    "kontext": 8192
+   }
+  ]
+ },
+ "qwen3.8:27b-mtp-q4_K_M": {
+  "laden_s": 8.0,
+  "geladen": [
+   {
+    "name": "qwen3.8:27b-mtp-q4_K_M",
+    "groesse_gb": 18.38,
+    "vram_gb": 9.8,
+    "kontext": 8192
+   }
+  ],
+  "dokumente": 13,
+  "s_median": 16.12,
+  "s_max": 20.77,
+  "s_summe": 208.7,
+  "dokumentart_richtig": "13/13",
+  "felder_richtig": "40/40",
+  "einbettung_kalt_s": 2.72,
+  "nach_einbettung": [
+   {
+    "name": "qwen3-embedding:4b",
+    "groesse_gb": 3.43,
+    "vram_gb": 3.43,
+    "kontext": 4096
+   }
+  ],
+  "textantwort_danach_s": 13.33,
+  "antwort": "Eine Bedarfsgemeinschaft ist eine Gruppe von Personen, die zusammenleben und deren Einkommen und Vermögen bei der Berechnung von Sozialleistungen wie dem Bürgergeld oder der Grundsicherung zusammengerechnet werden.",
+  "ps_ende": [
+   {
+    "name": "qwen3.8:27b-mtp-q4_K_M",
+    "groesse_gb": 18.38,
+    "vram_gb": 10.03,
+    "kontext": 8192
+   }
+  ]
+ }
+}

@@ -1,19 +1,20 @@
 """Weboberfläche und REST-Schnittstelle (OpenAPI unter /docs). Start: uvicorn app.main:app"""
 import os
 from pathlib import Path
+from urllib.parse import urlencode
 
 from fastapi import FastAPI, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from . import assistent, audit, auth, config, db, dienst, regeln, suche
+from . import anzeige, assistent, audit, auth, config, db, dienst, regeln, suche
 from .llm import Sprachmodell
 
 E = config.laden()
 CON = db.verbinden(E.datenbank)
 KONF = regeln.laden(E.unterlagen_konfiguration)
-MODELL = Sprachmodell(E.ollama_url, E.sprachmodell, E.einbettungsmodell)
+MODELL = Sprachmodell(E.ollama_url, E.sprachmodell, E.einbettungsmodell, einbettung_cpu=E.einbettung_cpu)
 NORMEN = suche.Normen(E.normen) if E.normen.exists() else None
 dienst.einrichten(CON, E.demo_passwort)
 if os.environ.get("DEMO_FAELLE"):
@@ -24,6 +25,10 @@ app = FastAPI(title="Antragsassistent (Prototyp)", version="0.1.0",
               description="KI-assistierte Antragsbearbeitung mit synthetischen Daten. Das System entscheidet nichts.")
 app.mount("/static", StaticFiles(directory=HIER / "static"), name="static")
 seiten = Jinja2Templates(directory=HIER / "templates")
+seiten.env.globals.update(person=anzeige.person, feldname=anzeige.feld, wert=anzeige.wert, zeilen=anzeige.zeilen,
+                          zitate=anzeige.zitate, protokolltext=anzeige.protokoll, zeit=anzeige.zeit, dauer=anzeige.dauer,
+                          status=anzeige.STATUS, rolle=anzeige.ROLLE, dokname=anzeige.DOKUMENT,
+                          entscheidung=anzeige.ENTSCHEIDUNG, jobcenter=dict(dienst.JOBCENTER))
 COOKIE = "sitzung"
 
 
@@ -32,7 +37,8 @@ def wer(request: Request):
 
 
 def zeigen(request: Request, vorlage: str, **kw):
-    return seiten.TemplateResponse(request, vorlage, {"b": wer(request), "modell": E.sprachmodell, **kw})
+    namen = {n["kennung"]: n["anzeigename"] for n in CON.execute("SELECT kennung, anzeigename FROM benutzer")}
+    return seiten.TemplateResponse(request, vorlage, {"b": wer(request), "modell": E.sprachmodell, "namen": namen, **kw})
 
 
 @app.exception_handler(dienst.Verboten)
@@ -74,7 +80,7 @@ def abmelden():
 
 @app.get("/", response_class=HTMLResponse)
 def start(request: Request):
-    return zeigen(request, "faelle.html", faelle=dienst.faelle(CON, wer(request)))
+    return zeigen(request, "faelle.html", faelle=dienst.faelle(CON, wer(request)), seite="faelle")
 
 
 @app.get("/fall/{fall_id}", response_class=HTMLResponse)
@@ -83,19 +89,20 @@ def fall(request: Request, fall_id: str, meldung: str | None = None):
         a = dienst.ansicht(CON, KONF, wer(request), fall_id)
     except KeyError:
         raise HTTPException(404)
-    return zeigen(request, "fall.html", a=a, konf=KONF, meldung=meldung,
+    return zeigen(request, "fall.html", a=a, konf=KONF, meldung=meldung, seite="faelle",
                   darf_entscheiden=auth.darf(wer(request)["rolle"], "entscheiden"))
 
 
-def _zurueck(fall_id: str, meldung: str = ""):
-    return RedirectResponse(f"/fall/{fall_id}" + (f"?meldung={meldung}" if meldung else ""), status_code=303)
+def _zurueck(fall_id: str, meldung: str = "", anker: str = ""):
+    """Zurück zum Fall; mit Anker an die Stelle, an der die Person gerade entschieden hat."""
+    ziel = f"/fall/{fall_id}" + (f"?{urlencode({'meldung': meldung})}" if meldung else "")
+    return RedirectResponse(ziel + (f"#{anker}" if anker else ""), status_code=303)
 
 
 @app.post("/fall/{fall_id}/analysieren")
 def analysieren(request: Request, fall_id: str):
     r = dienst.analysieren(CON, MODELL, KONF, wer(request), fall_id, E.prompt_version)
-    sekunden = format(r["sekunden"], ".2f").replace(".", ",")
-    return _zurueck(fall_id, f"{r['dokumente']} Dokumente in {sekunden} s ausgewertet")
+    return _zurueck(fall_id)  # die Seite zeigt Anzahl und echte Dauer (aus dem Protokoll)
 
 
 @app.post("/vorschlag/{vid}")
@@ -104,8 +111,8 @@ def entscheidung(request: Request, vid: int, fall_id: str = Form(...), entscheid
     try:
         dienst.entscheiden(CON, wer(request), vid, entscheidung, endwert)
     except ValueError as e:
-        return _zurueck(fall_id, str(e))
-    return _zurueck(fall_id)
+        return _zurueck(fall_id, str(e), f"v{vid}")
+    return _zurueck(fall_id, anker=f"v{vid}")
 
 
 @app.post("/fall/{fall_id}/prueffertig")
@@ -114,7 +121,7 @@ def prueffertig(request: Request, fall_id: str):
         dienst.prueffertig(CON, KONF, wer(request), fall_id)
     except ValueError as e:
         return _zurueck(fall_id, str(e))
-    return _zurueck(fall_id, "Fall ist prüffertig")
+    return _zurueck(fall_id)
 
 
 @app.get("/assistent", response_class=HTMLResponse)
@@ -128,7 +135,7 @@ def assistent_seite(request: Request, frage: str | None = None):
         audit.eintragen(CON, "assistent_frage", {"frage": frage, "zitate": ergebnis["zitate"],
                                                  "unbelegt": ergebnis["unbelegt"], "modell": E.sprachmodell},
                         b["kennung"], b["jobcenter_id"])
-    return zeigen(request, "assistent.html", frage=frage or "", e=ergebnis)
+    return zeigen(request, "assistent.html", frage=frage or "", e=ergebnis, seite="frage")
 
 
 @app.get("/protokoll", response_class=HTMLResponse)
@@ -139,13 +146,13 @@ def protokoll(request: Request):
     if auth.darf(b["rolle"], "protokoll_lesen"):
         zeilen = CON.execute("SELECT * FROM protokoll WHERE jobcenter_id = ? ORDER BY nr DESC LIMIT 200",
                              (b["jobcenter_id"],)).fetchall()
-    return zeigen(request, "protokoll.html", kette=audit.pruefen(CON), zeilen=zeilen)
+    return zeigen(request, "protokoll.html", kette=audit.pruefen(CON), zeilen=zeilen, seite="protokoll")
 
 
 # --- REST ------------------------------------------------------------------------------------------------------------
 @app.get("/api/faelle")
 def api_faelle(request: Request):
-    return [dict(f) for f in dienst.faelle(CON, wer(request))]
+    return [{k: v for k, v in dict(f).items() if k != "antrag_text"} for f in dienst.faelle(CON, wer(request))]
 
 
 @app.get("/api/faelle/{fall_id}/export")

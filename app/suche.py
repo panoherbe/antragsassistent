@@ -1,4 +1,4 @@
-"""Suche in den Normen (SGB II, SGB I §§ 60–67): BM25, Einbettungen (bge-m3) und beides kombiniert (RRF).
+"""Suche in den Normen (SGB II, SGB I §§ 60–67): BM25, Einbettungen (qwen3-embedding) und beides kombiniert (RRF).
 
 Treffer werden je Paragraf zusammengefasst; ausgegeben wird der beste Absatz je Paragraf.
 """
@@ -8,6 +8,16 @@ import math
 import re
 from collections import Counter
 from pathlib import Path
+
+# qwen3-embedding erwartet vor einer Suchanfrage eine Aufgabenbeschreibung, vor den Absätzen nicht (Modellkarte; dort
+# auf Englisch empfohlen). Andere Einbettungsmodelle bekommen die Frage unverändert.
+ANWEISUNG = ("Instruct: Given a question from a caseworker at a German job centre, retrieve the paragraph of German "
+             "social law (SGB II, SGB I) that answers it\nQuery: ")
+
+
+def anfrage(frage: str, modell) -> str:
+    return ANWEISUNG + frage if str(getattr(modell, "einbettungsmodell", "")).startswith("qwen3-embedding") else frage
+
 
 STOPP = set("""der die das den dem des ein eine einer eines einem einen und oder nicht nur auch ist sind wird werden
 wurde wenn als bei für fur von vom zu zur zum im in an auf aus mit nach über unter vor durch bis so wie was wer
@@ -65,7 +75,7 @@ class Normen:
             self.vektoren_laden(modell, cache)
 
     def dicht(self, frage: str, modell) -> list[float]:
-        q = _einheit(modell.einbetten([frage])[0])
+        q = _einheit(modell.einbetten([anfrage(frage, modell)])[0])
         return [sum(a * b for a, b in zip(q, v)) for v in self._vek]
 
     # --- Ergebnis je Paragraf -------------------------------------------------------------------------------------

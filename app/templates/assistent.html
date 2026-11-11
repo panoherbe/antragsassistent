@@ -1,15 +1,17 @@
-{% extends "basis.html" %}{% block titel %}Fragen zum SGB II{% endblock %}
+{% extends "basis.html" %}{% block titel %}Frage zum SGB II{% endblock %}
 {% block inhalt %}
-<h1>Fragen zum SGB II</h1>
-<form method="get" action="/assistent" class="frage"><input name="frage" value="{{ frage }}" placeholder="z. B. Wie lange ist der Bewilligungszeitraum in der Regel?" required><button>Fragen</button></form>
+<h1>Frage zum SGB II</h1>
+<p class="unterzeile">Der Assistent sucht die passenden Paragrafen und antwortet nur mit dem, was dort steht.</p>
+<form method="get" action="/assistent" class="frage"><input name="frage" value="{{ frage }}" placeholder="z. B. Wann gilt jemand als erwerbsfähig?" aria-label="Ihre Frage" required><button data-laeuft="Sucht …">Fragen</button></form>
 {% if e %}
-<section class="karte"><p class="klein">KI-Entwurf aus den unten gefundenen Normen, keine Rechtsauskunft, keine Entscheidung im Einzelfall. {{ '%.2f' | format(e.sekunden) | replace('.', ',') }} s.</p>
-<div class="antwort">{{ e.antwort }}</div>
-{% if e.unbelegt %}<p class="warn">Zitat nicht belegt: {{ e.unbelegt | join(', ') }} steht nicht unter den gefundenen Normen.</p>{% endif %}
-{% if e.ohne_zitat %}<p class="warn">Die Antwort nennt keine Fundstelle.</p>{% endif %}
+<section class="karte"><div class="klein">Antwort des Assistenten · Entwurf, keine Rechtsauskunft · {{ '%.1f' | format(e.sekunden) | replace('.', ',') }} s</div>
+<div class="antwort">{{ zitate(e.antwort) }}</div>
+{% if e.unbelegt %}<p class="hinweis">Achtung: {{ e.unbelegt | join(', ') }} steht nicht unter den gefundenen Paragrafen.</p>
+{% elif e.ohne_zitat %}<p class="hinweis">Die Antwort nennt keine Fundstelle.</p>
+{% else %}<p class="gepruefte">✓ Jede genannte Fundstelle steht unter den gefundenen Paragrafen.</p>{% endif %}
 </section>
-<h2>Gefundene Normen</h2>
-{% for t in e.quellen %}<details><summary>{{ t.paragraf }} · {{ t.titel }}</summary><p>{{ t.text }}</p></details>{% endfor %}
-<p class="klein">Quelle: gesetze-im-internet.de (amtliche Werke, § 5 UrhG); Stand siehe normen/quelle.json.</p>
+<h2 style="margin-top:26px">Gefundene Paragrafen</h2>
+<div class="quellen">{% for t in e.quellen %}<details><summary>{{ t.paragraf }} <span>· {{ t.titel }}</span></summary><p>{{ t.text }}</p></details>{% endfor %}</div>
+<p class="klein">Gesetzestexte von gesetze-im-internet.de (amtliche Werke, § 5 UrhG); Stand in normen/quelle.json.</p>
 {% endif %}
 {% endblock %}

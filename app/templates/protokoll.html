@@ -1,10 +1,11 @@
-{% extends "basis.html" %}{% block titel %}Prüfprotokoll{% endblock %}
+{% extends "basis.html" %}{% block titel %}Protokoll{% endblock %}
 {% block inhalt %}
-<h1>Prüfprotokoll</h1>
-<p class="{{ 'gut' if kette[0] else 'warn' }}"><b>Hash-Kette:</b> {{ kette[2] }}</p>
+<h1>Protokoll</h1>
+<p class="unterzeile">Wer hat wann was getan. Einträge lassen sich nur anhängen, nicht ändern.</p>
+<div class="kette {{ 'gut' if kette[0] else 'warn' }}">{{ '✓' if kette[0] else '!' }} Hash-Kette geprüft: {{ kette[2] }}{% if kette[0] %}. Eine Änderung an einzelnen Einträgen würde hier auffallen.{% endif %}</div>
 {% if zeilen %}
-<table class="klein"><thead><tr><th>Nr.</th><th>Zeit (UTC)</th><th>Person</th><th>Aktion</th><th>Daten</th><th>Hash</th></tr></thead><tbody>
-{% for z in zeilen %}<tr><td>{{ z.nr }}</td><td>{{ z.zeit[:19] }}</td><td>{{ z.benutzer or '—' }}</td><td>{{ z.aktion }}</td><td class="daten">{{ z.daten[:220] }}</td><td><code>{{ z.hash[:12] }}</code></td></tr>{% endfor %}
+<table class="protokoll"><thead><tr><th>Zeit</th><th>Person</th><th>Was</th><th>Prüfsumme</th></tr></thead><tbody>
+{% for z in zeilen %}<tr><td class="zeit">{{ zeit(z.zeit) }}</td><td class="person">{{ namen.get(z.benutzer, z.benutzer) or 'System' }}</td><td>{{ protokolltext(z.aktion, z.daten) }}</td><td><code>{{ z.hash[:10] }}</code></td></tr>{% endfor %}
 </tbody></table>
 {% elif b.rolle == 'administration' %}<p class="klein">Die Administration prüft nur die Kette; Inhalte sieht sie nicht.</p>{% endif %}
 {% endblock %}

@@ -110,7 +110,7 @@ def main():
     ap.add_argument("--ausgabe", type=Path, required=True)
     a = ap.parse_args()
     e = config.laden()
-    modell = Sprachmodell(e.ollama_url, e.sprachmodell, e.einbettungsmodell)
+    modell = Sprachmodell(e.ollama_url, e.sprachmodell, e.einbettungsmodell, einbettung_cpu=e.einbettung_cpu)
     konf = regeln.laden(e.unterlagen_konfiguration)
     normen = suche.Normen(e.normen)
     gold = [json.loads(z) for z in (config.BASIS / "eval" / "gold_suche.jsonl").read_text().splitlines() if z.strip()]
@@ -119,7 +119,8 @@ def main():
     modell.json_antwort("Antworte mit {}.", "ok", {"type": "object"})  # Modell laden, nicht mitmessen
     t = time.perf_counter()
     normen.vektoren_laden(modell, Path(e.datenbank).parent / "normen_vektoren.json")
-    erg = {"prompt": e.prompt_version, "startwert": a.startwert, "umgebung": umgebung(e), "normen": {"absaetze": len(normen.absaetze),
+    erg = {"prompt": e.prompt_version, "startwert": a.startwert, "umgebung": umgebung(e),
+           "einbettung_cpu": e.einbettung_cpu, "normen": {"absaetze": len(normen.absaetze),
                                                "paragrafen": len({x["paragraf"] for x in normen.absaetze}),
                                                "einbetten_sekunden": round(time.perf_counter() - t, 1)}}
     erg["suche"] = suche_messen(normen, modell, gold)

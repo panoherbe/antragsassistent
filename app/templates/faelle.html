@@ -1,11 +1,13 @@
 {% extends "basis.html" %}{% block titel %}Fälle{% endblock %}
 {% block inhalt %}
-<h1>Fälle {{ b.jobcenter_id }}</h1>
-<table>
-<thead><tr><th>Fall</th><th>Antragsart</th><th>Dokumente</th><th>Status</th><th>offene Angaben</th></tr></thead>
-<tbody>
-{% for f in faelle %}<tr><td><a href="/fall/{{ f.id }}">{{ f.id }}</a></td><td>{{ f.antragsart }}</td><td>{{ f.dokumente }}</td>
-<td><span class="status {{ f.status }}">{{ {'eingang':'Eingang','in_pruefung':'in Prüfung','prueffertig':'prüffertig'}[f.status] }}</span></td><td>{{ f.offen }}</td></tr>
-{% else %}<tr><td colspan="5">Keine Fälle.</td></tr>{% endfor %}
-</tbody></table>
+<h1>Ihre Fälle</h1>
+<p class="unterzeile">{{ jobcenter[b.jobcenter_id] }} · {{ faelle | length }} Anträge</p>
+<div class="liste">
+{% for f in faelle %}<a class="zeile" href="/fall/{{ f.id }}" data-fall="{{ f.id }}" data-art="{{ f.antragsart }}" data-dokumente="{{ f.dokumente }}" data-status="{{ f.status }}">
+  <div><b>{{ person(f.antrag_text) }}</b><span class="art">{{ f.antragsart }} · {{ f.id }}</span></div>
+  <span class="dok">{{ f.dokumente }} Nachweise</span>
+  <span class="status {{ f.status }}">{{ status[f.status] }}{% if f.status == 'in_pruefung' and f.offen %} · {{ f.offen }} offen{% endif %}</span>
+</a>
+{% else %}<p>Keine Fälle.</p>{% endfor %}
+</div>
 {% endblock %}

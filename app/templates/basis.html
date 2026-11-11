@@ -1,17 +1,18 @@
 <!doctype html>
 <html lang="de">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% block titel %}Antragsassistent{% endblock %} · Prototyp</title>
-<link rel="stylesheet" href="/static/stil.css"></head>
+<title>{% block titel %}Antragsassistent{% endblock %} · Antragsassistent</title>
+<link rel="stylesheet" href="/static/stil.css"><script src="/static/app.js" defer></script></head>
 <body>
 <header>
-  <a class="marke" href="/">Antragsassistent <span>Prototyp · nur synthetische Daten</span></a>
+  <a class="marke" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#0d6b6e"/><path d="M10 8.5h8.5l4 4V23a1.5 1.5 0 0 1-1.5 1.5H10A1.5 1.5 0 0 1 8.5 23V10A1.5 1.5 0 0 1 10 8.5z" fill="#fff"/><path d="M12.2 17.2l2.6 2.6 5-5.2" stroke="#0d6b6e" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Antragsassistent <small>Prototyp · Testdaten</small></a>
   {% if b %}<nav>
-    {% if b.rolle != 'administration' %}<a href="/">Fälle</a><a href="/assistent">Fragen zum SGB II</a>{% endif %}
-    {% if b.rolle in ('pruefung', 'administration') %}<a href="/protokoll">Prüfprotokoll</a>{% endif %}
-    <span class="wer">{{ b.anzeigename }} · {{ b.rolle }}{% if b.jobcenter_id %} · {{ b.jobcenter_id }}{% endif %}</span>
-    <a href="/abmelden">Abmelden</a></nav>{% endif %}
+    {% if b.rolle != 'administration' %}<a href="/" class="{{ 'aktiv' if seite == 'faelle' }}">Fälle</a><a href="/assistent" class="{{ 'aktiv' if seite == 'frage' }}">Frage stellen</a>{% endif %}
+    {% if b.rolle in ('pruefung', 'administration') %}<a href="/protokoll" class="{{ 'aktiv' if seite == 'protokoll' }}">Protokoll</a>{% endif %}
+    <div class="wer"><b>{{ b.anzeigename }}</b><span>{% if b.jobcenter_id %}{{ jobcenter[b.jobcenter_id] | replace(' (fiktiv)', '') }}{% else %}{{ rolle[b.rolle] }}{% endif %}</span></div>
+    <a href="/abmelden" class="ab">Abmelden</a></nav>{% endif %}
 </header>
 <main>{% block inhalt %}{% endblock %}</main>
-<footer>Prototyp. Das System entscheidet nichts: Jede Angabe bestätigt eine Person. KI-Ausgaben sind Entwürfe, keine Rechtsauskunft. Modell: {{ modell }} (lokal).</footer>
+<footer>Prototyp mit erfundenen Testdaten. Der Assistent macht Vorschläge; entscheiden tut immer ein Mensch. Antworten sind Entwürfe, keine Rechtsauskunft. Sprachmodell {{ modell }}, lokal auf diesem Rechner.</footer>
 </body></html>
